@@ -1,4 +1,4 @@
-##Test for ok.ru
+## Test for ok.ru
 
 - [ ] Пожаловаться на оповещание
 - [ ] Проверить переключение разделов
@@ -15,11 +15,11 @@
 
 # What to do to prepare ?
 1. Set environment variables
-export LOGIN1="your_data"
-export PASSWORD1="your_data"
-export LOGIN2="your_data"
-export PASSWORD2="your_data"
-export BROWSER="CHROME" || export BROWSER="FIREFOX"
+- export LOGIN1="your_data"
+- export PASSWORD1="your_data"
+- export LOGIN2="your_data"
+- export PASSWORD2="your_data"
+- export BROWSER="CHROME" || export BROWSER="FIREFOX"
 2. Install chrome and firefox web browsers
 
 3. Move ***chromedriver*** and ***geckodriver*** for your OC instead my drivers for Linux x64
