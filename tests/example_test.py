@@ -22,6 +22,11 @@ class Page(object):
         self.driver.maximize_window()
 
 
+class Component(object):
+    def __init__(self, driver):
+        self.driver = driver
+
+
 class AuthPage(Page):
     PATH = ''
 
@@ -29,9 +34,38 @@ class AuthPage(Page):
     def form(self):
         return AuthForm(self.driver)
 
+
+class MainPage(Page):
+    PATH = ''
+
     @property
     def top_menu(self):
         return TopMenu(self.driver)
+
+
+class AuthForm(Component):
+    LOGIN = '//input[@name="st.email"]'
+    PASSWORD = '//input[@name="st.password"]'
+    SUBMIT = '//input[@value="Войти"]'
+
+    def set_login(self, login):
+        self.driver.find_element_by_xpath(self.LOGIN).send_keys(login)
+
+    def set_password(self, password):
+        self.driver.find_element_by_xpath(self.PASSWORD).send_keys(password)
+
+    def submit(self):
+        self.driver.find_element_by_xpath(self.SUBMIT).click()
+
+
+class TopMenu(Component):
+    NOTIFICATION = '//*[@id="ntf_toolbar_button"]/div[2]/div'
+
+    def select_notification(self):
+        element = WebDriverWait(self.driver, 10).until(
+            lambda d: d.find_element_by_xpath(self.NOTIFICATION)
+        )
+        element.click()
 
 
 class CreatePage(Page):
@@ -52,35 +86,6 @@ class BlogPage(Page):
     @property
     def topic(self):
         return Topic(self.driver)
-
-
-class Component(object):
-    def __init__(self, driver):
-        self.driver = driver
-
-
-class AuthForm(Component):
-    LOGIN = '//input[@name="st.email"]'
-    PASSWORD = '//input[@name="st.password"]'
-    SUBMIT = '//input[@value="Войти"]'
-
-    def set_login(self, login):
-        self.driver.find_element_by_xpath(self.LOGIN).send_keys(login)
-
-    def set_password(self, pwd):
-        self.driver.find_element_by_xpath(self.PASSWORD).send_keys(pwd)
-
-    def submit(self):
-        self.driver.find_element_by_xpath(self.SUBMIT).click()
-
-
-class TopMenu(Component):
-    USERNAME = '//a[@class="username"]'
-
-    def get_username(self):
-        return WebDriverWait(self.driver, 30, 0.1).until(
-            lambda d: d.find_element_by_xpath(self.USERNAME).text
-        )
 
 
 class CreateForm(Component):
@@ -143,12 +148,8 @@ class Topic(Component):
 
 
 class ExampleTest(unittest.TestCase):
-    USERNAME = u'Всеволод Пападык'
-    LOGIN = 'technopark25'
-    PASSWORD = os.environ['PASSWORD']
-    BLOG = 'Флудилка'
-    TITLE = u'ЗаГоЛоВоК'
-    MAIN_TEXT = u'Текст под катом! Отображается внутри топика!'
+    LOGIN = os.environ['LOGIN1']
+    PASSWORD = os.environ['PASSWORD1']
 
     def setUp(self):
         browser = os.environ.get('BROWSER', 'CHROME')
@@ -160,7 +161,7 @@ class ExampleTest(unittest.TestCase):
 
     def tearDown(self):
         pass
-        #self.driver.quit()
+        # self.driver.quit()
 
     def test(self):
         auth_page = AuthPage(self.driver)
@@ -171,6 +172,9 @@ class ExampleTest(unittest.TestCase):
         auth_form.set_password(self.PASSWORD)
         auth_form.submit()
 
+        main_page = MainPage(self.driver)
+        top_menu = main_page.top_menu
+        top_menu.select_notification()
         # user_name = auth_page.top_menu.get_username()
         # self.assertEqual(self.USERNAME, user_name)
         #
