@@ -5,8 +5,13 @@ import os
 import unittest
 import urlparse
 
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import DesiredCapabilities, Remote
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.common.by import By
+
+wait_time = 5
 
 
 class Page(object):
@@ -60,6 +65,16 @@ class AuthForm(Component):
 
 class TopMenu(Component):
     NOTIFICATION = '//*[@id="ntf_toolbar_button"]/div[2]/div'
+    TAB_TITLE = '//*[@id="hook_Block_NotificationsLayerTitle"]/div'
+
+    ALL = '//*[@id="ntf_layer_menu_link_All"]/span'
+    FRIENDS = '//*[@id="ntf_layer_menu_link_Friendships"]/span[1]'
+    GIFTS = '//*[@id="ntf_layer_menu_link_Presents"]'
+    GROUPS = '//*[@id="ntf_layer_menu_link_Groups"]'
+    GAMES = '//*[@id="ntf_layer_menu_link_Games"]/span[1]'
+    PAYMENTS = '//*[@id="ntf_layer_menu_link_Payments"]'
+    VIDEOS = '//*[@id="ntf_layer_menu_link_Video"]'
+    OTHERS = '//*[@id="ntf_layer_menu_link_Other"]'
 
     def select_notification(self):
         element = WebDriverWait(self.driver, 10).until(
@@ -67,84 +82,87 @@ class TopMenu(Component):
         )
         element.click()
 
+    def wait_process(self):
+        try:
+            WebDriverWait(self.driver, wait_time).until(
+                expected_conditions.visibility_of_element_located((By.CLASS_NAME, '__process')))
+        except TimeoutException:
+            print('wait process fail')
 
-class CreatePage(Page):
-    PATH = '/blog/topic/create/'
+        try:
+            WebDriverWait(self.driver, wait_time).until_not(
+                expected_conditions.visibility_of_element_located((By.CLASS_NAME, '__process')))
+        except TimeoutException:
+            print('wait process fail')
 
-    @property
-    def form(self):
-        return CreateForm(self.driver)
-
-
-class TopicPage(Page):
-    @property
-    def topic(self):
-        return Topic(self.driver)
-
-
-class BlogPage(Page):
-    @property
-    def topic(self):
-        return Topic(self.driver)
-
-
-class CreateForm(Component):
-    BLOGSELECT = '//a[@class="chzn-single"]'
-    OPTION = '//li[text()="{}"]'
-    TITLE = '//input[@name="title"]'
-    SHORT_TEXT = '//textarea[@name="text_short"]'
-    MAIN_TEXT = '//textarea[@id="id_text"]'
-    CREATE_BUTTON = '//button[contains(text(),"Создать")]'
-    PUBLISH_CHECKBOX = '//input[@name="publish"]'
-
-    def blog_select_open(self):
-        self.driver.find_element_by_xpath(self.BLOGSELECT).click()
-
-    def blog_select_set_option(self, option_text):
-        self.driver.find_element_by_xpath(self.OPTION.format(option_text)).click()
-
-    def set_title(self, title):
-        self.driver.find_element_by_xpath(self.TITLE).send_keys(title)
-
-    def set_short_text(self, short_text):
-        self.driver.find_element_by_xpath(self.SHORT_TEXT).send_keys(short_text)
-
-    def set_main_text(self, main_text):
-        self.driver.find_element_by_xpath(self.MAIN_TEXT).send_keys(main_text)
-
-    def submit(self):
-        self.driver.find_element_by_xpath(self.CREATE_BUTTON).click()
-
-    def set_unpublish(self):
-        self.driver.find_element_by_xpath(self.PUBLISH_CHECKBOX).click()
-
-
-class Topic(Component):
-    TITLE = '//*[@class="topic-title"]/*'
-    TEXT = '//*[@class="topic-content text"]'
-    BLOG = '//*[@class="topic-blog"]'
-    DELETE_BUTTON = '//a[@class="actions-delete"]'
-    DELETE_BUTTON_CONFIRM = '//input[@value="Удалить"]'
-
-    def get_title(self):
-        return WebDriverWait(self.driver, 30, 0.1).until(
-            lambda d: d.find_element_by_xpath(self.TITLE).text
+    def choose_tab_all(self):
+        element = WebDriverWait(self.driver, 10).until(
+            lambda d: d.find_element_by_xpath(self.ALL)
         )
+        element.click()
 
-    def get_text(self):
-        return WebDriverWait(self.driver, 30, 0.1).until(
-            lambda d: d.find_element_by_xpath(self.TEXT).text
+        self.wait_process()
+
+    def choose_tab_friends(self):
+        element = WebDriverWait(self.driver, 10).until(
+            lambda d: d.find_element_by_xpath(self.FRIENDS)
         )
+        element.click()
 
-    def open_blog(self):
-        self.driver.find_element_by_xpath(self.BLOG).click()
+        self.wait_process()
 
-    def delete(self):
-        self.driver.find_element_by_xpath(self.DELETE_BUTTON).click()
-        confirm_button = WebDriverWait(self.driver, 30, 0.1).until(
-            lambda d: d.find_element_by_xpath(self.DELETE_BUTTON_CONFIRM)
+    def choose_tab_gifts(self):
+        element = WebDriverWait(self.driver, 10).until(
+            lambda d: d.find_element_by_xpath(self.GIFTS)
         )
-        confirm_button.click()
+        element.click()
+
+        self.wait_process()
+
+    def choose_tab_groups(self):
+        element = WebDriverWait(self.driver, 10).until(
+            lambda d: d.find_element_by_xpath(self.GROUPS)
+        )
+        element.click()
+
+        self.wait_process()
+
+    def choose_tab_games(self):
+        element = WebDriverWait(self.driver, 10).until(
+            lambda d: d.find_element_by_xpath(self.GAMES)
+        )
+        element.click()
+
+        self.wait_process()
+
+    def choose_tab_payments(self):
+        element = WebDriverWait(self.driver, 10).until(
+            lambda d: d.find_element_by_xpath(self.PAYMENTS)
+        )
+        element.click()
+
+        self.wait_process()
+
+    def choose_tab_videos(self):
+        element = WebDriverWait(self.driver, 10).until(
+            lambda d: d.find_element_by_xpath(self.VIDEOS)
+        )
+        element.click()
+
+        self.wait_process()
+
+    def choose_tab_others(self):
+        element = WebDriverWait(self.driver, 10).until(
+            lambda d: d.find_element_by_xpath(self.OTHERS)
+        )
+        element.click()
+
+        self.wait_process()
+
+    def get_tab_title(self):
+        return WebDriverWait(self.driver, 10).until(
+            lambda d: d.find_element_by_xpath(self.TAB_TITLE).text
+        )
 
 
 class ExampleTest(unittest.TestCase):
@@ -175,29 +193,36 @@ class ExampleTest(unittest.TestCase):
         main_page = MainPage(self.driver)
         top_menu = main_page.top_menu
         top_menu.select_notification()
-        # user_name = auth_page.top_menu.get_username()
-        # self.assertEqual(self.USERNAME, user_name)
-        #
-        # create_page = CreatePage(self.driver)
-        # create_page.open()
-        #
-        # create_form = create_page.form
-        # create_form.blog_select_open()
-        # create_form.blog_select_set_option(self.BLOG)
-        # create_form.set_title(self.TITLE)
-        # create_form.set_main_text(self.MAIN_TEXT)
-        # create_form.set_unpublish()
-        # create_form.submit()
-        #
-        # topic_page = TopicPage(self.driver)
-        # topic_title = topic_page.topic.get_title()
-        # topic_text = topic_page.topic.get_text()
-        # self.assertEqual(self.TITLE, topic_title)
-        # self.assertEqual(self.MAIN_TEXT, topic_text)
-        #
-        # blog_page = BlogPage(self.driver)
-        # blog_page.topic.delete()
-        # topic_title = blog_page.topic.get_title()
-        # topic_text = blog_page.topic.get_text()
-        # self.assertNotEqual(self.TITLE, topic_title)
-        # self.assertNotEqual(self.MAIN_TEXT, topic_text)
+
+        title = top_menu.get_tab_title()
+        self.assertEqual(u"Все оповещения", title)
+
+        top_menu.choose_tab_friends()
+        title = top_menu.get_tab_title()
+        self.assertEqual(u"Дружбы", title)
+
+        top_menu.choose_tab_gifts()
+        title = top_menu.get_tab_title()
+        self.assertEqual(u"Подарки", title)
+
+        top_menu.choose_tab_groups()
+        title = top_menu.get_tab_title()
+        self.assertEqual(u"Группы", title)
+
+        top_menu.choose_tab_games()
+        title = top_menu.get_tab_title()
+        self.assertEqual(u"Игры", title)
+
+        top_menu.choose_tab_payments()
+        title = top_menu.get_tab_title()
+        self.assertEqual(u"Платежи", title)
+
+        top_menu.choose_tab_videos()
+        title = top_menu.get_tab_title()
+        self.assertEqual(u"Видео", title)
+
+        top_menu.choose_tab_others()
+        title = top_menu.get_tab_title()
+        self.assertEqual(u"Другие оповещения", title)
+
+        main_page.open()
