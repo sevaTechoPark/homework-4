@@ -1,0 +1,10 @@
+# coding=utf-8
+waitTime = 1
+notificationsAll = u"Все оповещения"
+notificationsFriends = u"Дружбы"
+notificationsGifts = u"Подарки"
+notificationsGroups = u"Группы"
+notificationsGames = u"Игры"
+notificationsPayments = u"Платежи"
+notificationsVideos = u"Видео"
+notificationsOthers = u"Другие оповещения"
