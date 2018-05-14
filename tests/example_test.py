@@ -20,6 +20,7 @@ class Tests(unittest.TestCase):
 
     def tearDown(self):
         pass
+        # self.log_out()
         # self.driver.quit()
 
     def auth_user(self, who=True):
@@ -53,8 +54,6 @@ class Tests(unittest.TestCase):
             title = top_menu.get_tab_content_title()
             self.assertEqual(NOTIFICATION_TABS_TITLE[i], title, "select notification tabs")
 
-        self.log_out()
-
     def off_test_report_notification(self):
         self.create_notification()
         self.auth_user()
@@ -64,7 +63,6 @@ class Tests(unittest.TestCase):
         top_menu.select_notification()
         top_menu.report_notification()
         self.assertEqual(REPORT_SUCCESS, top_menu.place_first_notification(), "report notification fail")
-        self.log_out()
 
     def off_test_close_notification(self):
         self.create_notification()
@@ -75,13 +73,32 @@ class Tests(unittest.TestCase):
         top_menu.select_notification()
         top_menu.close_notification()
         self.assertEqual(True, top_menu.check_notification_close(), "close notification fail")
-        self.log_out()
 
-    def test_select_notification_tabs(self):
+    def off_test_add_reaction(self):
         self.auth_user()
 
         main_page = MainPage(self.driver)
         feed = main_page.feed
-        feed.add_emotion_to_like()
 
-        # self.log_out()
+        reaction_number = feed.add_emotion_to_like()
+        self.assertEqual(reaction_number, feed.get_number_emotion(), "add reaction fail")
+
+    def off_test_change_reaction(self):
+        self.auth_user()
+
+        main_page = MainPage(self.driver)
+        feed = main_page.feed
+        for i in range(0, 10):
+            old_reaction = feed.get_number_emotion()
+            reaction_number = feed.add_emotion_to_like(old_reaction)
+            print reaction_number, old_reaction
+            self.assertNotEquals(reaction_number, old_reaction, "change reaction fail")
+
+    def test_remove_reaction(self):
+        self.auth_user()
+
+        main_page = MainPage(self.driver)
+        feed = main_page.feed
+
+        feed.remove_like()
+        self.assertEquals(5, feed.get_number_emotion(), "remove reaction fail")

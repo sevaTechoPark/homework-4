@@ -1,25 +1,47 @@
-# coding=utf-8
-from selenium.common.exceptions import TimeoutException, NoSuchElementException, StaleElementReferenceException
-from selenium.webdriver import ActionChains
-from selenium.webdriver.support.wait import WebDriverWait
-
 from tests.Lilbs.Lib import Lib
-from tests.constants.Constants import waitTime
 from tests.models.Component import Component
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.common.by import By
+from random import randint
 
 
 class Feed(Component):
+    def __init__(self, driver):
+        super(Feed, self).__init__(driver)
+        for i in range(0, len(self.REACTIONS)):
+            self.REACTIONS[i] = self.REACTION_PANEL + self.REACTIONS[i]
+
     LIKE_BUTTONS = '//div[@class="feed-list"]//div[@class="feed-w"]//ul[@class="widget-list"]//li[@class="widget-list_i "][last()]'
-    REACTION_PANEL = '//div[@class="hook_Blocl_ShortcutMenuReact"]//div[@class="reactions"]'
+    REACTION_PANEL = '//div[@class="reactions"]'
     REACTIONS = ['//span[@data-l="t,reaction0"]', '//span[@data-l="t,reaction1"]', '//span[@data-l="t,reaction2"]',
                  '//span[@data-l="t,reaction3"]', '//span[@data-l="t,reaction4"]']
-    for reaction in REACTIONS:
-        reaction += REACTION_PANEL
+    REACTION_ICON = '//span[contains(@class, "widget_ico")]'
 
-    def add_emotion_to_like(self):
-        element = Lib.simple_wait_element(self.driver, self.LIKE_BUTTONS)
+    def add_emotion_to_like(self, old_reaction=-1):
+        reaction_number = randint(0, 4)
+        while reaction_number == old_reaction:
+            reaction_number = randint(0, 4)
+        element = Lib.simple_wait_elements(self.driver, self.LIKE_BUTTONS)[0]
         Lib.hover(self.driver, element)
         Lib.visibility_wait_element(self.driver, self.REACTION_PANEL)
-        Lib.visibility_wait_element(self.driver, self.REACTIONS[0]).click()
+        Lib.simple_get_element(self.driver, self.REACTIONS[reaction_number]).click()
+        return reaction_number
+
+    def get_number_emotion(self):
+        reaction_class = Lib.visibility_wait_element(self.driver, self.REACTION_ICON).get_attribute("class")
+        if reaction_class == 'widget_ico __react __react-like':
+            return 0
+        if reaction_class == 'widget_ico __react __react-lol':
+            return 1
+        if reaction_class == 'widget_ico __react __react-sorrow':
+            return 2
+        if reaction_class == 'widget_ico __react __react-heart':
+            return 3
+        if reaction_class == 'widget_ico __react __react-wow':
+            return 4
+        if reaction_class == 'widget_ico widget_ico ic_klass':
+            return 5
+        return 6
+
+    def remove_like(self):
+        element = Lib.simple_wait_elements(self.driver, self.LIKE_BUTTONS)[0]
+        if self.get_number_emotion() != 5:
+            element.click()
