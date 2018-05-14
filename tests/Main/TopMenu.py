@@ -3,6 +3,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException,
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 
+from tests.Lilbs.Lib import Lib
 from tests.constants.Constants import waitTime
 from tests.models.Component import Component
 from selenium.webdriver.support import expected_conditions
@@ -27,7 +28,7 @@ class TopMenu(Component):
     NOTIFICATION_REPORT_SPAM = NOTIFICATION_ELEMENT + '//div[@class="notif_ac fade-on-hover"]//div[@data-l="t,shortcutMenu"]//a'
     NOTIFICATION_REMOVED = NOTIFICATION_ELEMENT + '//div[@data-module="NotificationRemoved"]'
 
-    NOTIFICATION_CLOSE = NOTIFICATION_ELEMENT + '//button[@data-l="t,btn_ignore"]'
+    NOTIFICATION_BUTTON_CLOSE = NOTIFICATION_ELEMENT + '//button[@data-l="t,btn_ignore"]'
 
     NOTIFICATION_TABS = ['//*[@id="ntf_layer_menu_link_All"]/span',
                          '//*[@id="ntf_layer_menu_link_Friendships"]/span[1]',
@@ -39,108 +40,53 @@ class TopMenu(Component):
                          '//*[@id="ntf_layer_menu_link_Other"]']
 
     def select_notification(self):
-        element = WebDriverWait(self.driver, waitTime).until(
-            lambda d: d.find_element_by_xpath(self.NOTIFICATION_TOOLBAR)
-        )
-        element.click()
-
-        WebDriverWait(self.driver, waitTime).until(
-            lambda d: d.find_element_by_xpath(self.NOTIFICATION_CONTAINER)
-        )
+        Lib.simple_wait_element(self.driver, self.NOTIFICATION_TOOLBAR).click()
+        Lib.simple_wait_element(self.driver, self.NOTIFICATION_CONTAINER)
 
     def select_friends(self):
-        element = WebDriverWait(self.driver, waitTime).until(
-            lambda d: d.find_element_by_xpath(self.FRIENDS_TOOLBAR)
-        )
-        element.click()
+        Lib.simple_wait_element(self.driver, self.FRIENDS_TOOLBAR).click()
 
     def invite_to_group(self):
-        ignored_exceptions = (NoSuchElementException, StaleElementReferenceException,)
-
-        element = WebDriverWait(self.driver, waitTime).until(
-            lambda d: d.find_element_by_xpath(self.FIRST_ACCOUNT_NAME)
-        )
-
-        ActionChains(self.driver).move_to_element(element).perform()
-
-        element = WebDriverWait(self.driver, waitTime, ignored_exceptions=ignored_exceptions).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, self.INVITE_TO_GROUP)))
-        element.click()
-
-        elements = WebDriverWait(self.driver, waitTime).until(
-            lambda d: d.find_elements_by_xpath(self.GROUP_TO_INVITE)
-        )
-
-        elements[0].click()
+        element = Lib.simple_wait_element(self.driver, self.FIRST_ACCOUNT_NAME)
+        Lib.hover(self.driver, element)
+        Lib.visibility_wait_element(self.driver, self.INVITE_TO_GROUP).click()
+        Lib.simple_wait_elements(self.driver, self.GROUP_TO_INVITE)[0].click()
 
     def report_notification(self):
-        ignored_exceptions = (NoSuchElementException, StaleElementReferenceException,)
-
         self.wait_process_after_choose_tab()
 
-        element = WebDriverWait(self.driver, waitTime).until(
-            lambda d: d.find_element_by_xpath(self.NOTIFICATION_ELEMENT)
-        )
-
-        ActionChains(self.driver).move_to_element(element).perform()
-
-        element = WebDriverWait(self.driver, waitTime, ignored_exceptions=ignored_exceptions).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, self.NOTIFICATION_REPORT)))
-        element.click()
-
-        element = WebDriverWait(self.driver, waitTime, ignored_exceptions=ignored_exceptions).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, self.NOTIFICATION_REPORT_SPAM)))
-        element.click()
+        element = Lib.simple_wait_element(self.driver, self.NOTIFICATION_ELEMENT)
+        Lib.hover(self.driver, element)
+        Lib.visibility_wait_element(self.driver, self.NOTIFICATION_REPORT).click()
+        Lib.visibility_wait_element(self.driver, self.NOTIFICATION_REPORT_SPAM).click()
 
     def place_first_notification(self):
-        return WebDriverWait(self.driver, waitTime).until(
-            lambda d: d.find_element_by_xpath(self.NOTIFICATION_REMOVED).text
-        )
+        return Lib.simple_wait_element(self.driver, self.NOTIFICATION_REMOVED).text
 
     def close_notification(self):
         self.wait_process_after_choose_tab()
 
-        WebDriverWait(self.driver, waitTime).until(
-            lambda d: d.find_element_by_xpath(self.NOTIFICATION_ELEMENT_WITH_ID)
-        )
-
-        element = WebDriverWait(self.driver, waitTime).until(
-            lambda d: d.find_element_by_xpath(self.NOTIFICATION_CLOSE)
-        )
-        element.click()
+        Lib.simple_wait_element(self.driver, self.NOTIFICATION_ELEMENT_WITH_ID)
+        Lib.simple_wait_element(self.driver, self.NOTIFICATION_BUTTON_CLOSE).click()
 
     def check_notification_close(self):
         self.wait_process_after_choose_tab()
-
-        try:
-            self.driver.find_element_by_xpath(self.NOTIFICATION_ELEMENT_WITH_ID)
-            return False
-        except NoSuchElementException:
-            return True
+        return Lib.check_exist_element(self.driver, self.NOTIFICATION_ELEMENT_WITH_ID)
 
     def wait_process_after_choose_tab(self):
         try:
-            WebDriverWait(self.driver, waitTime).until(
-                lambda d: d.find_element_by_xpath(self.NOTIFICATION_TAB_CONTENT).get_attribute("__process")
-            )
+            Lib.wait_element_with_attribute(self.driver, True, self.NOTIFICATION_TAB_CONTENT, "__process")
         except TimeoutException:
-            print('wait process fail')
+            pass
 
         try:
-            WebDriverWait(self.driver, waitTime).until_not(
-                lambda d: d.find_element_by_xpath(self.NOTIFICATION_TAB_CONTENT).get_attribute("__process")
-            )
+            Lib.wait_element_with_attribute(self.driver, False, self.NOTIFICATION_TAB_CONTENT, "__process")
         except TimeoutException:
-            print('wait not process fail')
+            pass
 
     def choose_tab_notification(self, index):
-        tab_name = self.NOTIFICATION_TABS[index]
-        self.driver.find_element_by_xpath(tab_name).click()
+        Lib.simple_get_element(self.driver, self.NOTIFICATION_TABS[index]).click()
         self.wait_process_after_choose_tab()
 
     def get_tab_content_title(self):
-        ignored_exceptions = (NoSuchElementException, StaleElementReferenceException,)
-        element = WebDriverWait(self.driver, waitTime, ignored_exceptions=ignored_exceptions).until(
-            expected_conditions.presence_of_element_located((By.XPATH, self.NOTIFICATION_TAB_TITLE)))
-
-        return element.text
+        return Lib.visibility_wait_element(self.driver, self.NOTIFICATION_TAB_TITLE).text

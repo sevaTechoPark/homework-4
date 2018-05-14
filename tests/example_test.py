@@ -19,8 +19,8 @@ class Tests(unittest.TestCase):
         )
 
     def tearDown(self):
-        # pass
-        self.driver.quit()
+        pass
+        # self.driver.quit()
 
     def auth_user(self, who=True):
         auth_page = AuthPage(self.driver)
@@ -41,7 +41,7 @@ class Tests(unittest.TestCase):
 
         self.log_out()
 
-    def test_select_notification_tabs(self):
+    def off_test_select_notification_tabs(self):
         self.auth_user()
 
         main_page = MainPage(self.driver)
@@ -55,7 +55,7 @@ class Tests(unittest.TestCase):
 
         self.log_out()
 
-    def test_report_notification(self):
+    def off_test_report_notification(self):
         self.create_notification()
         self.auth_user()
 
@@ -66,7 +66,7 @@ class Tests(unittest.TestCase):
         self.assertEqual(REPORT_SUCCESS, top_menu.place_first_notification(), "report notification fail")
         self.log_out()
 
-    def test_close_notification(self):
+    def off_test_close_notification(self):
         self.create_notification()
         self.auth_user()
 
@@ -77,3 +77,11 @@ class Tests(unittest.TestCase):
         self.assertEqual(True, top_menu.check_notification_close(), "close notification fail")
         self.log_out()
 
+    def test_select_notification_tabs(self):
+        self.auth_user()
+
+        main_page = MainPage(self.driver)
+        feed = main_page.feed
+        feed.add_emotion_to_like()
+
+        # self.log_out()

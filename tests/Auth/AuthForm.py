@@ -1,9 +1,7 @@
-# coding=utf-8
 import os
 
-from selenium.webdriver.support.wait import WebDriverWait
 
-from tests.constants.Constants import waitTime
+from tests.Lilbs.Lib import Lib
 from tests.models.Component import Component
 
 
@@ -18,18 +16,16 @@ class AuthForm(Component):
     PASSWORD2 = os.environ['PASSWORD2']
 
     def set_login(self, login):
-        self.driver.find_element_by_xpath(self.LOGIN_INPUT).send_keys(login)
+        Lib.simple_set_text_to_element(self.driver, self.LOGIN_INPUT, login)
 
     def set_password(self, password):
-        self.driver.find_element_by_xpath(self.PASSWORD_INPUT).send_keys(password)
+        Lib.simple_set_text_to_element(self.driver, self.PASSWORD_INPUT, password)
 
     def submit(self):
-        self.driver.find_element_by_xpath(self.SUBMIT_INPUT).click()
+        Lib.simple_get_element(self.driver, self.SUBMIT_INPUT).click()
 
     def authorized(self, who=True):
-        WebDriverWait(self.driver, waitTime).until(
-            lambda d: d.find_element_by_xpath(self.LOGIN_INPUT)
-        )
+        Lib.simple_wait_element(self.driver, self.LOGIN_INPUT)
 
         if who:
             self.set_login(self.LOGIN1)
