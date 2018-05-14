@@ -19,8 +19,8 @@ class Tests(unittest.TestCase):
         )
 
     def tearDown(self):
-        pass
-        # self.driver.quit()
+        # pass
+        self.driver.quit()
 
     def auth_user(self, who=True):
         auth_page = AuthPage(self.driver)
@@ -29,9 +29,17 @@ class Tests(unittest.TestCase):
         auth_form.authorized(who)
 
     def log_out(self):
+        self.driver.delete_all_cookies()
+        self.driver.refresh()
+
+    def create_notification(self):
+        self.auth_user(False)
         main_page = MainPage(self.driver)
-        exit_menu = main_page.exit_menu
-        exit_menu.log_out()
+        top_menu = main_page.top_menu
+        top_menu.select_friends()
+        top_menu.invite_to_group()
+
+        self.log_out()
 
     def test_select_notification_tabs(self):
         self.auth_user()
@@ -40,38 +48,32 @@ class Tests(unittest.TestCase):
         top_menu = main_page.top_menu
         top_menu.select_notification()
 
-        title = top_menu.get_tab_title()
-        self.assertEqual(notificationsAll, title)
-
-        top_menu.choose_tab_friends()
-        title = top_menu.get_tab_title()
-        self.assertEqual(notificationsFriends, title)
-
-        top_menu.choose_tab_gifts()
-        title = top_menu.get_tab_title()
-        self.assertEqual(notificationsGifts, title)
-
-        top_menu.choose_tab_groups()
-        title = top_menu.get_tab_title()
-        self.assertEqual(notificationsGroups, title)
-
-        top_menu.choose_tab_games()
-        title = top_menu.get_tab_title()
-        self.assertEqual(notificationsGames, title)
-
-        top_menu.choose_tab_payments()
-        title = top_menu.get_tab_title()
-        self.assertEqual(notificationsPayments, title)
-
-        top_menu.choose_tab_videos()
-        title = top_menu.get_tab_title()
-        self.assertEqual(notificationsVideos, title)
-
-        top_menu.choose_tab_others()
-        title = top_menu.get_tab_title()
-        self.assertEqual(notificationsOthers, title)
+        for i in range(0, len(NOTIFICATION_TABS_TITLE)):
+            top_menu.choose_tab_notification(i)
+            title = top_menu.get_tab_content_title()
+            self.assertEqual(NOTIFICATION_TABS_TITLE[i], title, "select notification tabs")
 
         self.log_out()
 
     def test_report_notification(self):
-        self.auth_user(False)
+        self.create_notification()
+        self.auth_user()
+
+        main_page = MainPage(self.driver)
+        top_menu = main_page.top_menu
+        top_menu.select_notification()
+        top_menu.report_notification()
+        self.assertEqual(REPORT_SUCCESS, top_menu.place_first_notification(), "report notification fail")
+        self.log_out()
+
+    def test_close_notification(self):
+        self.create_notification()
+        self.auth_user()
+
+        main_page = MainPage(self.driver)
+        top_menu = main_page.top_menu
+        top_menu.select_notification()
+        top_menu.close_notification()
+        self.assertEqual(True, top_menu.check_notification_close(), "close notification fail")
+        self.log_out()
+

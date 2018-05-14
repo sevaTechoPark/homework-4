@@ -10,7 +10,7 @@ from tests.models.Component import Component
 class AuthForm(Component):
     LOGIN_INPUT = '//input[@name="st.email"]'
     PASSWORD_INPUT = '//input[@name="st.password"]'
-    SUBMIT_INPUT = '//input[@value="Войти"]'
+    SUBMIT_INPUT = '//input[@data-l="t,sign_in"]'
 
     LOGIN1 = os.environ['LOGIN1']
     PASSWORD1 = os.environ['PASSWORD1']

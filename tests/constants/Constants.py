@@ -1,10 +1,5 @@
 # coding=utf-8
 waitTime = 1
-notificationsAll = u"Все оповещения"
-notificationsFriends = u"Дружбы"
-notificationsGifts = u"Подарки"
-notificationsGroups = u"Группы"
-notificationsGames = u"Игры"
-notificationsPayments = u"Платежи"
-notificationsVideos = u"Видео"
-notificationsOthers = u"Другие оповещения"
+NOTIFICATION_TABS_TITLE = [u"Все оповещения", u"Дружбы", u"Подарки", u"Группы",
+                           u"Игры", u"Платежи", u"Видео", u"Другие оповещения"]
+REPORT_SUCCESS = u"Жалоба отправлена"
