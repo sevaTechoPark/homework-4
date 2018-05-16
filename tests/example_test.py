@@ -42,7 +42,7 @@ class Tests(unittest.TestCase):
 
         self.log_out()
 
-    def off_test_select_notification_tabs(self):
+    def test_select_notification_tabs(self):
         self.auth_user()
 
         main_page = MainPage(self.driver)
@@ -54,7 +54,7 @@ class Tests(unittest.TestCase):
             title = top_menu.get_tab_content_title()
             self.assertEqual(NOTIFICATION_TABS_TITLE[i], title, "select notification tabs")
 
-    def off_test_report_notification(self):
+    def test_report_notification(self):
         self.create_notification()
         self.auth_user()
 
@@ -64,7 +64,7 @@ class Tests(unittest.TestCase):
         top_menu.report_notification()
         self.assertEqual(REPORT_SUCCESS, top_menu.place_first_notification(), "report notification fail")
 
-    def off_test_close_notification(self):
+    def test_close_notification(self):
         self.create_notification()
         self.auth_user()
 
@@ -74,7 +74,7 @@ class Tests(unittest.TestCase):
         top_menu.close_notification()
         self.assertEqual(True, top_menu.check_notification_close(), "close notification fail")
 
-    def off_test_add_reaction(self):
+    def test_add_reaction(self):
         self.auth_user()
 
         main_page = MainPage(self.driver)
@@ -83,7 +83,7 @@ class Tests(unittest.TestCase):
         reaction_number = feed.add_emotion_to_like()
         self.assertEqual(reaction_number, feed.get_number_emotion(), "add reaction fail")
 
-    def off_test_change_reaction(self):
+    def test_change_reaction(self):
         self.auth_user()
 
         main_page = MainPage(self.driver)
