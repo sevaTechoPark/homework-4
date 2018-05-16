@@ -10,10 +10,10 @@ class AuthForm(Component):
     PASSWORD_INPUT = '//input[@name="st.password"]'
     SUBMIT_INPUT = '//input[@data-l="t,sign_in"]'
 
-    LOGIN1 = os.environ['LOGIN1']
-    PASSWORD1 = os.environ['PASSWORD1']
-    LOGIN2 = os.environ['LOGIN2']
-    PASSWORD2 = os.environ['PASSWORD2']
+    LOGIN1 = os.environ.get('LOGIN1', 'technopark25')
+    PASSWORD1 = os.environ.get('PASSWORD1', 'testQA1')
+    LOGIN2 = os.environ.get('LOGIN2', 'technopark26')
+    PASSWORD2 = os.environ.get('PASSWORD2', 'testQA1')
 
     def set_login(self, login):
         Lib.simple_set_text_to_element(self.driver, self.LOGIN_INPUT, login)
