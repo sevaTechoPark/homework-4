@@ -12,7 +12,7 @@ class AuthForm(Component):
 
     LOGIN1 = os.environ.get('LOGIN1', 'technopark25')
     PASSWORD1 = os.environ.get('PASSWORD1', 'testQA1')
-    LOGIN2 = os.environ.get('LOGIN2', 'technopark26')
+    LOGIN2 = os.environ.get('LOGIN2', 'technopark27')
     PASSWORD2 = os.environ.get('PASSWORD2', 'testQA1')
 
     def set_login(self, login):

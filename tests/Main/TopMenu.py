@@ -18,10 +18,6 @@ class TopMenu(Component):
     NOTIFICATION_TAB_TITLE = '//*[@id="hook_Block_NotificationsLayerTitle"]/div'
     NOTIFICATION_TAB_CONTENT = '//*[@id="hook_Block_NotificationsLayerContent"]'
 
-    FIRST_ACCOUNT_NAME = '//ul[@class="ugrid_cnt"]//li//div[@class="ellip"]//a[text()="Name Female"]'
-    INVITE_TO_GROUP = '//div[@class="gwt-shortcutMenu-content"]//ul//li[@class="ic_group"]//a'
-    GROUP_TO_INVITE = '//div[@id="hook_Block_InviteUserToGroup2GroupsList"]//div[@class="ugrid_i"]//a'
-
     NOTIFICATION_ELEMENT = '//div[@id="ntf_layer_content_inner"]/div[position() = 1]'
     NOTIFICATION_ELEMENT_WITH_ID = NOTIFICATION_ELEMENT + '/div'
     NOTIFICATION_REPORT = NOTIFICATION_ELEMENT + '//div[@class="notif_ac fade-on-hover"]//i[@data-l="t,spam"]'
@@ -45,12 +41,6 @@ class TopMenu(Component):
 
     def select_friends(self):
         Lib.simple_wait_element(self.driver, self.FRIENDS_TOOLBAR).click()
-
-    def invite_to_group(self):
-        element = Lib.simple_wait_element(self.driver, self.FIRST_ACCOUNT_NAME)
-        Lib.hover(self.driver, element)
-        Lib.visibility_wait_element(self.driver, self.INVITE_TO_GROUP).click()
-        Lib.simple_wait_elements(self.driver, self.GROUP_TO_INVITE)[0].click()
 
     def report_notification(self):
         self.wait_process_after_choose_tab()
