@@ -24,6 +24,7 @@ class Feed(Component):
     REACTIONS = ['//span[@data-l="t,reaction0"]', '//span[@data-l="t,reaction1"]', '//span[@data-l="t,reaction2"]',
                  '//span[@data-l="t,reaction3"]', '//span[@data-l="t,reaction4"]']
     REACTION_ICON = '//span[contains(@class, "widget_ico")]'
+    WALL_CONTENT = '//div[@data-block="MainFeedsContent"]'
 
     def add_like(self):
         element = Lib.simple_wait_elements(self.driver, self.LIKE_BUTTONS)[0]
@@ -37,14 +38,16 @@ class Feed(Component):
             element.click()
 
     def add_emotion_to_like(self, old_reaction=-1):
+        element = Lib.visibility_wait_element(self.driver, self.WALL_CONTENT)
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+
         reaction_number = randint(0, 4)
         while reaction_number == old_reaction:
             reaction_number = randint(0, 4)
         element = Lib.simple_wait_elements(self.driver, self.LIKE_BUTTONS)[0]
         Lib.hover(self.driver, element)
         Lib.visibility_wait_element(self.driver, self.REACTION_PANEL)
-        Lib.simple_get_element(self.driver, self.REACTIONS[reaction_number]).click()
-        return reaction_number
+        Lib.simple_wait_element(self.driver, self.REACTIONS[reaction_number]).click()
 
     def get_number_emotion(self):
         reaction_class = Lib.visibility_wait_element(self.driver, self.REACTION_ICON).get_attribute("class")
