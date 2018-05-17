@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4c42b3c-3a72-4179-abcc-209410eacac5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/tests/Main/Feed.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Main/Feed.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/example_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/example_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/constants/Constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/constants/Constants.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,16 +25,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Feed.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Feed.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/Main/Feed.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="608">
+              <caret line="41" column="77" lean-forward="true" selection-start-line="41" selection-start-column="77" selection-end-line="41" selection-end-column="77" />
               <folding>
                 <element signature="e#1356#1594#0" />
                 <element signature="e#1631#1771#0" />
                 <element signature="e#3135#3362#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/constants/Constants.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="37" lean-forward="true" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -85,7 +93,6 @@
         <option value="$PROJECT_DIR$/tests/Main/MainPage.py" />
         <option value="$PROJECT_DIR$/node.sh" />
         <option value="$PROJECT_DIR$/grid.sh" />
-        <option value="$PROJECT_DIR$/tests/constants/Constants.py" />
         <option value="$PROJECT_DIR$/tests/Lilbs/Lib.py" />
         <option value="$PROJECT_DIR$/tests/Main/Friends.py" />
         <option value="$PROJECT_DIR$/tests/Auth/UsersName.py" />
@@ -93,6 +100,7 @@
         <option value="$PROJECT_DIR$/tests/Main/CenterMenu.py" />
         <option value="$PROJECT_DIR$/tests/example_test.py" />
         <option value="$PROJECT_DIR$/tests/Main/Feed.py" />
+        <option value="$PROJECT_DIR$/tests/constants/Constants.py" />
       </list>
     </option>
   </component>
@@ -205,7 +213,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -529,13 +536,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/constants/Constants.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/models/Page.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -593,13 +593,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Main/Feed.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="608">
+          <caret line="41" column="77" lean-forward="true" selection-start-line="41" selection-start-column="77" selection-end-line="41" selection-end-column="77" />
           <folding>
             <element signature="e#1356#1594#0" />
             <element signature="e#1631#1771#0" />
             <element signature="e#3135#3362#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/constants/Constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="37" lean-forward="true" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
         </state>
       </provider>
     </entry>
