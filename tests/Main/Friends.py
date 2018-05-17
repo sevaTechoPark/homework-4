@@ -1,10 +1,9 @@
-from tests.Auth.UsersName import UsersName
 from tests.Lilbs.Lib import Lib
 from tests.models.Component import Component
 
 
 class Friends(Component):
-    FIRST_ACCOUNT_NAME = '//ul[@class="ugrid_cnt"]//li//div[@class="ellip"]//a[text()="' + UsersName.get_login(True) + '"]'
+    FIRST_ACCOUNT_NAME = '//ul[@class="ugrid_cnt"]//li//div[@class="ellip"]//a[text()="Name Female"]'
     INVITE_TO_GROUP = '//div[@class="gwt-shortcutMenu-content"]//ul//li[@class="ic_group"]//a'
     GROUP_TO_INVITE = '//div[@id="hook_Block_InviteUserToGroup2GroupsList"]//div[@class="ugrid_i"]//a'
 

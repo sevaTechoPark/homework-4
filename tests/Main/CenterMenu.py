@@ -1,19 +1,15 @@
-# coding=utf-8
-from selenium.common.exceptions import TimeoutException, NoSuchElementException, StaleElementReferenceException
-from selenium.webdriver import ActionChains
-from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
 from tests.Lilbs.Lib import Lib
-from tests.constants.Constants import waitTime
 from tests.models.Component import Component
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.common.by import By
 
 
 class CenterMenu(Component):
     WALL_TOOLBAR = '//div[@id="mainContentLeftColumn"]//div[@id="hook_Block_SideNavigation"]//div[@data-l="t,navigation"]//a[@data-l="t,userPage"]'
     WALL_CONTENT = '//div[@id="hook_Block_UserFeed"]//div[contains(@data-l, "feedLocation,self,")]'
     FEED_LIST = '//div[@class="feed-list"][@data-l="feedLocation,self"]'
+    MY_ACCOUNT_NAME = '//div[@id="mainContentLeftColumn"]//div[@id="hook_Block_SideNavigation"]//div[@data-l="t,navigation"]//a[@data-l="t,userPage"]'
+    ANOTHER_ACCOUNT_NAME = '//h1[@class="mctc_name_tx bl"]'
 
     def select_wall(self):
         Lib.simple_wait_element(self.driver, self.WALL_TOOLBAR).click()
@@ -22,5 +18,11 @@ class CenterMenu(Component):
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     def get_nickname(self):
-        return Lib.simple_wait_element(self.driver, self.WALL_TOOLBAR).text
+        try:
+            element = Lib.simple_wait_element(self.driver, self.ANOTHER_ACCOUNT_NAME)
+            return element.text
+        except TimeoutException, NoSuchElementException:
+            element = Lib.simple_wait_element(self.driver, self.MY_ACCOUNT_NAME)
+            return element.text
+
 

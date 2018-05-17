@@ -4,8 +4,8 @@ import unittest
 
 from selenium.webdriver import DesiredCapabilities, Remote
 
+from tests.Auth import UsersName
 from tests.Auth.AuthPage import AuthPage
-from tests.Auth.UsersName import UsersName
 from tests.Main.MainPage import MainPage
 from tests.constants.Constants import *
 
@@ -18,6 +18,10 @@ class Tests(unittest.TestCase):
             command_executor='http://127.0.0.1:4444/wd/hub',
             desired_capabilities=getattr(DesiredCapabilities, browser).copy()
         )
+        self.auth_user()
+        self.log_out()
+        self.auth_user(False)
+        self.log_out()
 
     def tearDown(self):
         pass
@@ -33,7 +37,10 @@ class Tests(unittest.TestCase):
         main_page = MainPage(self.driver)
         center_menu = main_page.center_menu
         nickname = center_menu.get_nickname()
-        UsersName.set_login(who, nickname)
+        if who:
+            UsersName.first_account_name = nickname
+        else:
+            UsersName.second_account_name = nickname
 
     def log_out(self):
         self.driver.delete_all_cookies()
@@ -127,7 +134,7 @@ class Tests(unittest.TestCase):
         feed.remove_like()
         self.assertEquals(5, feed.get_number_emotion(), "remove reaction fail")
 
-    def test_show_who_last_reaction(self):
+    def off_test_show_who_last_reaction(self):
         like_id = self.create_like()
         self.auth_user()
         self.open_user_wall()
@@ -136,6 +143,24 @@ class Tests(unittest.TestCase):
         feed = main_page.feed
         names = feed.get_names_last_liked(like_id)
         is_second_user_liked = False
-        if any(UsersName.get_login(False) in s for s in names):
+        if any(UsersName.second_account_name in s for s in names):
             is_second_user_liked = True
         self.assertTrue(is_second_user_liked, "second user not found")
+
+    def test_go_to_page_who_last_reaction(self):
+        print UsersName.second_account_name
+        like_id = self.create_like()
+        self.auth_user()
+        self.open_user_wall()
+
+        main_page = MainPage(self.driver)
+        feed = main_page.feed
+        links = feed.get_links_last_liked(like_id)
+        for link in links:
+            main_page.BASE_URL = link
+            main_page.open()
+            center_menu = main_page.center_menu
+            nickname = center_menu.get_nickname()
+            print nickname
+            if nickname == UsersName.second_account_name:
+                self.assertTrue(True)
