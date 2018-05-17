@@ -17,6 +17,9 @@ class Feed(Component):
     LIKE_PANEL_LAST_LIKED_LINKS = LIKE_PANEL + '//li[@class="u-menu_li"]//ul[@class="ucard-mini-list __redesign __react"]//li[@class="ucard-mini-list_li"]//a'
     LIKE_PANEL_LAST_LIKED_NAMES = LIKE_PANEL + '//li[@class="ucard-mini-list_li"]//div[@class="ucard-mini_cnt"]//div[@class="ellip o"]'
 
+    LIST_ALL_LIKES = LIKE_PANEL + '//li[@class="ucard-mini-list_all"]//a'
+    LIST_ALL_LIKES_NAMES = '//div[@class="modal-new_hld"]/div[@class="modal-new_center"]//div[@class="ugrid_cnt"]//div[@class="ellip"]//a'
+
     REACTION_PANEL = '//div[@class="reactions"]'
     REACTIONS = ['//span[@data-l="t,reaction0"]', '//span[@data-l="t,reaction1"]', '//span[@data-l="t,reaction2"]',
                  '//span[@data-l="t,reaction3"]', '//span[@data-l="t,reaction4"]']
@@ -71,10 +74,10 @@ class Feed(Component):
     def get_names_last_liked(self, id):
         self.open_who_likes(id)
         elements = Lib.simple_wait_elements(self.driver, self.LIKE_PANEL_LAST_LIKED_NAMES)
-        links = []
+        names = []
         for element in elements:
-            links.append(element.text)
-        return links
+            names.append(element.text)
+        return names
 
     def get_links_last_liked(self, id):
         self.open_who_likes(id)
@@ -83,3 +86,21 @@ class Feed(Component):
         for element in elements:
             links.append(element.get_attribute("href"))
         return links
+
+    def open_all_likes(self, id):
+        self.open_who_likes(id)
+        Lib.visibility_wait_element(self.driver, self.LIST_ALL_LIKES).click()
+
+    def get_all_names(self):
+        elements = Lib.simple_wait_elements(self.driver, self.LIST_ALL_LIKES_NAMES)
+        names = []
+        for element in elements:
+            names.append(element.text)
+        return names
+
+    def get_all_links(self):
+        elements = Lib.simple_wait_elements(self.driver, self.LIST_ALL_LIKES_NAMES)
+        names = []
+        for element in elements:
+            names.append(element.get_attribute("href"))
+        return names

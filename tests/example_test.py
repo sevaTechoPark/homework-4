@@ -18,15 +18,18 @@ class Tests(unittest.TestCase):
             command_executor='http://127.0.0.1:4444/wd/hub',
             desired_capabilities=getattr(DesiredCapabilities, browser).copy()
         )
-        self.auth_user()
-        self.log_out()
-        self.auth_user(False)
-        self.log_out()
+        # self.save_nicknames()
 
     def tearDown(self):
         pass
         # self.log_out()
         # self.driver.quit()
+
+    def save_nicknames(self):
+        self.auth_user()
+        self.log_out()
+        self.auth_user(False)
+        self.log_out()
 
     def auth_user(self, who=True):
         auth_page = AuthPage(self.driver)
@@ -73,7 +76,7 @@ class Tests(unittest.TestCase):
         center_menu = main_page.center_menu
         center_menu.select_wall()
 
-    def off_test_select_notification_tabs(self):
+    def test_select_notification_tabs(self):
         self.auth_user()
 
         main_page = MainPage(self.driver)
@@ -85,7 +88,7 @@ class Tests(unittest.TestCase):
             title = top_menu.get_tab_content_title()
             self.assertEqual(NOTIFICATION_TABS_TITLE[i], title, "select notification tabs")
 
-    def off_test_report_notification(self):
+    def test_report_notification(self):
         self.create_notification()
         self.auth_user()
 
@@ -95,7 +98,7 @@ class Tests(unittest.TestCase):
         top_menu.report_notification()
         self.assertEqual(REPORT_SUCCESS, top_menu.place_first_notification(), "report notification fail")
 
-    def off_test_close_notification(self):
+    def test_close_notification(self):
         self.create_notification()
         self.auth_user()
 
@@ -105,7 +108,7 @@ class Tests(unittest.TestCase):
         top_menu.close_notification()
         self.assertEqual(True, top_menu.check_notification_close(), "close notification fail")
 
-    def off_test_add_reaction(self):
+    def test_add_reaction(self):
         self.auth_user()
 
         main_page = MainPage(self.driver)
@@ -114,7 +117,7 @@ class Tests(unittest.TestCase):
         reaction_number = feed.add_emotion_to_like()
         self.assertEqual(reaction_number, feed.get_number_emotion(), "add reaction fail")
 
-    def off_test_change_reaction(self):
+    def test_change_reaction(self):
         self.auth_user()
 
         main_page = MainPage(self.driver)
@@ -125,7 +128,7 @@ class Tests(unittest.TestCase):
             print reaction_number, old_reaction
             self.assertNotEquals(reaction_number, old_reaction, "change reaction fail")
 
-    def off_test_remove_reaction(self):
+    def test_remove_reaction(self):
         self.auth_user()
 
         main_page = MainPage(self.driver)
@@ -134,7 +137,7 @@ class Tests(unittest.TestCase):
         feed.remove_like()
         self.assertEquals(5, feed.get_number_emotion(), "remove reaction fail")
 
-    def off_test_show_who_last_reaction(self):
+    def test_show_who_last_reaction(self):
         like_id = self.create_like()
         self.auth_user()
         self.open_user_wall()
@@ -148,19 +151,54 @@ class Tests(unittest.TestCase):
         self.assertTrue(is_second_user_liked, "second user not found")
 
     def test_go_to_page_who_last_reaction(self):
-        print UsersName.second_account_name
         like_id = self.create_like()
         self.auth_user()
         self.open_user_wall()
 
         main_page = MainPage(self.driver)
         feed = main_page.feed
+        names = feed.get_names_last_liked(like_id)
         links = feed.get_links_last_liked(like_id)
-        for link in links:
-            main_page.BASE_URL = link
+        for i in range(0, len(links)):
+            if names[i] == UsersName.first_account_name:
+                continue
+            main_page.BASE_URL = links[i]
             main_page.open()
             center_menu = main_page.center_menu
-            nickname = center_menu.get_nickname()
-            print nickname
+            nickname = center_menu.get_another_nickname()
+            if nickname == UsersName.second_account_name:
+                self.assertTrue(True)
+
+    def test_show_all_who_reaction(self):
+        like_id = self.create_like()
+        self.auth_user()
+        self.open_user_wall()
+
+        main_page = MainPage(self.driver)
+        feed = main_page.feed
+        feed.open_all_likes(like_id)
+        names = feed.get_all_names()
+        is_second_user_liked = False
+        if any(UsersName.second_account_name in s for s in names):
+            is_second_user_liked = True
+        self.assertTrue(is_second_user_liked, "second user not found")
+
+    def test_go_to_page_from_all_reaction(self):
+        like_id = self.create_like()
+        self.auth_user()
+        self.open_user_wall()
+
+        main_page = MainPage(self.driver)
+        feed = main_page.feed
+        feed.open_all_likes(like_id)
+        names = feed.get_all_names()
+        links = feed.get_all_links()
+        for i in range(0, len(links)):
+            if names[i] == UsersName.first_account_name:
+                continue
+            main_page.PATH = links[i]
+            main_page.open()
+            center_menu = main_page.center_menu
+            nickname = center_menu.get_another_nickname()
             if nickname == UsersName.second_account_name:
                 self.assertTrue(True)

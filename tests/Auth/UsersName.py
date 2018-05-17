@@ -1,3 +1,4 @@
-first_account_name = "first nickname"
-second_account_name = "second nickname"
+# coding=utf-8
+first_account_name = "Name Female"
+second_account_name = "Аглая Македонская"
 
