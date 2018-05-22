@@ -6,7 +6,17 @@ from selenium.webdriver import DesiredCapabilities, Remote
 
 from tests.Auth import UsersName
 from tests.Auth.AuthPage import AuthPage
+from tests.Main.Album import AlbumComponent
+from tests.Main.Auth import AuthForm
+from tests.Main.Friend import FriendComponent
+from tests.Main.Gender import GenderComponent
+from tests.Main.Group import GroupComponent
+from tests.Main.Language import LanguagePage, LanguageForm
+from tests.Main.Like import LikeComponent, LikePage
 from tests.Main.MainPage import MainPage
+from tests.Main.Message import MessagePage, MessageComponent
+from tests.Main.Note import NoteComponent
+from tests.Main.Theme import ThemePage, ThemeComponent
 from tests.constants.Constants import *
 
 
@@ -227,3 +237,229 @@ class Tests(unittest.TestCase):
             nickname = center_menu.get_another_nickname()
             if nickname == UsersName.second_account_name:
                 self.assertTrue(True)
+
+    def test_album(self):
+
+        USERNAME = "technopark22"
+        PASSWORD = "testQA1"
+
+        loginPage = AuthPage(self.driver)
+        loginPage.open()
+        authForm = AuthForm(self.driver)
+        authForm.fillEmail(USERNAME)
+        authForm.fillPassword(PASSWORD)
+        authForm.submit()
+        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
+                           0, "Wrong login or password")
+
+        album_component = AlbumComponent(self.driver)
+        album_component.open_photos_page()
+        album_component.create_album()
+
+        album_component.open_photos_page()
+
+        self.assertTrue(album_component.random_album_name in album_component.get_albums(), "Album not created")
+
+    def test_auth(self):
+
+        USERNAME = "technopark22"
+        PASSWORD = "testQA1"
+
+        loginPage = AuthPage(self.driver)
+        loginPage.open()
+        authForm = AuthForm(self.driver)
+        authForm.fillEmail(USERNAME)
+        authForm.fillPassword(PASSWORD)
+        authForm.submit()
+        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
+                           0, "Wrong login or password")
+
+    def test_friend(self):
+
+        USERNAME = "technopark22"
+        PASSWORD = "testQA1"
+
+        loginPage = AuthPage(self.driver)
+        loginPage.open()
+        authForm = AuthForm(self.driver)
+        authForm.fillEmail(USERNAME)
+        authForm.fillPassword(PASSWORD)
+        authForm.submit()
+        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
+                           0, "Wrong login or password")
+
+        friend_component = FriendComponent(self.driver)
+        friend_component.open_friend_page()
+        friend_component.add_to_friends()
+        self.assertTrue(friend_component.get_pending_friends())
+        friend_component.cancel_request()
+
+    def test_gender(self):
+
+        USERNAME = "technopark22"
+        PASSWORD = "testQA1"
+
+        loginPage = AuthPage(self.driver)
+        loginPage.open()
+        authForm = AuthForm(self.driver)
+        authForm.fillEmail(USERNAME)
+        authForm.fillPassword(PASSWORD)
+        authForm.submit()
+        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
+                           0, "Wrong login or password")
+
+        profile_component = GenderComponent(self.driver)
+        profile_component.open_profile()
+        profile_component.click_edit()
+        profile_component.change_gender()
+        profile_component.save()
+
+        now_gender = -1
+        if self.driver.find_elements_by_css_selector('.stub-img__user24-female').__len__() > 0:
+            now_gender = 2
+        else:
+            now_gender = 1
+        self.assertNotEqual(profile_component.start_gender, now_gender)
+
+    def test_group(self):
+
+        USERNAME = "technopark22"
+        PASSWORD = "testQA1"
+
+        loginPage = AuthPage(self.driver)
+        loginPage.open()
+        authForm = AuthForm(self.driver)
+        authForm.fillEmail(USERNAME)
+        authForm.fillPassword(PASSWORD)
+        authForm.submit()
+        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
+                           0, "Wrong login or password")
+
+        group_component = GroupComponent(self.driver)
+        group_component.fill_search()
+        group_component.search()
+        group_component.follow()
+
+        self.assertFalse(group_component.getFollowBtn(), "Follow group error")
+        group_component.unfollow()
+
+    def test_language(self):
+
+        USERNAME = "technopark22"
+        PASSWORD = "testQA1"
+
+        loginPage = AuthPage(self.driver)
+        loginPage.open()
+        authForm = AuthForm(self.driver)
+        authForm.fillEmail(USERNAME)
+        authForm.fillPassword(PASSWORD)
+        authForm.submit()
+        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
+                           0, "Wrong login or password")
+
+        language_settings_page = LanguagePage(self.driver)
+        language_settings_page.PATH = 'settings'
+        language_settings_page.open()
+
+        languageForm = LanguageForm(self.driver)
+        languageForm.open()
+        inactive_language = languageForm.get_inactive_language()
+        languageForm.change()
+        active_language = self.driver.find_element_by_css_selector(
+            '.user-settings .user-settings_i:nth-of-type(6) .user-settings_i_tx').text
+        self.assertTrue(inactive_language.lower() == active_language.lower(), "Language haven't changed")
+
+    def test_like(self):
+
+        USERNAME = "technopark22"
+        PASSWORD = "testQA1"
+
+        loginPage = AuthPage(self.driver)
+        loginPage.open()
+        authForm = AuthForm(self.driver)
+        authForm.fillEmail(USERNAME)
+        authForm.fillPassword(PASSWORD)
+        authForm.submit()
+        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
+                           0, "Wrong login or password")
+
+        like_page = LikePage(self.driver, 'feed')
+        like_component = LikeComponent(self.driver)
+        like_page.open()
+        like_component.like_first_found_post()
+
+        like_page.open()
+        self.assertTrue(int(like_component.get_likes_from_btn_by_owner(like_component.data_id)) - 1 == int(
+            like_component.likes_count), "like error!")
+        like_component.remove_like(like_component.data_id)
+
+    def test_message(self):
+
+        USERNAME = "technopark22"
+        PASSWORD = "testQA1"
+
+        loginPage = AuthPage(self.driver)
+        loginPage.open()
+        authForm = AuthForm(self.driver)
+        authForm.fillEmail(USERNAME)
+        authForm.fillPassword(PASSWORD)
+        authForm.submit()
+        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
+                           0, "Wrong login or password")
+
+        messagePage = MessagePage(self.driver, 'messages')
+        messageComponent = MessageComponent(self.driver)
+        messagePage.open()
+        messageComponent.selectFirstDialog()
+        messageComponent.writeMessage()
+        messageComponent.send_message()
+
+        messageComponent.open_dialog()
+        self.assertEqual(messageComponent.default_message, messageComponent.get_last_message())
+
+    def test_note(self):
+
+        USERNAME = "technopark22"
+        PASSWORD = "testQA1"
+
+        loginPage = AuthPage(self.driver)
+        loginPage.open()
+        authForm = AuthForm(self.driver)
+        authForm.fillEmail(USERNAME)
+        authForm.fillPassword(PASSWORD)
+        authForm.submit()
+        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
+                           0, "Wrong login or password")
+
+        note_page = NoteComponent(self.driver)
+        note_page.open_notes()
+        note_page.focus_note()
+        note_page.set_note_text()
+        note_page.upload_note()
+        self.driver.refresh()
+        last_post = self.driver.find_element_by_css_selector(
+            '#hook_Loader_UserStatusesMRBLoader .feed:nth-of-type(1) .media-text_cnt').text
+        self.assertEqual(last_post,
+                         note_page.default_note_text, "Note post error")
+
+    def test_theme(self):
+
+        USERNAME = "technopark22"
+        PASSWORD = "testQA1"
+
+        loginPage = AuthPage(self.driver)
+        loginPage.open()
+        authForm = AuthForm(self.driver)
+        authForm.fillEmail(USERNAME)
+        authForm.fillPassword(PASSWORD)
+        authForm.submit()
+        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
+                           0, "Wrong login or password")
+        themePage = ThemePage(self.driver, "/themes")
+        themePage.open()
+        themeForm = ThemeComponent(self.driver)
+        themeForm.select()
+        themeForm.apply()
+
+        self.assertNotEqual(themeForm.start_theme_name,
+                            themeForm.get_selected_theme(), "Theme apply error")
