@@ -29,6 +29,18 @@ class Lib(Component):
         )
 
     @staticmethod
+    def simple_wait_element_css(driver, css):
+        return WebDriverWait(driver, waitTime).until(
+            lambda d: d.find_element_by_css_selector(css)
+        )
+
+    @staticmethod
+    def simple_wait_elements_css(driver, css):
+        return WebDriverWait(driver, waitTime).until(
+            lambda d: d.find_elements_by_css_selector(css)
+        )
+
+    @staticmethod
     def wait_element_with_attribute(driver, until, x_path, attribute):
         if until:
             return WebDriverWait(driver, waitTime).until(

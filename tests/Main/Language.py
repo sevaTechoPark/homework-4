@@ -1,3 +1,4 @@
+from tests.Lilbs.Lib import Lib
 from tests.models.Component import Component
 from tests.models.Page import Page
 
@@ -19,7 +20,9 @@ class LanguageForm(Component):
         self.jsClick(changeBtn)
 
     def get_inactive_language(self):
-        return self.driver.find_element_by_css_selector(self.inactive_language).text
+        el = Lib.simple_wait_element_css(self.driver,self.inactive_language)
+        return el.text
 
     def change(self):
-        self.jsClick(self.driver.find_element_by_css_selector(self.inactive_language))
+        el = Lib.simple_wait_element_css(self.driver,self.inactive_language)
+        self.jsClick(el)

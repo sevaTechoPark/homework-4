@@ -1,6 +1,7 @@
 from selenium.webdriver.support.wait import WebDriverWait
 
 from tests.models.Component import Component
+from tests.Lilbs.Lib import Lib
 
 
 class GenderComponent(Component):
@@ -17,7 +18,6 @@ class GenderComponent(Component):
     def click_edit(self):
         self.jsClick(
             self.driver.find_element_by_css_selector(self.edit_btn_css))
-        self.set_start_gender()
 
     def set_start_gender(self):
 
@@ -27,6 +27,17 @@ class GenderComponent(Component):
         if isChecked:
             self.start_gender = 1
         else: self.start_gender = 2
+
+    def get_current_gender(self):
+        self.click_edit()
+        Lib.simple_wait_element_css(self.driver,'#field_gender_1')
+        isChecked = self.driver.execute_script('return document.getElementById("field_gender_1").checked')
+        cur_gender = -1
+        if isChecked:
+            cur_gender = 1
+        else:
+            cur_gender = 2
+        return  cur_gender != self.start_gender
 
     def change_gender(self):
         new_gender = -1
@@ -38,4 +49,5 @@ class GenderComponent(Component):
 
     def save(self):
         self.jsClick(self.driver.find_element_by_css_selector('[data-l="t\,confirm"]'))
-        self.jsClick(self.driver.find_element_by_css_selector('#buttonId_button_close'))
+        el = Lib.simple_wait_element_css(self.driver,css='#buttonId_button_close')
+        self.jsClick(el)

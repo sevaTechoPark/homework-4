@@ -1,5 +1,6 @@
 from random import randint
 
+from tests.Lilbs.Lib import Lib
 from tests.models.Component import Component
 from tests.models.Page import Page
 
@@ -18,11 +19,13 @@ class NoteComponent(Component):
             self.driver.find_element_by_css_selector(self.user_url_css).get_attribute("href") + '/statuses')
 
     def focus_note(self):
-        self.jsClick(self.driver.find_element_by_css_selector('.posting-form_itx_w .input_placeholder'))
+        el = Lib.simple_wait_element_css(self.driver, '.posting-form_itx_w .input_placeholder')
+        self.jsClick(el)
 
     def set_note_text(self):
-        self.driver.find_element_by_css_selector("[data-initial-text-to-modify]").send_keys(self.default_note_text)
+        el = Lib.simple_wait_element_css(self.driver, "[data-initial-text-to-modify]")
+        el.send_keys(self.default_note_text)
 
     def upload_note(self):
-        self.jsClick(self.driver.find_element_by_css_selector("div .posting_f_r div"))
-        self.driver.find_elements_by_css_selector("div")
+        el = Lib.simple_wait_element_css(self.driver,"div .posting_f_r div")
+        self.jsClick(el)
