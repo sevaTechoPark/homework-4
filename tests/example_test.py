@@ -7,7 +7,6 @@ from selenium.webdriver import DesiredCapabilities, Remote
 from tests.Auth import UsersName
 from tests.Auth.AuthPage import AuthPage
 from tests.Main.Album import AlbumComponent
-from tests.Main.Auth import AuthForm
 from tests.Main.Friend import FriendComponent
 from tests.Main.Gender import GenderComponent
 from tests.Main.Group import GroupComponent
@@ -239,18 +238,8 @@ class Tests(unittest.TestCase):
                 self.assertTrue(True)
 
     def test_album(self):
+        self.auth_user()
 
-        USERNAME = "technopark22"
-        PASSWORD = "testQA1"
-
-        loginPage = AuthPage(self.driver)
-        loginPage.open()
-        authForm = AuthForm(self.driver)
-        authForm.fillEmail(USERNAME)
-        authForm.fillPassword(PASSWORD)
-        authForm.submit()
-        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
-                           0, "Wrong login or password")
 
         album_component = AlbumComponent(self.driver)
         album_component.open_photos_page()
@@ -262,31 +251,13 @@ class Tests(unittest.TestCase):
 
     def test_auth(self):
 
-        USERNAME = "technopark22"
-        PASSWORD = "testQA1"
-
-        loginPage = AuthPage(self.driver)
-        loginPage.open()
-        authForm = AuthForm(self.driver)
-        authForm.fillEmail(USERNAME)
-        authForm.fillPassword(PASSWORD)
-        authForm.submit()
+        self.auth_user()
         self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
                            0, "Wrong login or password")
 
     def test_friend(self):
 
-        USERNAME = "technopark22"
-        PASSWORD = "testQA1"
-
-        loginPage = AuthPage(self.driver)
-        loginPage.open()
-        authForm = AuthForm(self.driver)
-        authForm.fillEmail(USERNAME)
-        authForm.fillPassword(PASSWORD)
-        authForm.submit()
-        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
-                           0, "Wrong login or password")
+        self.auth_user()
 
         friend_component = FriendComponent(self.driver)
         friend_component.open_friend_page()
@@ -295,18 +266,8 @@ class Tests(unittest.TestCase):
         friend_component.cancel_request()
 
     def test_gender(self):
+        self.auth_user()
 
-        USERNAME = "technopark22"
-        PASSWORD = "testQA1"
-
-        loginPage = AuthPage(self.driver)
-        loginPage.open()
-        authForm = AuthForm(self.driver)
-        authForm.fillEmail(USERNAME)
-        authForm.fillPassword(PASSWORD)
-        authForm.submit()
-        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
-                           0, "Wrong login or password")
 
         profile_component = GenderComponent(self.driver)
         profile_component.open_profile()
@@ -323,17 +284,7 @@ class Tests(unittest.TestCase):
 
     def test_group(self):
 
-        USERNAME = "technopark22"
-        PASSWORD = "testQA1"
-
-        loginPage = AuthPage(self.driver)
-        loginPage.open()
-        authForm = AuthForm(self.driver)
-        authForm.fillEmail(USERNAME)
-        authForm.fillPassword(PASSWORD)
-        authForm.submit()
-        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
-                           0, "Wrong login or password")
+        self.auth_user()
 
         group_component = GroupComponent(self.driver)
         group_component.fill_search()
@@ -345,17 +296,8 @@ class Tests(unittest.TestCase):
 
     def test_language(self):
 
-        USERNAME = "technopark22"
-        PASSWORD = "testQA1"
+        self.auth_user()
 
-        loginPage = AuthPage(self.driver)
-        loginPage.open()
-        authForm = AuthForm(self.driver)
-        authForm.fillEmail(USERNAME)
-        authForm.fillPassword(PASSWORD)
-        authForm.submit()
-        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
-                           0, "Wrong login or password")
 
         language_settings_page = LanguagePage(self.driver)
         language_settings_page.PATH = 'settings'
@@ -371,17 +313,8 @@ class Tests(unittest.TestCase):
 
     def test_like(self):
 
-        USERNAME = "technopark22"
-        PASSWORD = "testQA1"
+        self.auth_user()
 
-        loginPage = AuthPage(self.driver)
-        loginPage.open()
-        authForm = AuthForm(self.driver)
-        authForm.fillEmail(USERNAME)
-        authForm.fillPassword(PASSWORD)
-        authForm.submit()
-        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
-                           0, "Wrong login or password")
 
         like_page = LikePage(self.driver, 'feed')
         like_component = LikeComponent(self.driver)
@@ -395,17 +328,7 @@ class Tests(unittest.TestCase):
 
     def test_message(self):
 
-        USERNAME = "technopark22"
-        PASSWORD = "testQA1"
-
-        loginPage = AuthPage(self.driver)
-        loginPage.open()
-        authForm = AuthForm(self.driver)
-        authForm.fillEmail(USERNAME)
-        authForm.fillPassword(PASSWORD)
-        authForm.submit()
-        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
-                           0, "Wrong login or password")
+        self.auth_user()
 
         messagePage = MessagePage(self.driver, 'messages')
         messageComponent = MessageComponent(self.driver)
@@ -419,17 +342,8 @@ class Tests(unittest.TestCase):
 
     def test_note(self):
 
-        USERNAME = "technopark22"
-        PASSWORD = "testQA1"
+        self.auth_user()
 
-        loginPage = AuthPage(self.driver)
-        loginPage.open()
-        authForm = AuthForm(self.driver)
-        authForm.fillEmail(USERNAME)
-        authForm.fillPassword(PASSWORD)
-        authForm.submit()
-        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
-                           0, "Wrong login or password")
 
         note_page = NoteComponent(self.driver)
         note_page.open_notes()
@@ -443,18 +357,8 @@ class Tests(unittest.TestCase):
                          note_page.default_note_text, "Note post error")
 
     def test_theme(self):
+        self.auth_user()
 
-        USERNAME = "technopark22"
-        PASSWORD = "testQA1"
-
-        loginPage = AuthPage(self.driver)
-        loginPage.open()
-        authForm = AuthForm(self.driver)
-        authForm.fillEmail(USERNAME)
-        authForm.fillPassword(PASSWORD)
-        authForm.submit()
-        self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
-                           0, "Wrong login or password")
         themePage = ThemePage(self.driver, "/themes")
         themePage.open()
         themeForm = ThemeComponent(self.driver)
