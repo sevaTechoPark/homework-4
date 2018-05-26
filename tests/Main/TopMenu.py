@@ -61,7 +61,7 @@ class TopMenu(Component):
 
     def check_notification_close(self):
         self.wait_process_after_choose_tab()
-        return Lib.check_exist_element(self.driver, self.NOTIFICATION_ELEMENT_WITH_ID)
+        return Lib.check_not_exist_element(self.driver, self.NOTIFICATION_ELEMENT_WITH_ID)
 
     def wait_process_after_choose_tab(self):
         try:

@@ -61,6 +61,8 @@
       <find>A</find>
       <find>Auth</find>
       <find>PATH</find>
+      <find>os.</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">

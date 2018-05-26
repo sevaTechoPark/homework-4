@@ -59,7 +59,7 @@ class Lib(Component):
 
     @staticmethod
     def visibility_wait_element(driver, x_path):
-        ignored_exceptions = (NoSuchElementException, StaleElementReferenceException,)
+        ignored_exceptions = (StaleElementReferenceException,)
         return WebDriverWait(driver, waitTime, ignored_exceptions=ignored_exceptions).until(
             expected_conditions.visibility_of_element_located((By.XPATH, x_path)))
 
@@ -68,7 +68,7 @@ class Lib(Component):
         ActionChains(driver).move_to_element(element).perform()
 
     @staticmethod
-    def check_exist_element(driver, x_path):
+    def check_not_exist_element(driver, x_path):
         try:
             driver.find_element_by_xpath(x_path)
             return False
