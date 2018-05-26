@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4c42b3c-3a72-4179-abcc-209410eacac5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/homework-4.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/example_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/example_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Main/CenterMenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Main/CenterMenu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Main/Feed.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Main/Feed.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,23 +17,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="example_test.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="example_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/example_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="219" column="12" selection-start-line="219" selection-start-column="12" selection-end-line="219" selection-end-column="12" />
+            <state relative-caret-position="346">
+              <caret line="104" column="28" selection-start-line="104" selection-start-column="28" selection-end-line="104" selection-end-column="28" />
+              <folding>
+                <element signature="e#7188#7499#0" />
+                <element signature="e#7534#7708#0" />
+                <element signature="e#8607#8872#0" />
+                <element signature="e#8049#8413#0" />
+                <element signature="e#8477#8767#0" />
+                <element signature="e#8806#9404#0" />
+                <element signature="e#9439#9904#0" />
+                <element signature="e#9942#10389#0" />
+                <element signature="e#10424#10866#0" />
+                <element signature="e#10902#11260#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Friend.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/Main/Friend.py">
+      <file leaf-file-name="TopMenu.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/Main/TopMenu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="247">
+              <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Feed.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/Main/Feed.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="16" column="157" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="157" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CenterMenu.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/Main/CenterMenu.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="5" column="74" selection-start-line="5" selection-start-column="74" selection-end-line="5" selection-end-column="74" />
             </state>
           </provider>
         </entry>
@@ -77,7 +99,6 @@
         <option value="$PROJECT_DIR$/tests/Main/ExitMeny.py" />
         <option value="$PROJECT_DIR$/tests/Main/ExitMenu.py" />
         <option value="$PROJECT_DIR$/tests/Lilbs/Lig.py" />
-        <option value="$PROJECT_DIR$/tests/Auth/AuthForm.py" />
         <option value="$PROJECT_DIR$/tests/Main/TopMenu.py" />
         <option value="$PROJECT_DIR$/tests/Friends/Friends.py" />
         <option value="$PROJECT_DIR$/tests/Main/MainPage.py" />
@@ -85,8 +106,6 @@
         <option value="$PROJECT_DIR$/tests/Main/Friends.py" />
         <option value="$PROJECT_DIR$/tests/Auth/UsersName.py" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/tests/Main/CenterMenu.py" />
-        <option value="$PROJECT_DIR$/tests/Main/Feed.py" />
         <option value="$PROJECT_DIR$/tests/constants/Constants.py" />
         <option value="$PROJECT_DIR$/tests/Main/Auth.py" />
         <option value="$PROJECT_DIR$/tests/models/Component.py" />
@@ -95,13 +114,16 @@
         <option value="$PROJECT_DIR$/tests/Main/Gender.py" />
         <option value="$PROJECT_DIR$/tests/Main/Theme.py" />
         <option value="$PROJECT_DIR$/tests/Main/Note.py" />
-        <option value="$PROJECT_DIR$/tests/Lilbs/Lib.py" />
         <option value="$PROJECT_DIR$/tests/Main/Message.py" />
         <option value="$PROJECT_DIR$/tests/Main/Language.py" />
         <option value="$PROJECT_DIR$/tests/Main/Like.py" />
         <option value="$PROJECT_DIR$/tests/Main/Album.py" />
         <option value="$PROJECT_DIR$/tests/Main/Friend.py" />
         <option value="$PROJECT_DIR$/tests/example_test.py" />
+        <option value="$PROJECT_DIR$/tests/Auth/AuthForm.py" />
+        <option value="$PROJECT_DIR$/tests/Lilbs/Lib.py" />
+        <option value="$PROJECT_DIR$/tests/Main/CenterMenu.py" />
+        <option value="$PROJECT_DIR$/tests/Main/Feed.py" />
       </list>
     </option>
   </component>
@@ -136,6 +158,24 @@
               <item name="homework-4" type="b2602c69:ProjectViewProjectNode" />
               <item name="homework-4" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="homework-4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="homework-4" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="constants" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="homework-4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="homework-4" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="Lilbs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="homework-4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="homework-4" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="Main" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -249,11 +289,11 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3295964" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3295964" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25954622" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3295964" />
       <window_info anchor="right" id="SciView" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -275,7 +315,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="64" />
+      <option name="time" value="65" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -411,13 +451,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Main/TopMenu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="77" column="22" lean-forward="true" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/Auth/UsersName.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -467,23 +500,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Main/CenterMenu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Auth/AuthForm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Main/Feed.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/Main/Friends.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -515,13 +531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Lilbs/Lib.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -572,10 +581,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Lilbs/Lib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="70" column="26" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Auth/AuthForm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/example_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="219" column="12" selection-start-line="219" selection-start-column="12" selection-end-line="219" selection-end-column="12" />
+        <state relative-caret-position="346">
+          <caret line="104" column="28" selection-start-line="104" selection-start-column="28" selection-end-line="104" selection-end-column="28" />
+          <folding>
+            <element signature="e#7188#7499#0" />
+            <element signature="e#7534#7708#0" />
+            <element signature="e#8607#8872#0" />
+            <element signature="e#8049#8413#0" />
+            <element signature="e#8477#8767#0" />
+            <element signature="e#8806#9404#0" />
+            <element signature="e#9439#9904#0" />
+            <element signature="e#9942#10389#0" />
+            <element signature="e#10424#10866#0" />
+            <element signature="e#10902#11260#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Main/TopMenu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Main/CenterMenu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="5" column="74" selection-start-line="5" selection-start-column="74" selection-end-line="5" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Main/Feed.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="16" column="157" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="157" />
         </state>
       </provider>
     </entry>

@@ -9,16 +9,16 @@ class Feed(Component):
         for i in range(0, len(self.REACTIONS)):
             self.REACTIONS[i] = self.REACTION_PANEL + self.REACTIONS[i]
 
-    LIKE_BUTTONS = '//div[@class="feed-list"]//div[@class="feed-w"]//ul[@class="widget-list"]//li[@class="widget-list_i "][last()]'
+    LIKE_BUTTONS = '//div[@class="feed-list"]//li[@class="widget-list_i "][last()]'
     LIKE_INFO = LIKE_BUTTONS + '//span[@class="widget_cnt controls-list_lk h-mod"]'
 
     LIKE_COUNT = '//span[contains(@class, "widget_count")]'
     LIKE_PANEL = '//div[@id="hook_Block_ShortcutMenuReact"]//div[contains(@class, "sc-menu")]//ul[@class="u-menu"]'
-    LIKE_PANEL_LAST_LIKED_LINKS = LIKE_PANEL + '//li[@class="u-menu_li"]//ul[@class="ucard-mini-list __redesign __react"]//li[@class="ucard-mini-list_li"]//a'
-    LIKE_PANEL_LAST_LIKED_NAMES = LIKE_PANEL + '//li[@class="ucard-mini-list_li"]//div[@class="ucard-mini_cnt"]//div[@class="ellip o"]'
+    LIKE_PANEL_LAST_LIKED_LINKS = '//li[@class="ucard-mini-list_li"]//a'
+    LIKE_PANEL_LAST_LIKED_NAMES = '//li[@class="ucard-mini-list_li"]//div[@class="ellip o"]'
 
-    LIST_ALL_LIKES = LIKE_PANEL + '//li[@class="ucard-mini-list_all"]//a'
-    LIST_ALL_LIKES_NAMES = '//div[@class="modal-new_hld"]/div[@class="modal-new_center"]//div[@class="ugrid_cnt"]//div[@class="ellip"]//a'
+    LIST_ALL_LIKES = '//li[@class="ucard-mini-list_all"]//a'
+    LIST_ALL_LIKES_NAMES = '//div[@class="modal-new_hld"]//div[@class="ellip"]//a'
 
     REACTION_PANEL = '//div[@class="reactions"]'
     REACTIONS = ['//span[@data-l="t,reaction0"]', '//span[@data-l="t,reaction1"]', '//span[@data-l="t,reaction2"]',

@@ -3,7 +3,7 @@ from tests.models.Component import Component
 
 
 class CenterMenu(Component):
-    WALL_TOOLBAR = '//div[@id="mainContentLeftColumn"]//div[@id="hook_Block_SideNavigation"]//div[@data-l="t,navigation"]//a[@data-l="t,userPage"]'
+    WALL_TOOLBAR = '//div[@data-l="t,navigation"]//a[@data-l="t,userPage"]'
     WALL_CONTENT = '//div[@id="hook_Block_UserFeed"]//div[contains(@data-l, "feedLocation,self,")]'
     FEED_LIST = '//div[@class="feed-list"][@data-l="feedLocation,self"]'
     ANOTHER_ACCOUNT_NAME = '//h1[@class="mctc_name_tx bl"]'
