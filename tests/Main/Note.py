@@ -15,8 +15,9 @@ class NoteComponent(Component):
     user_url_css = '[data-l="t\,selectCurrentUser"]'
 
     def open_notes(self):
+        el = Lib.simple_wait_element_css(self.driver,self.user_url_css)
         self.driver.get(
-            self.driver.find_element_by_css_selector(self.user_url_css).get_attribute("href") + '/statuses')
+            el.get_attribute("href") + '/statuses')
 
     def focus_note(self):
         el = Lib.simple_wait_element_css(self.driver, '.posting-form_itx_w .input_placeholder')

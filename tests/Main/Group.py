@@ -1,5 +1,7 @@
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
 
+from tests.Lilbs.Lib import Lib
 from tests.models.Component import Component
 
 
@@ -23,10 +25,12 @@ class GroupComponent(Component):
         self.jsClick(search_btn)
 
     def follow(self):
-        WebDriverWait(self.driver, 30,0.1).until(
-            lambda d: d.find_element_by_xpath(self.first_group_xpath).find_element_by_css_selector(self.join_btn_css))
-        join_btn = self.driver.find_element_by_xpath(self.first_group_xpath).find_element_by_css_selector(self.join_btn_css)
-        join_btn.click()
+        first_group = Lib.simple_wait_element(self.driver,self.first_group_xpath)
+        try:
+            join_btn = first_group.find_element_by_css_selector(self.join_btn_css)
+            join_btn.click()
+        except  NoSuchElementException:
+            pass
 
     def unfollow(self):
         self.driver.get(self.driver.find_element_by_xpath("//div[@id='gs_result_list']/div[1]//a[@title]").get_attribute("href"))

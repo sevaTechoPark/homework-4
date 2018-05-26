@@ -21,7 +21,8 @@ class MessageComponent(Component):
         self.dialog_id = el.get_attribute('href').split("/")[-1]
 
     def writeMessage(self):
-        self.driver.find_element_by_css_selector(self.message_field_css).send_keys(self.default_message)
+        message_field = Lib.simple_wait_element_css(self.driver,self.message_field_css)
+        message_field.send_keys(self.default_message)
 
     def send_message(self):
         el = Lib.simple_wait_element_css(self.driver,self.send_btn_css)

@@ -3,15 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f4c42b3c-3a72-4179-abcc-209410eacac5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Lilbs/Lib.py" afterPath="$PROJECT_DIR$/tests/Lilbs/Lib.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Main/Album.py" afterPath="$PROJECT_DIR$/tests/Main/Album.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Main/Friend.py" afterPath="$PROJECT_DIR$/tests/Main/Friend.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Main/Gender.py" afterPath="$PROJECT_DIR$/tests/Main/Gender.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Main/Language.py" afterPath="$PROJECT_DIR$/tests/Main/Language.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Main/Like.py" afterPath="$PROJECT_DIR$/tests/Main/Like.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Main/Group.py" afterPath="$PROJECT_DIR$/tests/Main/Group.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Main/Message.py" afterPath="$PROJECT_DIR$/tests/Main/Message.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Main/Note.py" afterPath="$PROJECT_DIR$/tests/Main/Note.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Main/Theme.py" afterPath="$PROJECT_DIR$/tests/Main/Theme.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/example_test.py" afterPath="$PROJECT_DIR$/tests/example_test.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,6 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/homework_4$Unittests_in_example_test_py.coverage" NAME="Unittests in example_test.py Coverage Results" MODIFIED="1527335064913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/homework_4$run_tests.coverage" NAME="run_tests Coverage Results" MODIFIED="1527290485876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
@@ -30,24 +25,36 @@
       <file leaf-file-name="example_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/example_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="264" column="30" lean-forward="false" selection-start-line="264" selection-start-column="30" selection-end-line="264" selection-end-column="30" />
+            <state relative-caret-position="328">
+              <caret line="358" column="25" lean-forward="true" selection-start-line="358" selection-start-column="25" selection-end-line="358" selection-end-column="25" />
               <folding>
                 <element signature="e#800#804#0" expanded="false" />
                 <element signature="e#1931#1991#0" expanded="false" />
                 <element signature="e#2036#2273#0" expanded="false" />
                 <element signature="e#2663#2774#0" expanded="false" />
-                <marker date="1527290113670" expanded="true" signature="8877:8899" ph="..." />
+                <marker date="1527334199776" expanded="true" signature="8878:8900" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Friend.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/Main/Friend.py">
+      <file leaf-file-name="Group.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/Main/Group.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="33" column="31" lean-forward="true" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+            <state relative-caret-position="147">
+              <caret line="19" column="68" lean-forward="true" selection-start-line="19" selection-start-column="68" selection-end-line="19" selection-end-column="68" />
+              <folding>
+                <element signature="e#0#61#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Like.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/Main/Like.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="78">
+              <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -100,18 +107,18 @@
         <option value="$PROJECT_DIR$/tests/constants/Constants.py" />
         <option value="$PROJECT_DIR$/tests/Main/Auth.py" />
         <option value="$PROJECT_DIR$/tests/models/Component.py" />
-        <option value="$PROJECT_DIR$/tests/Main/Group.py" />
         <option value="$PROJECT_DIR$/node.sh" />
         <option value="$PROJECT_DIR$/tests/Main/Gender.py" />
         <option value="$PROJECT_DIR$/tests/Main/Theme.py" />
-        <option value="$PROJECT_DIR$/tests/Main/Note.py" />
         <option value="$PROJECT_DIR$/tests/Lilbs/Lib.py" />
-        <option value="$PROJECT_DIR$/tests/Main/Message.py" />
         <option value="$PROJECT_DIR$/tests/Main/Language.py" />
         <option value="$PROJECT_DIR$/tests/Main/Like.py" />
         <option value="$PROJECT_DIR$/tests/Main/Album.py" />
-        <option value="$PROJECT_DIR$/tests/example_test.py" />
         <option value="$PROJECT_DIR$/tests/Main/Friend.py" />
+        <option value="$PROJECT_DIR$/tests/example_test.py" />
+        <option value="$PROJECT_DIR$/tests/Main/Message.py" />
+        <option value="$PROJECT_DIR$/tests/Main/Note.py" />
+        <option value="$PROJECT_DIR$/tests/Main/Group.py" />
       </list>
     </option>
   </component>
@@ -144,7 +151,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -246,6 +252,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -273,7 +280,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.run_tests">
+  <component name="RunManager" selected="Python tests.Unittests in example_test.py">
     <configuration default="false" name="run_tests" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -291,6 +298,22 @@
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in example_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="homework-4" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/example_test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
@@ -441,12 +464,14 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Python.run_tests" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in example_test.py" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python.run_tests" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in example_test.py" />
+        <item index="1" class="java.lang.String" itemvalue="Python.run_tests" />
       </list>
     </recent_temporary>
   </component>
@@ -466,6 +491,26 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Unittests_in_example_test_py - 2018.05.26 at 14h 30m 38s.xml">
+      <configuration name="Unittests in example_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_example_test_py - 2018.05.26 at 14h 33m 01s.xml">
+      <configuration name="Unittests in example_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_example_test_py - 2018.05.26 at 14h 37m 06s.xml">
+      <configuration name="Unittests in example_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_example_test_py - 2018.05.26 at 14h 40m 58s.xml">
+      <configuration name="Unittests in example_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_example_test_py - 2018.05.26 at 14h 43m 21s.xml">
+      <configuration name="Unittests in example_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_example_test_py - 2018.05.26 at 14h 44m 10s.xml">
+      <configuration name="Unittests in example_test.py" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -477,16 +522,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="800" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25679544" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26037195" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32909605" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32909605" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32909605" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997175" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -507,7 +553,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="64" />
+      <option name="time" value="65" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -618,16 +664,6 @@
         <state relative-caret-position="102">
           <caret line="6" column="68" lean-forward="false" selection-start-line="6" selection-start-column="68" selection-end-line="6" selection-end-column="68" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Main/Group.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#57#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -770,29 +806,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Main/Note.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/Lilbs/Lib.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Main/Message.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="22" column="27" lean-forward="true" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#31#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -806,10 +824,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Main/Like.py">
+    <entry file="file://$PROJECT_DIR$/tests/Main/Friend.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="538">
+          <caret line="33" column="31" lean-forward="true" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
@@ -818,32 +836,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Main/Album.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        <state relative-caret-position="195">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Main/Message.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="24" column="21" lean-forward="false" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Main/Note.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Main/Like.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/example_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="264" column="30" lean-forward="false" selection-start-line="264" selection-start-column="30" selection-end-line="264" selection-end-column="30" />
+        <state relative-caret-position="328">
+          <caret line="358" column="25" lean-forward="true" selection-start-line="358" selection-start-column="25" selection-end-line="358" selection-end-column="25" />
           <folding>
             <element signature="e#800#804#0" expanded="false" />
             <element signature="e#1931#1991#0" expanded="false" />
             <element signature="e#2036#2273#0" expanded="false" />
             <element signature="e#2663#2774#0" expanded="false" />
-            <marker date="1527290113670" expanded="true" signature="8877:8899" ph="..." />
+            <marker date="1527334199776" expanded="true" signature="8878:8900" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Main/Friend.py">
+    <entry file="file://$PROJECT_DIR$/tests/Main/Group.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="33" column="31" lean-forward="true" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+        <state relative-caret-position="147">
+          <caret line="19" column="68" lean-forward="true" selection-start-line="19" selection-start-column="68" selection-end-line="19" selection-end-column="68" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#0#61#0" expanded="true" />
           </folding>
         </state>
       </provider>
