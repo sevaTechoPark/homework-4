@@ -30,3 +30,7 @@ class NoteComponent(Component):
     def upload_note(self):
         el = Lib.simple_wait_element_css(self.driver,"div .posting_f_r div")
         self.jsClick(el)
+
+    def get_last_post(self):
+        last_post = Lib.simple_wait_element_css(self.driver, "div[class='media-text_cnt']")
+        return last_post.text

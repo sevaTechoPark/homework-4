@@ -30,6 +30,7 @@ class Tests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+
         browser = os.environ.get('BROWSER', 'CHROME')
 
         cls.driver = Remote(
@@ -236,7 +237,7 @@ class Tests(unittest.TestCase):
         self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
                            0, "Wrong login or password")
 
-    def atest_friend(self):
+    def test_friend(self):
 
         self.auth_user()
 
@@ -324,9 +325,7 @@ class Tests(unittest.TestCase):
         note_page.set_note_text()
         note_page.upload_note()
         self.driver.refresh()
-        last_post = self.driver.find_element_by_css_selector(
-            "div[class='media-text_cnt']").text
-        self.assertEqual(last_post,
+        self.assertEqual(note_page.get_last_post(),
                          note_page.default_note_text, "Note post error")
 
     def test_theme(self):
