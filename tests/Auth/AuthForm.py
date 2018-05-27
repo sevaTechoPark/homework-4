@@ -19,7 +19,8 @@ class AuthForm(Component):
         Lib.simple_set_text_to_element(self.driver, self.LOGIN_INPUT, login)
 
     def set_password(self, password):
-        Lib.simple_set_text_to_element(self.driver, self.PASSWORD_INPUT, password)
+        Lib.simple_set_text_to_element(
+            self.driver, self.PASSWORD_INPUT, password)
 
     def submit(self):
         Lib.simple_get_element(self.driver, self.SUBMIT_INPUT).click()

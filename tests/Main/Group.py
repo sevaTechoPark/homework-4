@@ -21,21 +21,27 @@ class GroupComponent(Component):
         search_field.send_keys(self.default_group_search)
 
     def search(self):
-        search_btn = self.driver.find_element_by_css_selector(self.search_btn_css)
+        search_btn = self.driver.find_element_by_css_selector(
+            self.search_btn_css)
         self.jsClick(search_btn)
 
     def follow(self):
-        first_group = Lib.simple_wait_element(self.driver,self.first_group_xpath)
+        first_group = Lib.simple_wait_element(
+            self.driver, self.first_group_xpath)
         try:
-            join_btn = first_group.find_element_by_css_selector(self.join_btn_css)
+            join_btn = first_group.find_element_by_css_selector(
+                self.join_btn_css)
             join_btn.click()
-        except  NoSuchElementException:
+        except NoSuchElementException:
             pass
 
     def unfollow(self):
-        self.driver.get(self.driver.find_element_by_xpath("//div[@id='gs_result_list']/div[1]//a[@title]").get_attribute("href"))
-        self.jsClick(self.driver.find_element_by_css_selector(self.arrow_unfollow_btn_css))
-        self.jsClick(self.driver.find_element_by_css_selector(self.unfollow_css))
+        self.driver.get(self.driver.find_element_by_xpath(
+            "//div[@id='gs_result_list']/div[1]//a[@title]").get_attribute("href"))
+        self.jsClick(self.driver.find_element_by_css_selector(
+            self.arrow_unfollow_btn_css))
+        self.jsClick(
+            self.driver.find_element_by_css_selector(self.unfollow_css))
 
     def getFollowBtn(self):
         self.driver.get(self.search_query)

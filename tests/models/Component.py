@@ -3,5 +3,6 @@ class Component(object):
         self.driver = driver
 
     def jsClick(self, element):
-        self.driver.execute_script("arguments[0].style.visibility = 'visible';", element)
+        self.driver.execute_script(
+            "arguments[0].style.visibility = 'visible';", element)
         self.driver.execute_script("arguments[0].click();", element)

@@ -15,14 +15,15 @@ class FriendComponent(Component):
     pending_friends = []
 
     def open_friend_page(self):
-        self.driver.get("%s/%s" %(self.base,self.friend_id))
+        self.driver.get("%s/%s" % (self.base, self.friend_id))
 
     def add_to_friends(self):
-        add_btn = Lib.simple_wait_element_css(self.driver,self.add_btn_css)
+        add_btn = Lib.simple_wait_element_css(self.driver, self.add_btn_css)
         self.jsClick(add_btn)
 
     def get_pending_friends(self):
-        self.user_url = Lib.simple_wait_element_css(self.driver,"a[data-l='t,selectCurrentUser']").get_attribute('href')
+        self.user_url = Lib.simple_wait_element_css(
+            self.driver, "a[data-l='t,selectCurrentUser']").get_attribute('href')
         self.driver.get(self.user_url+self.pending_prefix)
         self.scroll_to_new()
         ids = []
@@ -36,12 +37,14 @@ class FriendComponent(Component):
         self.pending_friends = self.driver.execute_script(
             'return document.querySelectorAll("%s")' % self.pending_friends_css)
         while len(self.pending_friends) < self.outgoing_friends_count:
-            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+            self.driver.execute_script(
+                "window.scrollTo(0, document.body.scrollHeight)")
             self.pending_friends = self.driver.execute_script(
                 'return document.querySelectorAll("%s")' % self.pending_friends_css)
 
     def cancel_request(self):
         self.driver.get(self.user_url+self.pending_prefix)
         self.scroll_to_new()
-        cancel_btn = Lib.simple_wait_elements_css(self.driver,self.cancel_btn_css)
+        cancel_btn = Lib.simple_wait_elements_css(
+            self.driver, self.cancel_btn_css)
         self.jsClick(cancel_btn[-1])

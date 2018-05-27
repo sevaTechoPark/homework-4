@@ -44,11 +44,13 @@ class Lib(Component):
     def wait_element_with_attribute(driver, until, x_path, attribute):
         if until:
             return WebDriverWait(driver, waitTime).until(
-                lambda d: d.find_element_by_xpath(x_path).get_attribute(attribute)
+                lambda d: d.find_element_by_xpath(
+                    x_path).get_attribute(attribute)
             )
         else:
             return WebDriverWait(driver, waitTime).until_not(
-                lambda d: d.find_element_by_xpath(x_path).get_attribute(attribute)
+                lambda d: d.find_element_by_xpath(
+                    x_path).get_attribute(attribute)
             )
 
     @staticmethod

@@ -10,7 +10,8 @@ class Feed(Component):
             self.REACTIONS[i] = self.REACTION_PANEL + self.REACTIONS[i]
 
     LIKE_BUTTONS = '//div[@class="feed-list"]//li[@class="widget-list_i "][last()]'
-    LIKE_INFO = LIKE_BUTTONS + '//span[@class="widget_cnt controls-list_lk h-mod"]'
+    LIKE_INFO = LIKE_BUTTONS + \
+        '//span[@class="widget_cnt controls-list_lk h-mod"]'
 
     LIKE_COUNT = '//span[contains(@class, "widget_count")]'
     LIKE_PANEL = '//div[@id="hook_Block_ShortcutMenuReact"]//div[contains(@class, "sc-menu")]//ul[@class="u-menu"]'
@@ -47,10 +48,12 @@ class Feed(Component):
         element = Lib.simple_wait_elements(self.driver, self.LIKE_BUTTONS)[0]
         Lib.hover(self.driver, element)
         Lib.visibility_wait_element(self.driver, self.REACTION_PANEL)
-        Lib.simple_wait_element(self.driver, self.REACTIONS[reaction_number]).click()
+        Lib.simple_wait_element(
+            self.driver, self.REACTIONS[reaction_number]).click()
 
     def get_number_emotion(self):
-        reaction_class = Lib.visibility_wait_element(self.driver, self.REACTION_ICON).get_attribute("class")
+        reaction_class = Lib.visibility_wait_element(
+            self.driver, self.REACTION_ICON).get_attribute("class")
         if reaction_class == 'widget_ico __react __react-like':
             return 0
         if reaction_class == 'widget_ico __react __react-lol':
@@ -76,7 +79,8 @@ class Feed(Component):
 
     def get_names_last_liked(self, id):
         self.open_who_likes(id)
-        elements = Lib.simple_wait_elements(self.driver, self.LIKE_PANEL_LAST_LIKED_NAMES)
+        elements = Lib.simple_wait_elements(
+            self.driver, self.LIKE_PANEL_LAST_LIKED_NAMES)
         names = []
         for element in elements:
             names.append(element.text)
@@ -84,7 +88,8 @@ class Feed(Component):
 
     def get_links_last_liked(self, id):
         self.open_who_likes(id)
-        elements = Lib.simple_wait_elements(self.driver, self.LIKE_PANEL_LAST_LIKED_LINKS)
+        elements = Lib.simple_wait_elements(
+            self.driver, self.LIKE_PANEL_LAST_LIKED_LINKS)
         links = []
         for element in elements:
             links.append(element.get_attribute("href"))
@@ -95,14 +100,16 @@ class Feed(Component):
         Lib.visibility_wait_element(self.driver, self.LIST_ALL_LIKES).click()
 
     def get_all_names(self):
-        elements = Lib.simple_wait_elements(self.driver, self.LIST_ALL_LIKES_NAMES)
+        elements = Lib.simple_wait_elements(
+            self.driver, self.LIST_ALL_LIKES_NAMES)
         names = []
         for element in elements:
             names.append(element.text)
         return names
 
     def get_all_links(self):
-        elements = Lib.simple_wait_elements(self.driver, self.LIST_ALL_LIKES_NAMES)
+        elements = Lib.simple_wait_elements(
+            self.driver, self.LIST_ALL_LIKES_NAMES)
         names = []
         for element in elements:
             names.append(element.get_attribute("href"))
