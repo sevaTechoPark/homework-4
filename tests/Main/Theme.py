@@ -11,17 +11,17 @@ class ThemePage(Page):
 
 class ThemeComponent(Component):
 
-    start_theme_name = ''
-    confirm_btn_css = '[data-l="t\,confirm"]'
+    START_THEME_NAME = ''
+    CONFIRM_BTN_CSS = '[data-l="t\,confirm"]'
 
     def select(self):
-        self.start_theme_name = self.get_selected_theme()
+        self.START_THEME_NAME = self.get_selected_theme()
         theme = self.driver.find_elements_by_css_selector('div[class="covers_cat_lst_cnt"')[
             2].find_element_by_css_selector("a")
         self.jsClick(theme)
 
     def apply(self):
-        el = Lib.simple_wait_element_css(self.driver, self.confirm_btn_css)
+        el = Lib.simple_wait_element_css(self.driver, self.CONFIRM_BTN_CSS)
         self.jsClick(el)
 
     def get_selected_theme(self):

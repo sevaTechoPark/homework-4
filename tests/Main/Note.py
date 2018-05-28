@@ -12,12 +12,12 @@ class NotePage(Page):
 
 
 class NoteComponent(Component):
-    default_note_text = "Random note %d %d %d" % (
+    DEFAULT_NOTE_TEXT = "Random note %d %d %d" % (
         randint(0, 100), randint(0, 100), randint(0, 100))
-    user_url_css = '[data-l="t\,selectCurrentUser"]'
+    USER_URL_CSS = '[data-l="t\,selectCurrentUser"]'
 
     def open_notes(self):
-        el = Lib.simple_wait_element_css(self.driver, self.user_url_css)
+        el = Lib.simple_wait_element_css(self.driver, self.USER_URL_CSS)
         self.driver.get(
             el.get_attribute("href") + '/statuses')
 
@@ -29,7 +29,7 @@ class NoteComponent(Component):
     def set_note_text(self):
         el = Lib.simple_wait_element_css(
             self.driver, "[data-initial-text-to-modify]")
-        el.send_keys(self.default_note_text)
+        el.send_keys(self.DEFAULT_NOTE_TEXT)
 
     def upload_note(self):
         el = Lib.simple_wait_element_css(self.driver, "div .posting_f_r div")

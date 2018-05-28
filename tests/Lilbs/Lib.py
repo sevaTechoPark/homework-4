@@ -66,6 +66,12 @@ class Lib(Component):
             expected_conditions.visibility_of_element_located((By.XPATH, x_path)))
 
     @staticmethod
+    def visibility_wait_element_css(driver, css):
+        ignored_exceptions = (StaleElementReferenceException,)
+        return WebDriverWait(driver, waitTime, ignored_exceptions=ignored_exceptions).until(
+            expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, css)))
+
+    @staticmethod
     def hover(driver, element):
         ActionChains(driver).move_to_element(element).perform()
 

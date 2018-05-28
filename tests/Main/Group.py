@@ -6,31 +6,29 @@ from tests.models.Component import Component
 
 
 class GroupComponent(Component):
-    default_group_search = "Android"
-    search_field_id = "field_query"
-    search_btn_css = "input[class='toolbar_search_lupa']"
-    first_group_xpath = "//div[@id='gs_result_list']/div[1]"
-    group_link_xpath = "//div[@id='gs_result_list']/div[1]//a[@title]"
-    join_btn_css = "span[class='button-pro __sec']"
-    arrow_unfollow_btn_css = ".__with-arrow"
-    unfollow_css = ".__show .dropdown_n"
-    search_query = 'https://ok.ru/search?st.query=%s' % default_group_search
+    DEFAULT_GROUP_SEARCH = "Android"
+    SEARCH_BTN_CSS = "input[class='toolbar_search_lupa']"
+    FIRST_GROUP_XPATH = "//div[@id='gs_result_list']/div[1]"
+    JOIN_BTN_CSS = "span[class='button-pro __sec']"
+    ARROW_UNFOLLOW_BTN_CSS = ".__with-arrow"
+    UNFOLLOW_CSS = ".__show .dropdown_n"
+    SEARCH_QUERY = 'https://ok.ru/search?st.query=%s' % DEFAULT_GROUP_SEARCH
 
     def fill_search(self):
         search_field = self.driver.find_element_by_id("field_query")
-        search_field.send_keys(self.default_group_search)
+        search_field.send_keys(self.DEFAULT_GROUP_SEARCH)
 
     def search(self):
         search_btn = self.driver.find_element_by_css_selector(
-            self.search_btn_css)
+            self.SEARCH_BTN_CSS)
         self.jsClick(search_btn)
 
     def follow(self):
         first_group = Lib.simple_wait_element(
-            self.driver, self.first_group_xpath)
+            self.driver, self.FIRST_GROUP_XPATH)
         try:
             join_btn = first_group.find_element_by_css_selector(
-                self.join_btn_css)
+                self.JOIN_BTN_CSS)
             join_btn.click()
         except NoSuchElementException:
             pass
@@ -39,12 +37,12 @@ class GroupComponent(Component):
         self.driver.get(self.driver.find_element_by_xpath(
             "//div[@id='gs_result_list']/div[1]//a[@title]").get_attribute("href"))
         self.jsClick(self.driver.find_element_by_css_selector(
-            self.arrow_unfollow_btn_css))
+            self.ARROW_UNFOLLOW_BTN_CSS))
         self.jsClick(
-            self.driver.find_element_by_css_selector(self.unfollow_css))
+            self.driver.find_element_by_css_selector(self.UNFOLLOW_CSS))
 
     def getFollowBtn(self):
-        self.driver.get(self.search_query)
-        if len(self.driver.find_element_by_xpath(self.first_group_xpath).find_elements_by_css_selector(self.join_btn_css)) == 0:
+        self.driver.get(self.SEARCH_QUERY)
+        if len(self.driver.find_element_by_xpath(self.FIRST_GROUP_XPATH).find_elements_by_css_selector(self.JOIN_BTN_CSS)) == 0:
             return False
         return True

@@ -1,5 +1,4 @@
-from random import randint
-
+# coding=utf-8
 from tests.Lilbs.Lib import Lib
 from tests.models.Component import Component
 from tests.models.Page import Page
@@ -12,33 +11,57 @@ class AlbumPage(Page):
 
 
 class AlbumComponent(Component):
-
-    random_album_name = '%dalbum%d' % (randint(1, 9999), randint(1, 9999))
-    create_album_btn_css = 'span[class="tico"]'
-    album_name_css = '[class="form__gl-1-2 form photo-album-settings"] [type="text"]'
-    save_btn_css = '.formButtonContainer [type]'
-    albums_css = 'a[class="o"]'
+    NEW_ALBUM_NAME = 'test'
+    CREATE_ALBUM_BTN_CSS = '.portlet_h_ac .tico'
+    ALBUM_NAME_CSS = '[class="form__gl-1-2 form photo-album-settings"] [type="text"]'
+    SAVE_BTN_CSS = '.formButtonContainer [type]'
+    ALBUMS_CSS = 'a[class="o"]'
+    EDIT_ALBUM_CSS = "div[class='photo-menu_edit iblock-cloud_show'] a"
+    ALBUM_LINK_CSS = "a[title='%s']" % NEW_ALBUM_NAME
+    DELETE_ALBUM_CSS = "li[class='controls-list_item']:nth-of-type(2)"
+    DELETE_CONFIRM_BTN = "input[name='button_delete_confirm']"
+    PHOTOS_URL_CSS = "a[data-l='t,userPhotos']"
 
     def open_photos_page(self):
-        url = self.driver.find_element_by_css_selector(
-            '[data-l="t\,selectCurrentUser"]').get_attribute('href') + '/photos'
-        self.driver.get(url)
+        el = Lib.simple_wait_element_css(self.driver, self.PHOTOS_URL_CSS)
+        el.click()
 
     def fill_name(self):
-        album_name_el = Lib.simple_wait_element_css(
-            self.driver, self.album_name_css)
-        album_name_el.send_keys(self.random_album_name)
+        album_name_el = Lib.visibility_wait_element_css(
+            self.driver, self.ALBUM_NAME_CSS)
+        album_name_el.send_keys(self.NEW_ALBUM_NAME)
 
     def create_album(self):
         create_album_btn = Lib.simple_wait_element_css(
-            self.driver, self.create_album_btn_css)
-        self.jsClick(create_album_btn)
+            self.driver, self.CREATE_ALBUM_BTN_CSS)
+        create_album_btn.click()
         self.fill_name()
-        save_btn = Lib.simple_wait_element_css(self.driver, self.save_btn_css)
-        self.jsClick(save_btn)
+        save_btn = Lib.simple_wait_element_css(self.driver, self.SAVE_BTN_CSS)
+        save_btn.click()
 
     def get_albums(self):
         albums = []
-        for album in self.driver.find_elements_by_css_selector(self.albums_css):
+        found_albums = Lib.simple_wait_elements_css(
+            self.driver, self.ALBUMS_CSS)
+        for album in found_albums:
             albums.append(album.text)
         return albums
+
+    def select_created_album(self):
+        album = Lib.simple_wait_element_css(self.driver, self.ALBUM_LINK_CSS)
+        album.click()
+
+    def set_edit_album(self):
+        edit_btn = Lib.simple_wait_element_css(
+            self.driver, self.EDIT_ALBUM_CSS)
+        edit_btn.click()
+
+    def delete_album(self):
+        self.select_created_album()
+        self.set_edit_album()
+        delete_link = Lib.simple_wait_element_css(
+            self.driver, self.DELETE_ALBUM_CSS)
+        delete_link.click()
+        delete_btn = Lib.simple_wait_element_css(
+            self.driver, self.DELETE_CONFIRM_BTN)
+        delete_btn.click()

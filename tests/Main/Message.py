@@ -10,28 +10,28 @@ class MessagePage(Page):
 
 
 class MessageComponent(Component):
-    default_message = "KEK!"
-    first_dialog_css = '[data-l] .h-mod:nth-of-type(1) .chats_i_ovr'
-    send_btn_css = "button[class='button-pro comments_add-controls_save']"
-    message_field_css = '[data-check-attach-on-submit="true"] [contenteditable]'
-    dialog_id = ''
+    DEFAULT_MESSAGE = "KEK!"
+    FIRST_DIALOG_CSS = '[data-l] .h-mod:nth-of-type(1) .chats_i_ovr'
+    SEND_BTN_CSS = "button[class='button-pro comments_add-controls_save']"
+    MESSAGE_FIELD_CSS = '[data-check-attach-on-submit="true"] [contenteditable]'
+    DIALOG_ID = ''
 
     def selectFirstDialog(self):
-        el = Lib.simple_wait_element_css(self.driver, self.first_dialog_css)
+        el = Lib.simple_wait_element_css(self.driver, self.FIRST_DIALOG_CSS)
         self.jsClick(el)
-        self.dialog_id = el.get_attribute('href').split("/")[-1]
+        self.DIALOG_ID = el.get_attribute('href').split("/")[-1]
 
     def writeMessage(self):
         message_field = Lib.simple_wait_element_css(
-            self.driver, self.message_field_css)
-        message_field.send_keys(self.default_message)
+            self.driver, self.MESSAGE_FIELD_CSS)
+        message_field.send_keys(self.DEFAULT_MESSAGE)
 
     def send_message(self):
-        el = Lib.simple_wait_element_css(self.driver, self.send_btn_css)
+        el = Lib.simple_wait_element_css(self.driver, self.SEND_BTN_CSS)
         self.jsClick(el)
 
     def open_dialog(self):
-        self.driver.get("https://ok.ru/messages/%s" % self.dialog_id)
+        self.driver.get("https://ok.ru/messages/%s" % self.DIALOG_ID)
 
     def get_last_message(self):
         el = Lib.simple_wait_elements_css(self.driver, '.js-msg-text')

@@ -233,11 +233,10 @@ class Tests(unittest.TestCase):
         album_component = AlbumComponent(self.driver)
         album_component.open_photos_page()
         album_component.create_album()
-
-        album_component.open_photos_page()
-
-        self.assertTrue(album_component.random_album_name in album_component.get_albums(
+        self.driver.refresh()
+        self.assertTrue(album_component.NEW_ALBUM_NAME in album_component.get_albums(
         ), "Album not created")
+        album_component.delete_album()
 
     def test_auth(self):
         self.auth_user()
@@ -304,9 +303,9 @@ class Tests(unittest.TestCase):
         like_component.like_first_found_post()
 
         like_page.open()
-        self.assertTrue(int(like_component.get_likes_from_btn_by_owner(like_component.data_id)) - 1 == int(
-            like_component.likes_count), "like error!")
-        like_component.remove_like(like_component.data_id)
+        self.assertTrue(int(like_component.get_likes_from_btn_by_owner(like_component.DATA_ID)) - 1 == int(
+            like_component.LIKES_COUNT), "like error!")
+        like_component.remove_like(like_component.DATA_ID)
 
     def test_message(self):
         self.auth_user()
@@ -320,7 +319,7 @@ class Tests(unittest.TestCase):
         messageComponent.send_message()
 
         messageComponent.open_dialog()
-        self.assertEqual(messageComponent.default_message,
+        self.assertEqual(messageComponent.DEFAULT_MESSAGE,
                          messageComponent.get_last_message())
 
     def test_note(self):
@@ -333,7 +332,7 @@ class Tests(unittest.TestCase):
         note_page.upload_note()
         self.driver.refresh()
         self.assertEqual(note_page.get_last_post(),
-                         note_page.default_note_text, "Note post error")
+                         note_page.DEFAULT_NOTE_TEXT, "Note post error")
 
     def test_theme(self):
         self.auth_user()
@@ -345,5 +344,5 @@ class Tests(unittest.TestCase):
         themeForm.select()
         themeForm.apply()
 
-        self.assertNotEqual(themeForm.start_theme_name,
+        self.assertNotEqual(themeForm.START_THEME_NAME,
                             themeForm.get_selected_theme(), "Theme apply error")

@@ -6,18 +6,17 @@ from tests.Lilbs.Lib import Lib
 
 class GenderComponent(Component):
 
-    new_first_name = 'Vasiliy'
-    profile_css = '[data-l="t\,selectCurrentUser"]'
-    edit_btn_css = 'div[class="user-profile_i_value"] a[class="user-profile_lk-o"]'
-    start_gender = -1
+    PROFILE_CSS = '[data-l="t\,selectCurrentUser"]'
+    EDIT_BTN_CSS = 'div[class="user-profile_i_value"] a[class="user-profile_lk-o"]'
+    START_GENDER = -1
 
     def open_profile(self):
         self.driver.get(
-            self.driver.find_element_by_css_selector(self.profile_css).get_attribute("href") + '/about')
+            self.driver.find_element_by_css_selector(self.PROFILE_CSS).get_attribute("href") + '/about')
 
     def click_edit(self):
         self.jsClick(
-            self.driver.find_element_by_css_selector(self.edit_btn_css))
+            self.driver.find_element_by_css_selector(self.EDIT_BTN_CSS))
 
     def set_start_gender(self):
 
@@ -26,9 +25,9 @@ class GenderComponent(Component):
         isChecked = self.driver.execute_script(
             'return document.getElementById("field_gender_1").checked')
         if isChecked:
-            self.start_gender = 1
+            self.START_GENDER = 1
         else:
-            self.start_gender = 2
+            self.START_GENDER = 2
 
     def get_current_gender(self):
         self.click_edit()
@@ -40,11 +39,11 @@ class GenderComponent(Component):
             cur_gender = 1
         else:
             cur_gender = 2
-        return cur_gender != self.start_gender
+        return cur_gender != self.START_GENDER
 
     def change_gender(self):
         new_gender = -1
-        if self.start_gender == 1:
+        if self.START_GENDER == 1:
             new_gender = 2
         else:
             new_gender = 1
