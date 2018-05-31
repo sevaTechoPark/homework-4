@@ -1,3 +1,4 @@
+# coding=utf-8
 from tests.Lilbs.Lib import Lib
 from tests.models.Component import Component
 from tests.models.Page import Page
@@ -14,12 +15,9 @@ class LanguageForm(Component):
     INACTIVE_LANGUAGE = ".sel-lang_list a"
 
     def open(self):
-
-        changeBtn = self.driver.find_element_by_css_selector(
-            self.LANGUAGE_ELEMENT_CSS)
-        # self.driver.execute_script("arguments[0].style.visibility = 'visible';",
-        #                            changeBtn)
-        self.jsClick(changeBtn)
+        changeBtn = Lib.simple_wait_element_css(
+            self.driver, self.LANGUAGE_ELEMENT_CSS)
+        self.jsClick(changeBtn)  # Здесь он нужен
 
     def get_inactive_language(self):
         el = Lib.simple_wait_element_css(self.driver, self.INACTIVE_LANGUAGE)
@@ -27,4 +25,4 @@ class LanguageForm(Component):
 
     def change(self):
         el = Lib.simple_wait_element_css(self.driver, self.INACTIVE_LANGUAGE)
-        self.jsClick(el)
+        el.click()

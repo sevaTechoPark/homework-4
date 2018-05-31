@@ -18,7 +18,7 @@ class MessageComponent(Component):
 
     def selectFirstDialog(self):
         el = Lib.simple_wait_element_css(self.driver, self.FIRST_DIALOG_CSS)
-        self.jsClick(el)
+        el.click()
         self.DIALOG_ID = el.get_attribute('href').split("/")[-1]
 
     def writeMessage(self):
@@ -28,7 +28,7 @@ class MessageComponent(Component):
 
     def send_message(self):
         el = Lib.simple_wait_element_css(self.driver, self.SEND_BTN_CSS)
-        self.jsClick(el)
+        el.click()
 
     def open_dialog(self):
         self.driver.get("https://ok.ru/messages/%s" % self.DIALOG_ID)

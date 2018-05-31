@@ -24,7 +24,7 @@ class NoteComponent(Component):
     def focus_note(self):
         el = Lib.simple_wait_element_css(
             self.driver, '.posting-form_itx_w .input_placeholder')
-        self.jsClick(el)
+        el.click()
 
     def set_note_text(self):
         el = Lib.simple_wait_element_css(
@@ -33,7 +33,7 @@ class NoteComponent(Component):
 
     def upload_note(self):
         el = Lib.simple_wait_element_css(self.driver, "div .posting_f_r div")
-        self.jsClick(el)
+        el.click()
 
     def get_last_post(self):
         last_post = Lib.simple_wait_element_css(

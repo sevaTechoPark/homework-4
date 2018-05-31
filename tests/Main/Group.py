@@ -19,9 +19,9 @@ class GroupComponent(Component):
         search_field.send_keys(self.DEFAULT_GROUP_SEARCH)
 
     def search(self):
-        search_btn = self.driver.find_element_by_css_selector(
-            self.SEARCH_BTN_CSS)
-        self.jsClick(search_btn)
+        search_btn = Lib.simple_wait_element_css(
+            self.driver, self.SEARCH_BTN_CSS)
+        search_btn.click()
 
     def follow(self):
         first_group = Lib.simple_wait_element(
@@ -34,12 +34,15 @@ class GroupComponent(Component):
             pass
 
     def unfollow(self):
-        self.driver.get(self.driver.find_element_by_xpath(
-            "//div[@id='gs_result_list']/div[1]//a[@title]").get_attribute("href"))
-        self.jsClick(self.driver.find_element_by_css_selector(
-            self.ARROW_UNFOLLOW_BTN_CSS))
-        self.jsClick(
-            self.driver.find_element_by_css_selector(self.UNFOLLOW_CSS))
+        url = Lib.simple_wait_element(
+            self.driver, "//div[@id='gs_result_list']/div[1]//a[@title]")
+        self.driver.get(url.get_attribute('href'))
+        unfollow_arrow_btn = Lib.simple_wait_element_css(
+            self.driver, self.ARROW_UNFOLLOW_BTN_CSS)
+        unfollow_arrow_btn.click()
+        unfollow_btn = Lib.simple_wait_element_css(
+            self.driver, self.UNFOLLOW_CSS)
+        unfollow_btn.click()
 
     def getFollowBtn(self):
         self.driver.get(self.SEARCH_QUERY)

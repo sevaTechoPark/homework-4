@@ -15,8 +15,8 @@ class GenderComponent(Component):
             self.driver.find_element_by_css_selector(self.PROFILE_CSS).get_attribute("href") + '/about')
 
     def click_edit(self):
-        self.jsClick(
-            self.driver.find_element_by_css_selector(self.EDIT_BTN_CSS))
+        el = Lib.simple_wait_element_css(self.driver, self.EDIT_BTN_CSS)
+        el.click()
 
     def set_start_gender(self):
 
@@ -52,8 +52,9 @@ class GenderComponent(Component):
             "document.getElementById('%s').checked = true" % _id)
 
     def save(self):
-        self.jsClick(self.driver.find_element_by_css_selector(
-            '[data-l="t\,confirm"]'))
-        el = Lib.simple_wait_element_css(
+        btn_confirm = Lib.simple_wait_element_css(
+            self.driver, '[data-l="t\,confirm"]')
+        btn_confirm.click()
+        btn_close = Lib.simple_wait_element_css(
             self.driver, css='#buttonId_button_close')
-        self.jsClick(el)
+        btn_close.click()

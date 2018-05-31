@@ -1,3 +1,4 @@
+# coding=utf-8
 from tests.Lilbs.Lib import Lib
 from tests.models.Component import Component
 
@@ -20,7 +21,7 @@ class FriendComponent(Component):
 
     def add_to_friends(self):
         add_btn = Lib.simple_wait_element_css(self.driver, self.ADD_BTN_CSS)
-        self.jsClick(add_btn)
+        add_btn.click()
 
     def get_pending_friends(self):
         self.USER_URL = Lib.simple_wait_element_css(
@@ -48,4 +49,4 @@ class FriendComponent(Component):
         self.scroll_to_new()
         cancel_btn = Lib.simple_wait_elements_css(
             self.driver, self.CANCEL_BTN_CSS)
-        self.jsClick(cancel_btn[-1])
+        self.jsClick(cancel_btn[-1])  # Здесь он нужен
