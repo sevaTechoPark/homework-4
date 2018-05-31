@@ -71,7 +71,7 @@ class Tests(unittest.TestCase):
         cls.driver.delete_all_cookies()
         cls.driver.refresh()
 
-    def acreate_notification(self):
+    def create_notification(self):
         self.auth_user(False)
         main_page = MainPage(self.driver)
         top_menu = main_page.top_menu
@@ -81,7 +81,7 @@ class Tests(unittest.TestCase):
 
         self.log_out()
 
-    def acreate_like(self):
+    def create_like(self):
         self.auth_user(False)
         main_page = MainPage(self.driver)
         top_menu = main_page.top_menu
@@ -93,12 +93,12 @@ class Tests(unittest.TestCase):
         self.log_out()
         return like_id
 
-    def aopen_user_wall(self):
+    def open_user_wall(self):
         main_page = MainPage(self.driver)
         center_menu = main_page.center_menu
         center_menu.select_wall()
 
-    def atest_select_notification_tabs(self):
+    def test_select_notification_tabs(self):
         self.auth_user()
 
         main_page = MainPage(self.driver)
@@ -111,7 +111,7 @@ class Tests(unittest.TestCase):
             self.assertEqual(
                 NOTIFICATION_TABS_TITLE[i], title, "select notification tabs")
 
-    def atest_report_notification(self):
+    def test_report_notification(self):
         self.create_notification()
         self.auth_user()
 
@@ -122,7 +122,7 @@ class Tests(unittest.TestCase):
         self.assertEqual(
             REPORT_SUCCESS, top_menu.place_first_notification(), "report notification fail")
 
-    def atest_close_notification(self):
+    def test_close_notification(self):
         self.create_notification()
         self.auth_user()
 
@@ -133,7 +133,7 @@ class Tests(unittest.TestCase):
         self.assertTrue(top_menu.check_notification_close(),
                         "close notification fail")
 
-    def atest_add_reaction(self):
+    def test_add_reaction(self):
         self.auth_user()
 
         main_page = MainPage(self.driver)
@@ -142,7 +142,7 @@ class Tests(unittest.TestCase):
         self.assertEqual(
             reaction_number, feed.get_number_emotion(), "add reaction fail")
 
-    def atest_change_reaction(self):
+    def test_change_reaction(self):
 
         self.auth_user()
 
@@ -153,7 +153,7 @@ class Tests(unittest.TestCase):
         self.assertNotEquals(reaction_number, old_reaction,
                              "change reaction fail")
 
-    def atest_remove_reaction(self):
+    def test_remove_reaction(self):
 
         self.auth_user()
 
@@ -163,7 +163,7 @@ class Tests(unittest.TestCase):
         feed.remove_like()
         self.assertEquals(5, feed.get_number_emotion(), "remove reaction fail")
 
-    def atest_show_who_last_reaction(self):
+    def test_show_who_last_reaction(self):
 
         like_id = self.create_like()
         self.auth_user()
@@ -175,7 +175,7 @@ class Tests(unittest.TestCase):
         self.assertTrue(
             any(UsersName.second_account_name in s for s in names), "second user not found")
 
-    def atest_go_to_page_who_last_reaction(self):
+    def test_go_to_page_who_last_reaction(self):
 
         like_id = self.create_like()
         self.auth_user()
@@ -194,7 +194,7 @@ class Tests(unittest.TestCase):
             nickname = center_menu.get_another_nickname()
             self.assertTrue(nickname == UsersName.second_account_name)
 
-    def atest_show_all_who_reaction(self):
+    def test_show_all_who_reaction(self):
 
         like_id = self.create_like()
         self.auth_user()
@@ -207,7 +207,7 @@ class Tests(unittest.TestCase):
         self.assertTrue(
             any(UsersName.second_account_name in s for s in names), "second user not found")
 
-    def atest_go_to_page_from_all_reaction(self):
+    def test_go_to_page_from_all_reaction(self):
 
         like_id = self.create_like()
         self.auth_user()
@@ -227,7 +227,7 @@ class Tests(unittest.TestCase):
             nickname = center_menu.get_another_nickname()
             self.assertTrue(nickname == UsersName.second_account_name)
 
-    def atest_album(self):
+    def test_album(self):
         self.auth_user()
 
         album_component = AlbumComponent(self.driver)
@@ -238,12 +238,12 @@ class Tests(unittest.TestCase):
         ), "Album not created")
         album_component.delete_album()
 
-    def atest_auth(self):
+    def test_auth(self):
         self.auth_user()
         self.assertGreater(self.driver.find_elements_by_css_selector('.toolbar_dropdown').__len__(),
                            0, "Wrong login or password")
 
-    def atest_friend(self):
+    def test_friend(self):
 
         self.auth_user()
 
@@ -253,7 +253,7 @@ class Tests(unittest.TestCase):
         self.assertTrue(friend_component.get_pending_friends())
         friend_component.cancel_request()
 
-    def atest_gender(self):
+    def test_gender(self):
         self.auth_user()
 
         profile_component = GenderComponent(self.driver)
@@ -266,7 +266,7 @@ class Tests(unittest.TestCase):
         self.assertTrue(profile_component.get_current_gender(),
                         "Gender didn't changed!")
 
-    def atest_group(self):
+    def test_group(self):
         self.auth_user()
 
         group_component = GroupComponent(self.driver)
@@ -277,7 +277,7 @@ class Tests(unittest.TestCase):
         self.assertFalse(group_component.getFollowBtn(), "Follow group error")
         group_component.unfollow()
 
-    def atest_language(self):
+    def test_language(self):
         self.auth_user()
 
         language_settings_page = LanguagePage(self.driver)
@@ -293,7 +293,7 @@ class Tests(unittest.TestCase):
         self.assertTrue(inactive_language.lower() ==
                         active_language.lower(), "Language haven't changed")
 
-    def atest_like(self):
+    def test_like(self):
         self.auth_user()
 
         like_page = LikePage(self.driver)
@@ -307,7 +307,7 @@ class Tests(unittest.TestCase):
             like_component.LIKES_COUNT), "like error!")
         like_component.remove_like(like_component.DATA_ID)
 
-    def atest_message(self):
+    def test_message(self):
         self.auth_user()
 
         messagePage = MessagePage(self.driver)
@@ -322,7 +322,7 @@ class Tests(unittest.TestCase):
         self.assertEqual(messageComponent.DEFAULT_MESSAGE,
                          messageComponent.get_last_message())
 
-    def atest_note(self):
+    def test_note(self):
         self.auth_user()
 
         note_page = NoteComponent(self.driver)
