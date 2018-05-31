@@ -13,10 +13,12 @@ class ThemeComponent(Component):
 
     START_THEME_NAME = ''
     CONFIRM_BTN_CSS = '[data-l="t\,confirm"]'
+    SELECT_CSS = 'div[class="covers_cat_lst_cnt"'
+    SELECTED_THEME_CSS = 'div[class="covers_cat_lst_cnt"] div[class*="selected"]'
 
     def select(self):
         self.START_THEME_NAME = self.get_selected_theme()
-        theme = Lib.simple_wait_elements_css(self.driver, 'div[class="covers_cat_lst_cnt"')[
+        theme = Lib.simple_wait_elements_css(self.driver, self.SELECT_CSS)[
             2].find_element_by_css_selector("a")
         theme.click()
 
@@ -25,5 +27,5 @@ class ThemeComponent(Component):
         el.click()
 
     def get_selected_theme(self):
-        return self.driver.find_element_by_css_selector('div[class="covers_cat_lst_cnt"] div[class*="selected"]').text.split(
+        return self.driver.find_element_by_css_selector(self.SELECTED_THEME_CSS).text.split(
             "\n")[0]

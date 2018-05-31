@@ -15,6 +15,7 @@ class FriendComponent(Component):
     USER_URL = ''
     OUTGOING_FRIENDS_COUNT = -1
     PENDING_FRIENDS = []
+    CURRENT_USER_CSS = "a[data-l='t,selectCurrentUser']"
 
     def open_friend_page(self):
         self.driver.get("%s/%s" % (self.BASE, self.FRIEND_ID))
@@ -25,7 +26,7 @@ class FriendComponent(Component):
 
     def get_pending_friends(self):
         self.USER_URL = Lib.simple_wait_element_css(
-            self.driver, "a[data-l='t,selectCurrentUser']").get_attribute('href')
+            self.driver, self.CURRENT_USER_CSS).get_attribute('href')
         self.driver.get(self.USER_URL+self.PENDING_PREFIX)
         self.scroll_to_new()
         ids = []

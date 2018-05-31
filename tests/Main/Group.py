@@ -13,9 +13,11 @@ class GroupComponent(Component):
     ARROW_UNFOLLOW_BTN_CSS = ".__with-arrow"
     UNFOLLOW_CSS = ".__show .dropdown_n"
     SEARCH_QUERY = 'https://ok.ru/search?st.query=%s' % DEFAULT_GROUP_SEARCH
+    URL_CSS = "//div[@id='gs_result_list']/div[1]//a[@title]"
+    SEARCH_FIELD_ID = "field_query"
 
     def fill_search(self):
-        search_field = self.driver.find_element_by_id("field_query")
+        search_field = self.driver.find_element_by_id(self.SEARCH_FIELD_ID)
         search_field.send_keys(self.DEFAULT_GROUP_SEARCH)
 
     def search(self):
@@ -35,7 +37,7 @@ class GroupComponent(Component):
 
     def unfollow(self):
         url = Lib.simple_wait_element(
-            self.driver, "//div[@id='gs_result_list']/div[1]//a[@title]")
+            self.driver, self.URL_CSS)
         self.driver.get(url.get_attribute('href'))
         unfollow_arrow_btn = Lib.simple_wait_element_css(
             self.driver, self.ARROW_UNFOLLOW_BTN_CSS)

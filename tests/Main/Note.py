@@ -15,6 +15,10 @@ class NoteComponent(Component):
     DEFAULT_NOTE_TEXT = "Random note %d %d %d" % (
         randint(0, 100), randint(0, 100), randint(0, 100))
     USER_URL_CSS = '[data-l="t\,selectCurrentUser"]'
+    FOCUS_NOTE_CSS = '.posting-form_itx_w .input_placeholder'
+    SET_NOTE_TEXT_CSS = "[data-initial-text-to-modify]"
+    UPLOAD_NOTE_CSS = "div .posting_f_r div"
+    LAST_POST_CSS = "div[class='media-text_cnt']"
 
     def open_notes(self):
         el = Lib.simple_wait_element_css(self.driver, self.USER_URL_CSS)
@@ -23,19 +27,19 @@ class NoteComponent(Component):
 
     def focus_note(self):
         el = Lib.simple_wait_element_css(
-            self.driver, '.posting-form_itx_w .input_placeholder')
+            self.driver, self.FOCUS_NOTE_CSS)
         el.click()
 
     def set_note_text(self):
         el = Lib.simple_wait_element_css(
-            self.driver, "[data-initial-text-to-modify]")
+            self.driver, self.SET_NOTE_TEXT_CSS)
         el.send_keys(self.DEFAULT_NOTE_TEXT)
 
     def upload_note(self):
-        el = Lib.simple_wait_element_css(self.driver, "div .posting_f_r div")
+        el = Lib.simple_wait_element_css(self.driver, self.UPLOAD_NOTE_CSS)
         el.click()
 
     def get_last_post(self):
         last_post = Lib.simple_wait_element_css(
-            self.driver, "div[class='media-text_cnt']")
+            self.driver, self.LAST_POST_CSS)
         return last_post.text

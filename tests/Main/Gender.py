@@ -9,6 +9,8 @@ class GenderComponent(Component):
     PROFILE_CSS = '[data-l="t\,selectCurrentUser"]'
     EDIT_BTN_CSS = 'div[class="user-profile_i_value"] a[class="user-profile_lk-o"]'
     START_GENDER = -1
+    BTN_CONFIRM_CSS = '[data-l="t\,confirm"]'
+    BTN_CLOSE_CSS = '#buttonId_button_close'
 
     def open_profile(self):
         self.driver.get(
@@ -53,8 +55,8 @@ class GenderComponent(Component):
 
     def save(self):
         btn_confirm = Lib.simple_wait_element_css(
-            self.driver, '[data-l="t\,confirm"]')
+            self.driver, self.BTN_CONFIRM_CSS)
         btn_confirm.click()
         btn_close = Lib.simple_wait_element_css(
-            self.driver, css='#buttonId_button_close')
+            self.driver, self.BTN_CLOSE_CSS)
         btn_close.click()

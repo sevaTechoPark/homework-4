@@ -15,6 +15,8 @@ class MessageComponent(Component):
     SEND_BTN_CSS = "button[class='button-pro comments_add-controls_save']"
     MESSAGE_FIELD_CSS = '[data-check-attach-on-submit="true"] [contenteditable]'
     DIALOG_ID = ''
+    MESSAGES_URL = "https://ok.ru/messages/%s"
+    LAST_MESSAGE_CSS = '.js-msg-text'
 
     def selectFirstDialog(self):
         el = Lib.simple_wait_element_css(self.driver, self.FIRST_DIALOG_CSS)
@@ -31,8 +33,8 @@ class MessageComponent(Component):
         el.click()
 
     def open_dialog(self):
-        self.driver.get("https://ok.ru/messages/%s" % self.DIALOG_ID)
+        self.driver.get(self.MESSAGES_URL % self.DIALOG_ID)
 
     def get_last_message(self):
-        el = Lib.simple_wait_elements_css(self.driver, '.js-msg-text')
+        el = Lib.simple_wait_elements_css(self.driver, self.LAST_MESSAGE_CSS)
         return el[-1].text
