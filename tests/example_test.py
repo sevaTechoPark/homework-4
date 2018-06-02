@@ -1,5 +1,4 @@
 import os
-
 import unittest
 
 from selenium.webdriver import DesiredCapabilities, Remote
@@ -234,8 +233,9 @@ class Tests(unittest.TestCase):
         album_component.open_photos_page()
         album_component.create_album()
         self.driver.refresh()
-        self.assertTrue(album_component.NEW_ALBUM_NAME in album_component.get_albums(
-        ), "Album not created")
+        albums = album_component.get_albums()
+        self.assertIn(album_component.NEW_ALBUM_NAME,
+                      albums, "Album not created")
         album_component.delete_album()
 
     def test_auth(self):
@@ -262,9 +262,9 @@ class Tests(unittest.TestCase):
         profile_component.set_start_gender()
         profile_component.change_gender()
         profile_component.save()
-
         self.assertTrue(profile_component.get_current_gender(),
                         "Gender didn't changed!")
+        profile_component.back_to_start_gender()
 
     def test_group(self):
         self.auth_user()
@@ -284,14 +284,13 @@ class Tests(unittest.TestCase):
         language_settings_page.PATH = 'settings'
         language_settings_page.open()
 
-        languageForm = LanguageForm(self.driver)
-        languageForm.open()
-        inactive_language = languageForm.get_inactive_language()
-        languageForm.change()
-        active_language = self.driver.find_element_by_css_selector(
-            '.user-settings .user-settings_i:nth-of-type(6) .user-settings_i_tx').text
-        self.assertTrue(inactive_language.lower() ==
-                        active_language.lower(), "Language haven't changed")
+        language_form = LanguageForm(self.driver)
+        language_form.open()
+        inactive_language = language_form.get_inactive_language()
+        language_form.change()
+        active_language = language_form.get_active_language()
+        self.assertEqual(inactive_language.lower(),
+                         active_language.lower(), "Language haven't changed")
 
     def test_like(self):
         self.auth_user()
@@ -303,8 +302,12 @@ class Tests(unittest.TestCase):
         like_component.like_first_found_post()
 
         like_page.open()
-        self.assertTrue(int(like_component.get_likes_from_btn_by_owner(like_component.DATA_ID)) - 1 == int(
-            like_component.LIKES_COUNT), "like error!")
+
+        likes_from_btn_by_owner = int(
+            like_component.get_likes_from_btn_by_owner(like_component.DATA_ID))-1
+        likes_count = int(
+            like_component.LIKES_COUNT)
+        self.assertEqual(likes_from_btn_by_owner, likes_count, "like error!")
         like_component.remove_like(like_component.DATA_ID)
 
     def test_message(self):

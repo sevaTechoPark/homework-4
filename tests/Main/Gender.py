@@ -41,7 +41,7 @@ class GenderComponent(Component):
             cur_gender = 1
         else:
             cur_gender = 2
-        return cur_gender != self.START_GENDER
+        return cur_gender
 
     def change_gender(self):
         new_gender = -1
@@ -50,8 +50,9 @@ class GenderComponent(Component):
         else:
             new_gender = 1
         _id = "field_gender_%d" % new_gender
-        self.driver.execute_script(
-            "document.getElementById('%s').checked = true" % _id)
+        gender_radio = Lib.simple_wait_element_css(
+            self.driver, "input[id='%s']" % _id)
+        gender_radio.click()
 
     def save(self):
         btn_confirm = Lib.simple_wait_element_css(
@@ -60,3 +61,12 @@ class GenderComponent(Component):
         btn_close = Lib.simple_wait_element_css(
             self.driver, self.BTN_CLOSE_CSS)
         btn_close.click()
+
+    def back_to_start_gender(self):
+        self.open_profile()
+        current_id = self.get_current_gender()
+        _id = 1
+        if current_id == 1:
+            _id = 2
+        Lib.simple_wait_element_css(
+            self.driver, "input[id='field_gender_%d']" % _id).click()

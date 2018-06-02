@@ -1,5 +1,3 @@
-from random import randint
-
 from tests.Lilbs.Lib import Lib
 from tests.models.Component import Component
 from tests.models.Page import Page
@@ -12,22 +10,25 @@ class NotePage(Page):
 
 
 class NoteComponent(Component):
-    DEFAULT_NOTE_TEXT = "Random note %d %d %d" % (
-        randint(0, 100), randint(0, 100), randint(0, 100))
+    DEFAULT_NOTE_TEXT = "OK is the best site"
     USER_URL_CSS = '[data-l="t\,selectCurrentUser"]'
-    FOCUS_NOTE_CSS = '.posting-form_itx_w .input_placeholder'
+    FOCUS_NOTE_CSS = "div[class='posting-form_itx_w']"
     SET_NOTE_TEXT_CSS = "[data-initial-text-to-modify]"
     UPLOAD_NOTE_CSS = "div .posting_f_r div"
     LAST_POST_CSS = "div[class='media-text_cnt']"
+    OPEN_MENU_CSS = "i[class='tico_img ic ic_more']"
+    NOTES_BTN_CSS = "a[data-l='t,userStatuses']"
 
     def open_notes(self):
-        el = Lib.simple_wait_element_css(self.driver, self.USER_URL_CSS)
-        self.driver.get(
-            el.get_attribute("href") + '/statuses')
+        open_menu_btn = Lib.simple_wait_element_css(
+            self.driver, self.OPEN_MENU_CSS)
+        open_menu_btn.click()
+        notes_menu = Lib.simple_wait_element_css(
+            self.driver, self.NOTES_BTN_CSS)
+        notes_menu.click()
 
     def focus_note(self):
-        el = Lib.simple_wait_element_css(
-            self.driver, self.FOCUS_NOTE_CSS)
+        el = Lib.simple_wait_element_css(self.driver, self.FOCUS_NOTE_CSS)
         el.click()
 
     def set_note_text(self):
