@@ -397,6 +397,9 @@ class Tests(unittest.TestCase):
         interview = Interview(self.driver)
         interview.open_tab()
         interview.input_value()
+        self.assertTrue(interview.vote_interview())
+
+        
        # self.assertTrue(chanel.check_chanel_work())
     #     self.assertNotEqual(themeForm.start_theme_name,
     #                         themeForm.get_selected_theme(), "Theme apply error")
