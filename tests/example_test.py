@@ -26,6 +26,8 @@ from tests.Main.VideoAdd import VideoAdd
 from tests.Main.CreateChanel import CreateChanel
 from tests.Main.Mood import Mood
 from tests.Main.Interview import Interview
+from tests.Main.Events import Events
+from tests.Main.BlackList import BlackList
 
 class Tests(unittest.TestCase):
     driver = None  # type: webdriver.Remote
@@ -77,6 +79,23 @@ class Tests(unittest.TestCase):
     def log_out(cls):
         cls.driver.delete_all_cookies()
         cls.driver.refresh()
+
+    #  def test_comment_class(self):
+    #     self.auth_user()
+    #     myPage = CommentClass(self.driver)
+    #     myPage.create_comment()
+    #     myPage.add_like()
+    #     myPage.like_checker()
+    #     self.log_out()
+    #     self.auth_user(False)
+    #     self.assertTrue(myPage.mood_checker())
+
+     def test_blacklist(self):
+        self.auth_user()
+        black_man = BlackList(self.driver)
+        black_man.open_friend_page()
+        black_man.blacklist_choose()
+        self.assertTrue(black_man.check_in_blacklist())
 
     # def create_notification(self):
     #     self.auth_user(False)
@@ -386,19 +405,32 @@ class Tests(unittest.TestCase):
 
     # def test_mood(self):
     #     self.auth_user()
-
     #     mood = Mood(self.driver)
-    #     mood.open_profile()
-    #     mood.add_theme()
+    #     mood.open_theme()
+    #     mood.create_mood()
+    #     self.log_out()
+    #     self.auth_user(False)
+    #     self.assertTrue(mood.mood_checker())
     
-    def test_interview(self):
-        self.auth_user()
+    # def test_interview(self):
+    #     self.auth_user()
 
-        interview = Interview(self.driver)
-        interview.open_tab()
-        interview.input_value()
-        self.assertTrue(interview.vote_interview())
+    #     interview = Interview(self.driver)
+    #     interview.open_tab()
+    #     interview.input_value()
+    #     self.assertTrue(interview.vote_interview())
 
+    # def test_event_message(self):
+    #      self.auth_user()
+    #      event = Events(self.driver)
+    #      event.open_event()
+    #      event.send_message()
+    #      self.log_out()
+    #      self.auth_user(False)
+    #      self.assertTrue(event.mr_checker())
+         
+        #  event.input_value()
+        #  self.assertTrue(interview.vote_interview())
         
        # self.assertTrue(chanel.check_chanel_work())
     #     self.assertNotEqual(themeForm.start_theme_name,
@@ -415,15 +447,4 @@ class Tests(unittest.TestCase):
     #      audio = AudioAdd(self.driver)
     #      audio.open_audio()
     #      self.assertTrue(audio.add_audio())
-         #self.assertEqual(True, top_menu.check_notification_close(), "close notification fail")
-#      def test_comment_class(self):
-#         self.auth_user()
-
-#         myPage = CommentClass(self.driver)
-# #        myPage.open()
-       
-#         themeForm.select()
-#         themeForm.apply()
-
-#         self.assertNotEqual(themeForm.start_theme_name,
-#                             themeForm.get_selected_theme(), "Theme apply error")                        
+         #self.assertEqual(True, top_menu.check_notification_close(), "close notification fail")      

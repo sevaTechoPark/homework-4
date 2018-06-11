@@ -9,7 +9,6 @@ class AudioAdd(Component):
         self.driver.get("https://www.ok.ru/music")
     
     def add_audio(self):
-  
         before_click =  Lib.visibility_wait_element(self.driver, "//div[@class ='mml_notif mml_notif__num __on']").text
         element = Lib.visibility_wait_element(self.driver, self.MUSIC_BLOCK)
         Lib.hover(self.driver, element)
