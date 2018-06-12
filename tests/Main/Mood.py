@@ -1,7 +1,9 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
+
 from tests.models.Component import Component
 from tests.Lilbs.Lib import Lib
+
 
 class Mood(Component):
 
@@ -12,15 +14,15 @@ class Mood(Component):
 
     def open_theme(self):
         else_element = self.driver.find_element_by_link_text("Ещё")
-        Lib.hover(self.driver,else_element)
+        Lib.hover(self.driver, else_element)
         mood_element = self.driver.find_element_by_link_text("Настроение")
-        Lib.simple_wait_element(self.driver,mood_element).click()
+        Lib.simple_wait_element(self.driver, mood_element).click()
 
-    def create_mood(self):
-        Lib.simple_wait_element(self.driver,self.HAPPY_MOOD).click()
-        Lib.simple_set_text_to_element(self.driver, self.TEXT_MOOD,self.INPUT_TEXT)
-        Lib.simple_wait_element(self.driver,self.ADD_BUTTON).click()
+    def create_mood(self, mood_text):
+        Lib.simple_wait_element(self.driver, self.HAPPY_MOOD).click()
+        Lib.simple_set_text_to_element(self.driver, self.TEXT_MOOD, mood_text)
+        Lib.simple_wait_element(self.driver, self.ADD_BUTTON).click()
 
-    def mood_checker(self):
-        mr_mood = self.driver.find_element_by_link_text(self.INPUT_TEXT)
-        return Lib.check_exist_element(self.driver,mr_mood)
+    def mood_checker(self, mood_text):
+        mr_mood = self.driver.find_element_by_link_text(mood_text)
+        return Lib.check_exist_element(self.driver, mr_mood)

@@ -13,12 +13,12 @@ class Events(Component):
     def open_event(self):
          self.driver.get("https://www.ok.ru/marks")
          
-    def send_message(self):
+    def send_message(self, message):
         avatar = Lib.simple_wait_element(self.driver, self.NOTIF_BLOCK)
-        Lib.hover(self.driver,avatar)
-        Lib.simple_wait_element(self.driver,self.BUTTON_MESSAGE).click()
-        Lib.simple_set_text_to_element(self.driver, self.TEXT_INPUT,"What about your diplom ?")
-        Lib.simple_wait_element(self.driver,self.SEND_TEXT).click()
+        Lib.hover(self.driver, avatar)
+        Lib.simple_wait_element(self.driver, self.BUTTON_MESSAGE).click()
+        Lib.simple_set_text_to_element(self.driver, self.TEXT_INPUT, message)
+        Lib.simple_wait_element(self.driver, self.SEND_TEXT).click()
 
     def mr_checker(self):
         return Lib.check_exist_element(self.driver, self.COUNTER_VALUE)
