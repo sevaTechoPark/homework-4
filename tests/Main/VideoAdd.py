@@ -15,4 +15,3 @@ class VideoAdd(Component):
         Lib.simple_wait_element(self.driver,self.BUTTON_ADD).click()
         after_click = len(self.driver.find_elements_by_xpath("//li[@class ='mml_subcat_li __interac']"))
         return (after_click != before_click)
-     

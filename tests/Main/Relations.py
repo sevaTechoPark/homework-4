@@ -7,21 +7,22 @@ class Relations(Component):
     ELSE_BUTTON = "//span[@class = 'mctc_navMenuDropdownSecLabelText flipthis-highlight']"
     CLASSMATES = "//a[@class = 'mctc_navMenuDDLIL flipthis-highlight']"
     BUTTON_CLASSMATES = "//span[@class = 'add-stub_tx flipthis-highlight']"
+    CHOOSE_TARGET = "//div[@id = 'hook_InviteChangeCardRel_1320956988']//div[@class = 'avatar user']"
+    TARGET = "//input[@class = 'button-pro __disabled']"
+    PAGE_FRIEND = "//a[@class='dblock']//descendant::div[@class = 'photo']"
+    FRIEND_CLICK = "//span[@class = 'dropdown_ac button-pro __sec __with-arrow flipthis-highlight']"
 
     def friends_classmates(self):
         Lib.simple_wait_element(self.driver,self.BUTTON_FRIEND).click()
         Lib.simple_wait_element(self.driver,self.ELSE_BUTTON ).click()
         Lib.simple_wait_element(self.driver,self.CLASSMATES ).click()
         Lib.simple_wait_element(self.driver,self.BUTTON_CLASSMATES ).click()
+        Lib.simple_wait_element(self.driver,self.CHOOSE_TARGET ).click()
 
+    def classmates_checker(self):
+         Lib.simple_wait_element(self.driver,self.BUTTON_FRIEND).click()
+         Lib.simple_wait_element(self.driver,self.PAGE_FRIEND).click()
+         Lib.simple_wait_element(self.driver,self.FRIEND_CLICK).click()
+         Lib.hover(self.driver,"//div[@class = 'dropdown_cnt __show']")
+         return Lib.check_exist_element(self.driver,"//input[@checked]")
 
-    def blacklist_choose(self):
-        Lib.simple_wait_element(self.driver,self.MENU_CLICK).click()
-        Lib.simple_wait_element(self.driver,self.COMPLAIN_BUTTON).click()
-        Lib.visibility_wait_element(self.driver, self.BLACKLIST)
-        Lib.simple_wait_element(self.driver,self.BLACKLIST).click()
-        Lib.simple_wait_element(self.driver,self.MR_SENDER).click()
-
-    def check_in_blacklist(self):
-        self.driver.get("https://www.ok.ru/blacklist")
-        return Lib.check_exist_element(self.driver, self.MAN_IN_BLACKLIST)

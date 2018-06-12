@@ -12,7 +12,7 @@ class Events(Component):
 
     def open_event(self):
          self.driver.get("https://www.ok.ru/marks")
-
+         
     def send_message(self):
         avatar = Lib.simple_wait_element(self.driver, self.NOTIF_BLOCK)
         Lib.hover(self.driver,avatar)

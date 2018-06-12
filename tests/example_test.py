@@ -28,6 +28,8 @@ from tests.Main.Mood import Mood
 from tests.Main.Interview import Interview
 from tests.Main.Events import Events
 from tests.Main.BlackList import BlackList
+from tests.Main.Relations import Relations
+from tests.Main.Share import Share
 
 class Tests(unittest.TestCase):
     driver = None  # type: webdriver.Remote
@@ -90,12 +92,32 @@ class Tests(unittest.TestCase):
     #     self.auth_user(False)
     #     self.assertTrue(myPage.mood_checker())
 
-     def test_blacklist(self):
+    #  def test_blacklist(self):
+    #     self.auth_user()
+    #     black_man = BlackList(self.driver)
+    #     black_man.open_friend_page()
+    #     black_man.blacklist_choose()
+    #     self.assertTrue(black_man.check_in_blacklist())
+
+    #  def test_relations(self):
+    #     self.auth_user()
+    #     relations = Relations(self.driver)
+    #     relations.friends_classmates()
+    #     self.assertTrue(relations.classmates_checker())
+
+      def test_share(self):
         self.auth_user()
-        black_man = BlackList(self.driver)
-        black_man.open_friend_page()
-        black_man.blacklist_choose()
-        self.assertTrue(black_man.check_in_blacklist())
+        share = share(self.driver)
+        share.make_share()
+        if share.share_checker():
+            self.log_out()
+            self.auth_user(False)
+            share.make_share()
+            self.assertTrue(share.share_checker())
+        else:self.assertTrue(False)
+
+        self.assertTrue(relations.classmates_checker())
+
 
     # def create_notification(self):
     #     self.auth_user(False)
@@ -447,4 +469,3 @@ class Tests(unittest.TestCase):
     #      audio = AudioAdd(self.driver)
     #      audio.open_audio()
     #      self.assertTrue(audio.add_audio())
-         #self.assertEqual(True, top_menu.check_notification_close(), "close notification fail")      
