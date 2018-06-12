@@ -16,7 +16,17 @@ from tests.Main.Message import MessagePage, MessageComponent
 from tests.Main.Note import NoteComponent
 from tests.Main.Theme import ThemePage, ThemeComponent
 from tests.constants.Constants import *
-
+from tests.Main.AddMusic import AddMusic
+from tests.Main.AudioAdd import AudioAdd
+from tests.Main.VideoAdd import VideoAdd
+from tests.Main.CreateChanel import CreateChanel
+from tests.Main.Mood import Mood
+from tests.Main.Interview import Interview
+from tests.Main.Events import Events
+from tests.Main.BlackList import BlackList
+from tests.Main.Relations import Relations
+from tests.Main.Share import Share
+from tests.Main.CommentClass import CommentClass
 
 class Tests(unittest.TestCase):
     driver = None  # type: webdriver.Remote
@@ -337,6 +347,92 @@ class Tests(unittest.TestCase):
         self.assertEqual(note_page.get_last_post(),
                          note_page.DEFAULT_NOTE_TEXT, "Note post error")
 
+    def test_blacklist(self):
+        self.auth_user()
+        black_man = BlackList(self.driver)
+        black_man.open_friend_page()
+        black_man.blacklist_choose()
+        self.assertTrue(black_man.check_in_blacklist())
+
+    def test_relations(self):
+        self.auth_user()
+        relations = Relations(self.driver)
+        relations.friends_classmates()
+        self.assertTrue(relations.classmates_checker())
+
+    def test_share(self):
+        self.auth_user()
+        share = share(self.driver)
+        share.make_share()
+        if share.share_checker():
+            self.log_out()
+            self.auth_user(False)
+            share.make_share()
+            self.assertTrue(share.share_checker())
+        else:self.assertTrue(False)
+
+    def test_adding_video(self):
+        self.auth_user()
+        audio = VideoAdd(self.driver)
+        audio.open_video()
+        audio.add_video()
+
+    def test_creating_chanel(self):
+        self.auth_user()
+        chanel = CreateChanel(self.driver)
+        chanel.open_chanel()
+        self.assertTrue(chanel.check_chanel_work())
+
+    def test_mood(self):
+        self.auth_user()
+        mood = Mood(self.driver)
+        mood.open_theme()
+        mood.create_mood()
+        self.log_out()
+        self.auth_user(False)
+        self.assertTrue(mood.mood_checker())
+    
+    def test_interview(self):
+        self.auth_user()
+
+        interview = Interview(self.driver)
+        interview.open_tab()
+        interview.input_value()
+        self.assertTrue(interview.vote_interview())
+
+    def test_music_collections(self):
+        self.auth_user()
+        music = AddMusic(self.driver)
+        music.open_music()
+        music.add_playlist()
+        self.assertTrue(music.check_music())
+
+    def test_adding_music(self):
+         self.auth_user()
+         audio = AudioAdd(self.driver)
+         audio.open_audio()
+         self.assertTrue(audio.add_audio())
+
+    def test_event_message(self):
+        self.auth_user()
+        event = Events(self.driver)
+        event.open_event()
+        event.send_message()
+        self.log_out()
+        self.auth_user(False)
+        self.assertTrue(event.mr_checker())
+
+    def test_comment_class(self):
+        self.auth_user()
+        myPage = CommentClass(self.driver)
+        myPage.create_comment()
+        myPage.add_like()
+        myPage.like_checker()
+        self.log_out()
+        self.auth_user(False)
+        self.assertTrue(myPage.mood_checker())
+
+         
     def test_theme(self):
         self.auth_user()
 
@@ -349,3 +445,4 @@ class Tests(unittest.TestCase):
 
         self.assertNotEqual(themeForm.START_THEME_NAME,
                             themeForm.get_selected_theme(), "Theme apply error")
+
