@@ -16,8 +16,9 @@ class Share(Component):
     PROFILE = "//span[@class = 'tico flipthis-highlight']"
 
     def make_share(self, share_comment):
-        Lib.simple_wait_element(self.driver, self.COMMENT_CLICK ).click()
-        Lib.simple_set_text_to_element(self.driver, self.INPUT_TEXT, share_comment)
+        Lib.simple_wait_element(self.driver, self.COMMENT_CLICK).click()
+        Lib.simple_set_text_to_element(
+            self.driver, self.INPUT_TEXT, share_comment)
         Lib.simple_wait_element(self.driver, self.MR_SEND).click()
         Lib.hover(self.driver, self.GROUP_BUTTON)
         share_element = self.driver.find_element_by_link_text("Поделиться")
@@ -25,7 +26,6 @@ class Share(Component):
         Lib.simple_wait_element(self.driver, self.SHARE_BUTTON).click()
 
     def share_checker(self, share_comment):
-         Lib.simple_wait_element(self.driver, self.PROFILE).click()
-         check_share = self.driver.find_element_by_link_text(self.share_comment)
-         return Lib.check_exist_element(self.driver, check_share)
-
+        Lib.simple_wait_element(self.driver, self.PROFILE).click()
+        check_share = self.driver.find_element_by_link_text(self.share_comment)
+        return Lib.check_exist_element(self.driver, check_share)

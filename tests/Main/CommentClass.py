@@ -13,22 +13,23 @@ class CommentClass(Component):
 
     def create_comment(self):
         Lib.simple_wait_element(self.driver, self.COMMENT_BUTTON).click()
-        Lib.simple_set_text_to_element(self.driver, self.TEXT_INPUT,"test-test-teeest")
+        Lib.simple_set_text_to_element(
+            self.driver, self.TEXT_INPUT, "test-test-teeest")
         Lib.simple_wait_element(self.driver, self.SEND_BUTTON).click()
 
     def add_like(self):
-        Lib.hover(self.driver,self.HOVER_ELEMENT)
+        Lib.hover(self.driver, self.HOVER_ELEMENT)
         Lib.simple_wait_element(self.driver, self.LIKE_BUTTON).click()
-    
+
     def like_checker(self):
         if Lib.check_exist_element(self.driver, self.LIKE_BUTTON):
             return True
         else:
             return False
-    
+
     def event_like_checker(self):
         self.driver.get("https://www.ok.ru/marks")
         if Lib.check_exist_element(self.driver, self.COMMENT):
             return True
         else:
-            return False 
+            return False

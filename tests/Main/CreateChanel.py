@@ -13,18 +13,21 @@ class CreateChanel(Component):
         self.driver.get("https://www.ok.ru/video/myVideo")
 
     def before_chanel(self):
-         before_create = len(self.driver.find_elements_by_xpath(self.CHECK_VALUE))  
-         return before_create  
-    
+        before_create = len(
+            self.driver.find_elements_by_xpath(self.CHECK_VALUE))
+        return before_create
+
     def chanel_name(self, name):
-        before_click = len(self.driver.find_elements_by_xpath(self.CHECK_VALUE))
+        before_click = len(
+            self.driver.find_elements_by_xpath(self.CHECK_VALUE))
         Lib.simple_wait_element(self.driver, self.BUTTON_ADD).click()
         Lib.visibility_wait_element(self.driver, self.INPUT_BLOCK)
         Lib.simple_set_text_to_element(self.driver, self.INPUT_BLOCK, name)
         Lib.simple_wait_element(self.driver, self.SUBMIT_BUTTON).click()
 
     def after_chanel(self):
-        after_create = len(self.driver.find_elements_by_xpath(self.CHECK_VALUE))
+        after_create = len(
+            self.driver.find_elements_by_xpath(self.CHECK_VALUE))
         return after_create
 
     def delete_clicker(self):

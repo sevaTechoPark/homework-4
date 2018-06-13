@@ -28,6 +28,7 @@ from tests.Main.Relations import Relations
 from tests.Main.Share import Share
 from tests.Main.CommentClass import CommentClass
 
+
 class Tests(unittest.TestCase):
     driver = None  # type: webdriver.Remote
 
@@ -390,7 +391,7 @@ class Tests(unittest.TestCase):
 
         chanel.delete_clicker()
 
-        self.assertTrue(chanel.after_chanel() > chanel.value_check() )
+        self.assertTrue(chanel.after_chanel() > chanel.value_check())
 
     def test_mood(self):
         self.auth_user()
@@ -400,15 +401,15 @@ class Tests(unittest.TestCase):
         self.log_out()
         self.auth_user(False)
         self.assertTrue(mood.mood_checker("End testing OK"))
-    
+
     def test_interview(self):
         self.auth_user()
 
         interview = Interview(self.driver)
         interview.open_tab()
-        interview.input_value("QA is a cool ?", "Yes" , "Of Course")
+        interview.input_value("QA is a cool ?", "Yes", "Of Course")
         interview.vote_interview()
-        self.assertTrue( interview.vote_value() > 0) 
+        self.assertTrue(interview.vote_value() > 0)
 
     def test_music_collections(self):
         self.auth_user()
@@ -418,9 +419,9 @@ class Tests(unittest.TestCase):
         self.assertTrue(music.check_music())
 
     def test_adding_music(self):
-         self.auth_user()
-         audio = AudioAdd(self.driver)
-         self.assertTrue(audio.before_click() < audio.after_click())
+        self.auth_user()
+        audio = AudioAdd(self.driver)
+        self.assertTrue(audio.before_click() < audio.after_click())
 
     def test_event_message(self):
         self.auth_user()
@@ -441,7 +442,6 @@ class Tests(unittest.TestCase):
         self.auth_user(False)
         self.assertTrue(myPage.event_like_checker())
 
-         
     def test_theme(self):
         self.auth_user()
 
@@ -454,4 +454,3 @@ class Tests(unittest.TestCase):
 
         self.assertNotEqual(themeForm.START_THEME_NAME,
                             themeForm.get_selected_theme(), "Theme apply error")
-

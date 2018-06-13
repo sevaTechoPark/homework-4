@@ -14,22 +14,25 @@ class Interview(Component):
     CHECK_VALUE = "//ul[@class = 'poll_lst']//descendant::li[1]//a[@class = 'poll_i_count']"
 
     def open_tab(self):
-         self.driver.get("https://www.ok.ru/post")
-         Lib.simple_wait_element(self.driver, self.INTERVIEW_BLOCK).click()
+        self.driver.get("https://www.ok.ru/post")
+        Lib.simple_wait_element(self.driver, self.INTERVIEW_BLOCK).click()
 
     def input_value(self, main_question, first_answer, second_answer):
         Lib.visibility_wait_element(self.driver, self.QUESTION)
-        Lib.simple_set_text_to_element(self.driver, self.QUESTION,main_question)
-        Lib.simple_set_text_to_element(self.driver, self.FIRST_INPUT,first_answer)
-        Lib.simple_set_text_to_element(self.driver, self.SECOND_INPUT,second_answer)
+        Lib.simple_set_text_to_element(
+            self.driver, self.QUESTION, main_question)
+        Lib.simple_set_text_to_element(
+            self.driver, self.FIRST_INPUT, first_answer)
+        Lib.simple_set_text_to_element(
+            self.driver, self.SECOND_INPUT, second_answer)
         Lib.visibility_wait_element(self.driver, self.SUBMIT)
         Lib.simple_wait_element(self.driver, self.SUBMIT).click()
 
     def vote_interview(self):
         Lib.simple_wait_element(self.driver, self.VOTE).click()
-        self.driver.refresh();
+        self.driver.refresh()
         Lib.visibility_wait_element(self.driver, self.CHECK_VALUE)
-    
+
     def vote_value(self):
         vote = Lib.visibility_wait_element(self.driver, self.CHECK_VALUE).text
         return vote
