@@ -363,42 +363,52 @@ class Tests(unittest.TestCase):
     def test_share(self):
         self.auth_user()
         share = share(self.driver)
-        share.make_share()
-        if share.share_checker():
+        share.make_share("What is the better than Qa ?")
+        if share.share_checker("What is the better than Qa ?"):
             self.log_out()
             self.auth_user(False)
             share.make_share()
             self.assertTrue(share.share_checker())
-        else:self.assertTrue(False)
+        else:
+            return False
 
     def test_adding_video(self):
         self.auth_user()
         audio = VideoAdd(self.driver)
         audio.open_video()
-        audio.add_video()
+        self.assertTrue(audio.add_video())
 
     def test_creating_chanel(self):
         self.auth_user()
         chanel = CreateChanel(self.driver)
         chanel.open_chanel()
-        self.assertTrue(chanel.check_chanel_work())
+        value_before = chanel.before_chanel()
+        chanel.chanel_name("test")
+
+        if chanel.after_chanel() <= value_before:
+            return False
+
+        chanel.delete_clicker()
+
+        self.assertTrue(chanel.after_chanel() > chanel.value_check() )
 
     def test_mood(self):
         self.auth_user()
         mood = Mood(self.driver)
         mood.open_theme()
-        mood.create_mood()
+        mood.create_mood("End testing OK")
         self.log_out()
         self.auth_user(False)
-        self.assertTrue(mood.mood_checker())
+        self.assertTrue(mood.mood_checker("End testing OK"))
     
     def test_interview(self):
         self.auth_user()
 
         interview = Interview(self.driver)
         interview.open_tab()
-        interview.input_value()
-        self.assertTrue(interview.vote_interview())
+        interview.input_value("QA is a cool ?", "Yes" , "Of Course")
+        interview.vote_interview()
+        self.assertTrue( interview.vote_value() > 0) 
 
     def test_music_collections(self):
         self.auth_user()
@@ -410,14 +420,13 @@ class Tests(unittest.TestCase):
     def test_adding_music(self):
          self.auth_user()
          audio = AudioAdd(self.driver)
-         audio.open_audio()
-         self.assertTrue(audio.add_audio())
+         self.assertTrue(audio.before_click() < audio.after_click())
 
     def test_event_message(self):
         self.auth_user()
         event = Events(self.driver)
         event.open_event()
-        event.send_message()
+        event.send_message("What about your diplom ?")
         self.log_out()
         self.auth_user(False)
         self.assertTrue(event.mr_checker())
@@ -430,7 +439,7 @@ class Tests(unittest.TestCase):
         myPage.like_checker()
         self.log_out()
         self.auth_user(False)
-        self.assertTrue(myPage.mood_checker())
+        self.assertTrue(myPage.event_like_checker())
 
          
     def test_theme(self):
