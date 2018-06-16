@@ -18,8 +18,8 @@ class ThemeComponent(Component):
 
     def select(self):
         self.START_THEME_NAME = self.get_selected_theme()
-        theme = Lib.simple_wait_elements_css(self.driver, self.SELECT_CSS)[
-            2].find_element_by_css_selector("a")
+        el = Lib.simple_wait_elements_css(self.driver, self.SELECT_CSS)[2]
+        theme = el.find_element_by_css_selector("a")
         theme.click()
 
     def apply(self):

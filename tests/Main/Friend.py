@@ -37,13 +37,13 @@ class FriendComponent(Component):
     def scroll_to_new(self):
         self.OUTGOING_FRIENDS_COUNT = int(
             Lib.simple_wait_element_css(self.driver, self.OUTGOING_FRIENDS_COUNT_CSS).text)
-        self.PENDING_FRIENDS = self.driver.execute_script(
-            'return document.querySelectorAll("%s")' % self.PENDING_FRIENDS_CSS)
+        self.PENDING_FRIENDS = Lib.simple_get_elements_css(
+            self.driver, self.PENDING_FRIENDS_CSS)
         while len(self.PENDING_FRIENDS) < self.OUTGOING_FRIENDS_COUNT:
             self.driver.execute_script(
                 "window.scrollTo(0, document.body.scrollHeight)")
-            self.PENDING_FRIENDS = self.driver.execute_script(
-                'return document.querySelectorAll("%s")' % self.PENDING_FRIENDS_CSS)
+            self.PENDING_FRIENDS = Lib.simple_get_elements_css(
+                self.driver, self.PENDING_FRIENDS_CSS)
 
     def cancel_request(self):
         self.driver.get(self.USER_URL+self.PENDING_PREFIX)

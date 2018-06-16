@@ -202,7 +202,7 @@ class Tests(unittest.TestCase):
             main_page.open()
             center_menu = main_page.center_menu
             nickname = center_menu.get_another_nickname()
-            self.assertTrue(nickname == UsersName.second_account_name)
+            self.assertEqual(nickname, UsersName.second_account_name)
 
     def test_show_all_who_reaction(self):
 
@@ -235,7 +235,7 @@ class Tests(unittest.TestCase):
             main_page.open()
             center_menu = main_page.center_menu
             nickname = center_menu.get_another_nickname()
-            self.assertTrue(nickname == UsersName.second_account_name)
+            self.assertEqual(nickname, UsersName.second_account_name)
 
     def test_album(self):
         self.auth_user()
@@ -300,8 +300,8 @@ class Tests(unittest.TestCase):
         inactive_language = language_form.get_inactive_language()
         language_form.change()
         active_language = language_form.get_active_language()
-        self.assertEqual(inactive_language.lower(),
-                         active_language.lower(), "Language haven't changed")
+        self.assertNotEqual(inactive_language.lower(),
+                            active_language.lower(), "Language haven't changed")
 
     def test_like(self):
         self.auth_user()
@@ -363,7 +363,7 @@ class Tests(unittest.TestCase):
 
     def test_share(self):
         self.auth_user()
-        share = share(self.driver)
+        share = Share(self.driver)
         share.make_share("What is the better than Qa ?")
         if share.share_checker("What is the better than Qa ?"):
             self.log_out()

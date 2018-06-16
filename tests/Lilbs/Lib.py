@@ -19,6 +19,10 @@ class Lib(Component):
         return driver.find_elements_by_xpath(x_path)
 
     @staticmethod
+    def simple_get_elements_css(driver, css):
+        return driver.find_elements_by_css_selector(css)
+
+    @staticmethod
     def simple_set_text_to_element(driver, x_path, text):
         driver.find_element_by_xpath(x_path).send_keys(text)
 

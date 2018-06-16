@@ -47,6 +47,7 @@ class GroupComponent(Component):
 
     def getFollowBtn(self):
         self.driver.get(self.SEARCH_QUERY)
-        if len(self.driver.find_element_by_xpath(self.FIRST_GROUP_XPATH).find_elements_by_css_selector(self.JOIN_BTN_CSS)) == 0:
+        el = self.driver.find_element_by_xpath(self.FIRST_GROUP_XPATH)
+        if len(el.find_elements_by_css_selector(self.JOIN_BTN_CSS)) == 0:
             return False
         return True
