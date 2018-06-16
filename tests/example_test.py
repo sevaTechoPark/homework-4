@@ -269,7 +269,6 @@ class Tests(unittest.TestCase):
 
         profile_component = GenderComponent(self.driver)
         profile_component.open_profile()
-        profile_component.click_edit()
         profile_component.set_start_gender()
         profile_component.change_gender()
         profile_component.save()

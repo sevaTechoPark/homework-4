@@ -21,15 +21,7 @@ class GenderComponent(Component):
         el.click()
 
     def set_start_gender(self):
-
-        WebDriverWait(self.driver, 30, 0.1).until(
-            lambda d: d.find_element_by_id("field_gender_1"))
-        isChecked = self.driver.execute_script(
-            'return document.getElementById("field_gender_1").checked')
-        if isChecked:
-            self.START_GENDER = 1
-        else:
-            self.START_GENDER = 2
+        self.START_GENDER = self.get_current_gender()
 
     def get_current_gender(self):
         self.click_edit()
