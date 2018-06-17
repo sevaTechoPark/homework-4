@@ -47,7 +47,6 @@ class TopMenu(Component):
         Lib.simple_wait_element(self.driver, self.FRIENDS_TOOLBAR).click()
 
     def report_notification(self):
-        self.wait_process_after_choose_tab()
 
         element = Lib.simple_wait_element(
             self.driver, self.NOTIFICATION_ELEMENT)
@@ -61,33 +60,36 @@ class TopMenu(Component):
         return Lib.simple_wait_element(self.driver, self.NOTIFICATION_REMOVED).text
 
     def close_notification(self):
-        self.wait_process_after_choose_tab()
 
         Lib.simple_wait_element(self.driver, self.NOTIFICATION_ELEMENT_WITH_ID)
         Lib.simple_wait_element(
             self.driver, self.NOTIFICATION_BUTTON_CLOSE).click()
 
     def check_notification_close(self):
-        self.wait_process_after_choose_tab()
-        return Lib.check_not_exist_element(self.driver, self.NOTIFICATION_ELEMENT_WITH_ID)
-
+        if self.wait_process_after_choose_tab() == True:
+            return Lib.check_not_exist_element(self.driver, self.NOTIFICATION_ELEMENT_WITH_ID)
+        else:
+            return False
+    
     def wait_process_after_choose_tab(self):
         try:
             Lib.wait_element_with_attribute(
                 self.driver, True, self.NOTIFICATION_TAB_CONTENT, "__process")
+                return True
         except TimeoutException:
-            pass
+            return False
 
         try:
             Lib.wait_element_with_attribute(
                 self.driver, False, self.NOTIFICATION_TAB_CONTENT, "__process")
+                return True
         except TimeoutException:
-            pass
+            return False
 
     def choose_tab_notification(self, index):
         Lib.simple_get_element(
             self.driver, self.NOTIFICATION_TABS[index]).click()
-        self.wait_process_after_choose_tab()
+
 
     def get_tab_content_title(self):
         return Lib.visibility_wait_element(self.driver, self.NOTIFICATION_TAB_TITLE).text

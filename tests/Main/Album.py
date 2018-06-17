@@ -11,13 +11,12 @@ class AlbumPage(Page):
 
 
 class AlbumComponent(Component):
-    NEW_ALBUM_NAME = 'test'
     CREATE_ALBUM_BTN_CSS = '.portlet_h_ac .tico'
     ALBUM_NAME_CSS = '[class="form__gl-1-2 form photo-album-settings"] [type="text"]'
     SAVE_BTN_CSS = '.formButtonContainer [type]'
     ALBUMS_CSS = 'a[class="o"]'
     EDIT_ALBUM_CSS = "div[class='photo-menu_edit iblock-cloud_show'] a"
-    ALBUM_LINK_CSS = "a[title='%s']" % NEW_ALBUM_NAME
+    ALBUM_LINK_CSS = "a[title='new_album']" 
     DELETE_ALBUM_CSS = "li[class='controls-list_item']:nth-of-type(2)"
     DELETE_CONFIRM_BTN = "input[name='button_delete_confirm']"
     PHOTOS_URL_CSS = "a[data-l='t,userPhotos']"
@@ -26,16 +25,15 @@ class AlbumComponent(Component):
         el = Lib.simple_wait_element_css(self.driver, self.PHOTOS_URL_CSS)
         el.click()
 
-    def fill_name(self):
+    def fill_name(self,name_album):
         album_name_el = Lib.visibility_wait_element_css(
             self.driver, self.ALBUM_NAME_CSS)
-        album_name_el.send_keys(self.NEW_ALBUM_NAME)
+        album_name_el.send_keys(name_album)
 
     def create_album(self):
         create_album_btn = Lib.simple_wait_element_css(
             self.driver, self.CREATE_ALBUM_BTN_CSS)
         create_album_btn.click()
-        self.fill_name()
         save_btn = Lib.simple_wait_element_css(self.driver, self.SAVE_BTN_CSS)
         save_btn.click()
 

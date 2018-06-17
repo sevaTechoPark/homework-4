@@ -10,7 +10,6 @@ class Mood(Component):
     HAPPY_MOOD = "//div[@class = 'feeling-card_i flipthis-highlight']"
     TEXT_MOOD = "//textarea[@name = 'st.layer.fieldFeelingText']"
     ADD_BUTTON = "//button[@class = 'button-pro __sec']"
-    INPUT_TEXT = "End testing OK"
 
     def open_theme(self):
         else_element = self.driver.find_element_by_link_text("Ещё")

@@ -1,3 +1,6 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
 import unittest
 
@@ -52,7 +55,6 @@ class Tests(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         pass
-        # cls.driver.quit()
 
     @classmethod
     def save_nicknames(cls):
@@ -129,6 +131,7 @@ class Tests(unittest.TestCase):
         top_menu = main_page.top_menu
         top_menu.select_notification()
         top_menu.report_notification()
+        REPORT_SUCCESS = "Жалоба отправлена"
         self.assertEqual(
             REPORT_SUCCESS, top_menu.place_first_notification(), "report notification fail")
 
@@ -171,7 +174,8 @@ class Tests(unittest.TestCase):
         feed = main_page.feed
 
         feed.remove_like()
-        self.assertEquals(5, feed.get_number_emotion(), "remove reaction fail")
+        EMOJI_NUMBER = 5
+        self.assertEquals(EMOJI_NUMBER, feed.get_number_emotion(), "remove reaction fail")
 
     def test_show_who_last_reaction(self):
 
@@ -245,6 +249,7 @@ class Tests(unittest.TestCase):
         album_component.create_album()
         self.driver.refresh()
         albums = album_component.get_albums()
+        albums.fill_name("new_album")
         self.assertIn(album_component.NEW_ALBUM_NAME,
                       albums, "Album not created")
         album_component.delete_album()
@@ -352,7 +357,8 @@ class Tests(unittest.TestCase):
         black_man = BlackList(self.driver)
         black_man.open_friend_page()
         black_man.blacklist_choose()
-        self.assertTrue(black_man.check_in_blacklist())
+        value = black_man.check_in_blacklist()
+        self.assertTrue(value)
 
     def test_relations(self):
         self.auth_user()

@@ -25,8 +25,9 @@ class LanguageForm(Component):
         return el.text
 
     def get_active_language(self):
-        return Lib.simple_wait_element_css(self.driver, self.ACTIVE_LANGUAGE).text
-
+        el = Lib.simple_wait_element_css(self.driver, self.ACTIVE_LANGUAGE)
+        return el.text
+        
     def change(self):
         el = Lib.simple_wait_element_css(self.driver, self.INACTIVE_LANGUAGE)
         el.click()
