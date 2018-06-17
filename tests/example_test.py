@@ -335,9 +335,10 @@ class Tests(unittest.TestCase):
         messageComponent.selectFirstDialog()
         messageComponent.writeMessage()
         messageComponent.send_message()
+        DEFAULT_MESSAGE = "KEK"
 
         messageComponent.open_dialog()
-        self.assertEqual(messageComponent.DEFAULT_MESSAGE,
+        self.assertEqual(DEFAULT_MESSAGE,
                          messageComponent.get_last_message())
 
     def test_note(self):
