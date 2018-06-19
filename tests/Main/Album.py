@@ -16,7 +16,7 @@ class AlbumComponent(Component):
     SAVE_BTN_CSS = '.formButtonContainer [type]'
     ALBUMS_CSS = 'a[class="o"]'
     EDIT_ALBUM_CSS = "div[class='photo-menu_edit iblock-cloud_show'] a"
-    ALBUM_LINK_CSS = "a[title='new_album']" 
+    ALBUM_LINK_CSS = "a[title='new_album']"
     DELETE_ALBUM_CSS = "li[class='controls-list_item']:nth-of-type(2)"
     DELETE_CONFIRM_BTN = "input[name='button_delete_confirm']"
     PHOTOS_URL_CSS = "a[data-l='t,userPhotos']"
@@ -25,7 +25,7 @@ class AlbumComponent(Component):
         el = Lib.simple_wait_element_css(self.driver, self.PHOTOS_URL_CSS)
         el.click()
 
-    def fill_name(self,name_album):
+    def fill_name(self, name_album):
         album_name_el = Lib.visibility_wait_element_css(
             self.driver, self.ALBUM_NAME_CSS)
         album_name_el.send_keys(name_album)

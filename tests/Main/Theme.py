@@ -11,13 +11,11 @@ class ThemePage(Page):
 
 class ThemeComponent(Component):
 
-    START_THEME_NAME = ''
     CONFIRM_BTN_CSS = '[data-l="t\,confirm"]'
     SELECT_CSS = 'div[class="covers_cat_lst_cnt"'
     SELECTED_THEME_CSS = 'div[class="covers_cat_lst_cnt"] div[class*="selected"]'
 
     def select(self):
-        self.START_THEME_NAME = self.get_selected_theme()
         el = Lib.simple_wait_elements_css(self.driver, self.SELECT_CSS)[2]
         theme = el.find_element_by_css_selector("a")
         theme.click()

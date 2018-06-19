@@ -39,6 +39,10 @@ class Tests(unittest.TestCase):
         pass
 
     def tearDown(self):
+        like_component = LikeComponent(self.driver)
+        album_component = AlbumComponent(self.driver)
+        like_component.remove_like(like_component.DATA_ID)
+        album_component.delete_album()
         self.log_out()
 
     @classmethod
@@ -175,7 +179,8 @@ class Tests(unittest.TestCase):
 
         feed.remove_like()
         EMOJI_NUMBER = 5
-        self.assertEquals(EMOJI_NUMBER, feed.get_number_emotion(), "remove reaction fail")
+        self.assertEquals(
+            EMOJI_NUMBER, feed.get_number_emotion(), "remove reaction fail")
 
     def test_show_who_last_reaction(self):
 
@@ -252,7 +257,6 @@ class Tests(unittest.TestCase):
         albums.fill_name("new_album")
         self.assertIn(album_component.NEW_ALBUM_NAME,
                       albums, "Album not created")
-        album_component.delete_album()
 
     def test_auth(self):
         self.auth_user()
@@ -323,7 +327,6 @@ class Tests(unittest.TestCase):
         likes_count = int(
             like_component.LIKES_COUNT)
         self.assertEqual(likes_from_btn_by_owner, likes_count, "like error!")
-        like_component.remove_like(like_component.DATA_ID)
 
     def test_message(self):
         self.auth_user()
@@ -455,8 +458,9 @@ class Tests(unittest.TestCase):
         themePage.PATH = "themes"
         themePage.open()
         themeForm = ThemeComponent(self.driver)
+        start_theme_name = themeForm.get_selected_theme()
         themeForm.select()
         themeForm.apply()
 
-        self.assertNotEqual(themeForm.START_THEME_NAME,
+        self.assertNotEqual(start_theme_name,
                             themeForm.get_selected_theme(), "Theme apply error")

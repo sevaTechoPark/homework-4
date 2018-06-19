@@ -70,7 +70,7 @@ class TopMenu(Component):
             return Lib.check_not_exist_element(self.driver, self.NOTIFICATION_ELEMENT_WITH_ID)
         else:
             return False
-    
+
     def wait_process_after_choose_tab(self):
         try:
             Lib.wait_element_with_attribute(
@@ -89,7 +89,6 @@ class TopMenu(Component):
     def choose_tab_notification(self, index):
         Lib.simple_get_element(
             self.driver, self.NOTIFICATION_TABS[index]).click()
-
 
     def get_tab_content_title(self):
         return Lib.visibility_wait_element(self.driver, self.NOTIFICATION_TAB_TITLE).text
