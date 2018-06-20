@@ -1,11 +1,15 @@
+import os
+
 from selenium.common.exceptions import NoSuchElementException
 
 from tests.Lilbs.Lib import Lib
 from tests.models.Component import Component
+import odnoklassniki
 
 
 class GroupComponent(Component):
     DEFAULT_GROUP_SEARCH = "Android"
+    DEFAULT_GROUP_ID = "54499418374389"
     SEARCH_BTN_CSS = "input[class='toolbar_search_lupa']"
     FIRST_GROUP_XPATH = "//div[@id='gs_result_list']/div[1]"
     JOIN_BTN_CSS = "span[class='button-pro __sec']"
@@ -51,3 +55,19 @@ class GroupComponent(Component):
         if len(el.find_elements_by_css_selector(self.JOIN_BTN_CSS)) == 0:
             return False
         return True
+
+    def checkFollow(self):
+
+        CLIENT_KEY = os.environ.get('CLIENT_KEY')
+        CLIENT_SECRET = os.environ.get('CLIENT_SECRET')
+        ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN')
+        isFollowed = False
+
+        ok = odnoklassniki.Odnoklassniki(
+            CLIENT_KEY, CLIENT_SECRET, ACCESS_TOKEN)
+        groups = ok.group.getUserGroupsV2()['groups']
+        for group in groups:
+            if group['groupId'] == self.DEFAULT_GROUP_ID:
+                isFollowed = True
+                break
+        return isFollowed

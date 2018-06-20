@@ -41,8 +41,14 @@ class Tests(unittest.TestCase):
     def tearDown(self):
         like_component = LikeComponent(self.driver)
         album_component = AlbumComponent(self.driver)
+        friend_component = FriendComponent(self.driver)
+        group_component = GroupComponent(self.driver)
+        gender_component = GenderComponent(self.driver)
         like_component.remove_like(like_component.DATA_ID)
         album_component.delete_album()
+        friend_component.cancel_request()
+        group_component.unfollow()
+        gender_component.back_to_start_gender()
         self.log_out()
 
     @classmethod
@@ -271,19 +277,17 @@ class Tests(unittest.TestCase):
         friend_component.open_friend_page()
         friend_component.add_to_friends()
         self.assertTrue(friend_component.get_pending_friends())
-        friend_component.cancel_request()
 
     def test_gender(self):
         self.auth_user()
 
-        profile_component = GenderComponent(self.driver)
-        profile_component.open_profile()
-        profile_component.set_start_gender()
-        profile_component.change_gender()
-        profile_component.save()
-        self.assertTrue(profile_component.get_current_gender(),
+        gender_component = GenderComponent(self.driver)
+        gender_component.open_profile()
+        gender_component.set_start_gender()
+        gender_component.change_gender()
+        gender_component.save()
+        self.assertTrue(gender_component.get_current_gender(),
                         "Gender didn't changed!")
-        profile_component.back_to_start_gender()
 
     def test_group(self):
         self.auth_user()
@@ -292,9 +296,7 @@ class Tests(unittest.TestCase):
         group_component.fill_search()
         group_component.search()
         group_component.follow()
-
-        self.assertFalse(group_component.getFollowBtn(), "Follow group error")
-        group_component.unfollow()
+        self.assertFalse(group_component.checkFollow(), "Follow group error")
 
     def test_language(self):
         self.auth_user()
