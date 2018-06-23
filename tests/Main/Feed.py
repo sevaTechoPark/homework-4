@@ -11,7 +11,7 @@ class Feed(Component):
 
     LIKE_BUTTONS = '//div[@class="feed-list"]//li[@class="widget-list_i "][last()]'
     LIKE_INFO = LIKE_BUTTONS + \
-                '//span[@class="widget_cnt controls-list_lk h-mod"]'
+        '//span[@class="widget_cnt controls-list_lk h-mod"]'
 
     LIKE_COUNT = '//span[contains(@class, "widget_count")]'
     LIKE_PANEL = '//div[@id="hook_Block_ShortcutMenuReact"]//div[contains(@class, "sc-menu")]//ul[@class="u-menu"]'

@@ -196,7 +196,8 @@ class Tests(unittest.TestCase):
         main_page = MainPage(self.driver)
         feed = main_page.feed
         names = feed.get_names_last_liked(like_id)
-        self.assertIn(UsersName.second_account_name, names, "second user not found")
+        self.assertIn(UsersName.second_account_name,
+                      names, "second user not found")
 
     def test_go_to_page_who_last_reaction(self):
 
@@ -227,7 +228,8 @@ class Tests(unittest.TestCase):
         feed = main_page.feed
         feed.open_all_likes(like_id)
         names = feed.get_all_names()
-        self.assertIn(UsersName.second_account_name,names,"second user not found")
+        self.assertIn(UsersName.second_account_name,
+                      names, "second user not found")
 
     def test_go_to_page_from_all_reaction(self):
 
