@@ -126,11 +126,12 @@ class Tests(unittest.TestCase):
         top_menu = main_page.top_menu
         top_menu.select_notification()
 
+        titles = []
         for i in range(0, len(NOTIFICATION_TABS_TITLE)):
             top_menu.choose_tab_notification(i)
             title = top_menu.get_tab_content_title()
-            self.assertEqual(
-                NOTIFICATION_TABS_TITLE[i], title, "select notification tabs")
+            titles.append(title)
+        self.assertTrue(set(NOTIFICATION_TABS_TITLE).issubset(titles))
 
     def test_report_notification(self):
         self.create_notification()
@@ -195,8 +196,7 @@ class Tests(unittest.TestCase):
         main_page = MainPage(self.driver)
         feed = main_page.feed
         names = feed.get_names_last_liked(like_id)
-        self.assertTrue(
-            any(UsersName.second_account_name in s for s in names), "second user not found")
+        self.assertIn(UsersName.second_account_name, names, "second user not found")
 
     def test_go_to_page_who_last_reaction(self):
 
@@ -227,8 +227,7 @@ class Tests(unittest.TestCase):
         feed = main_page.feed
         feed.open_all_likes(like_id)
         names = feed.get_all_names()
-        self.assertTrue(
-            any(UsersName.second_account_name in s for s in names), "second user not found")
+        self.assertIn(UsersName.second_account_name,names,"second user not found")
 
     def test_go_to_page_from_all_reaction(self):
 

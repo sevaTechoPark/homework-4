@@ -11,9 +11,9 @@ class LanguagePage(Page):
 
 
 class LanguageForm(Component):
-    LANGUAGE_ELEMENT_CSS = '.user-settings .user-settings_i:nth-of-type(6) .user-settings_i_lk'
+    LANGUAGE_ELEMENT_CSS = '.user-settings_i:nth-of-type(6) .user-settings_i_lk'
     INACTIVE_LANGUAGE = ".sel-lang_list a"
-    ACTIVE_LANGUAGE = '.user-settings .user-settings_i:nth-of-type(6) .user-settings_i_tx'
+    ACTIVE_LANGUAGE = '.user-settings_i:nth-of-type(6) .user-settings_i_tx'
 
     def open(self):
         changeBtn = Lib.simple_wait_element_css(
