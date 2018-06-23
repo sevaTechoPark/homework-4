@@ -296,7 +296,7 @@ class Tests(unittest.TestCase):
         group_component.fill_search()
         group_component.search()
         group_component.follow()
-        self.assertFalse(group_component.checkFollow(), "Follow group error")
+        self.assertTrue(group_component.checkFollow(), "Follow group error")
 
     def test_language(self):
         self.auth_user()

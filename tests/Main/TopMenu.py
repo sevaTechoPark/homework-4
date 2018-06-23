@@ -1,13 +1,8 @@
 # coding=utf-8
-from selenium.common.exceptions import TimeoutException, NoSuchElementException, StaleElementReferenceException
-from selenium.webdriver import ActionChains
-from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import TimeoutException
 
 from tests.Lilbs.Lib import Lib
-from tests.constants.Constants import waitTime
 from tests.models.Component import Component
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.common.by import By
 
 
 class TopMenu(Component):
@@ -75,14 +70,14 @@ class TopMenu(Component):
         try:
             Lib.wait_element_with_attribute(
                 self.driver, True, self.NOTIFICATION_TAB_CONTENT, "__process")
-                return True
+            return True
         except TimeoutException:
             return False
 
         try:
             Lib.wait_element_with_attribute(
                 self.driver, False, self.NOTIFICATION_TAB_CONTENT, "__process")
-                return True
+            return True
         except TimeoutException:
             return False
 
