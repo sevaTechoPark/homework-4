@@ -1,7 +1,7 @@
 from selenium.webdriver.support.wait import WebDriverWait
 
 from tests.models.Component import Component
-from tests.Lilbs.Lib import Lib
+from tests.Libs.Lib import Lib
 
 
 class GenderComponent(Component):

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from tests.models.Component import Component
-from tests.Lilbs.Lib import Lib
+from tests.Libs.Lib import Lib
 from selenium import webdriver
 
 

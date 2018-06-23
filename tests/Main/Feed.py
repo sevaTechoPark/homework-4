@@ -1,4 +1,4 @@
-from tests.Lilbs.Lib import Lib
+from tests.Libs.Lib import Lib
 from tests.constants.Constants import *
 from tests.models.Component import Component
 
