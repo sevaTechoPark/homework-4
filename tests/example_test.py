@@ -140,8 +140,9 @@ class Tests(unittest.TestCase):
         top_menu = main_page.top_menu
         top_menu.select_notification()
         top_menu.report_notification()
+        first_notification = top_menu.place_first_notification()
         self.assertEqual(
-            REPORT_SUCCESS, top_menu.place_first_notification(), "report notification fail")
+            REPORT_SUCCESS, first_notification, "report notification fail")
 
     def test_close_notification(self):
         self.create_notification()
@@ -151,8 +152,8 @@ class Tests(unittest.TestCase):
         top_menu = main_page.top_menu
         top_menu.select_notification()
         top_menu.close_notification()
-        self.assertTrue(top_menu.check_notification_close(),
-                        "close notification fail")
+        is_notification_close = top_menu.check_notification_close()
+        self.assertTrue(is_notification_close, "close notification fail")
 
     def test_add_reaction(self):
         self.auth_user()
