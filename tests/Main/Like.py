@@ -27,12 +27,12 @@ class LikeComponent(Component):
             self.likes_count = 0
         self.jsClick(like_btn)  # Здесь он нужен
 
-    def get_likes_from_btn_by_owner(self, id):
+    def get_likes_from_btn_by_owner(self):
         like_btn = Lib.simple_wait_element_css(
-            self.driver, self.LIKE_BTN_OWNER % id)
+            self.driver, self.LIKE_BTN_OWNER % self.DATA_ID)
         return like_btn.get_attribute(self.DATA_COUNT)
 
-    def remove_like(self, id):
+    def remove_like(self):
         like_btn = Lib.simple_wait_element_css(
-            self.driver, self.LIKE_BTN_OWNER % id)
+            self.driver, self.LIKE_BTN_OWNER % self.DATA_ID)
         like_btn.click()

@@ -31,12 +31,10 @@ class GroupComponent(Component):
     def follow(self):
         first_group = Lib.simple_wait_element(
             self.driver, self.FIRST_GROUP_XPATH)
-        try:
+        if not self.checkFollow():
             join_btn = first_group.find_element_by_css_selector(
                 self.JOIN_BTN_CSS)
             join_btn.click()
-        except NoSuchElementException:
-            pass
 
     def unfollow(self):
         url = Lib.simple_wait_element(

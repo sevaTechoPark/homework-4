@@ -44,7 +44,7 @@ class Tests(unittest.TestCase):
         friend_component = FriendComponent(self.driver)
         group_component = GroupComponent(self.driver)
         gender_component = GenderComponent(self.driver)
-        like_component.remove_like(like_component.DATA_ID)
+        like_component.remove_like()
         album_component.delete_album()
         friend_component.cancel_request()
         group_component.unfollow()
@@ -255,13 +255,13 @@ class Tests(unittest.TestCase):
     def test_album(self):
         self.auth_user()
 
+        album_name = "new_album"
         album_component = AlbumComponent(self.driver)
         album_component.open_photos_page()
         album_component.create_album()
-        self.driver.refresh()
         albums = album_component.get_albums()
-        albums.fill_name("new_album")
-        self.assertIn(album_component.NEW_ALBUM_NAME,
+        albums.fill_name(album_name)
+        self.assertIn(album_name,
                       albums, "Album not created")
 
     def test_auth(self):
@@ -320,14 +320,12 @@ class Tests(unittest.TestCase):
         like_page.PATH = 'feed'
         like_component = LikeComponent(self.driver)
         like_page.open()
-        like_component.like_first_found_post()
-
-        like_page.open()
-
         likes_from_btn_by_owner = int(
-            like_component.get_likes_from_btn_by_owner(like_component.DATA_ID))-1
+            like_component.get_likes_from_btn_by_owner())
+        like_component.like_first_found_post()
+        like_page.open()
         likes_count = int(
-            like_component.LIKES_COUNT)
+            like_component.likes_count)
         self.assertEqual(likes_from_btn_by_owner, likes_count, "like error!")
 
     def test_message(self):
@@ -375,12 +373,13 @@ class Tests(unittest.TestCase):
     def test_share(self):
         self.auth_user()
         share = Share(self.driver)
-        share.make_share("What is the better than Qa ?")
-        if share.share_checker("What is the better than Qa ?"):
+        share_message = "What is the better than Qa ?"
+        share.make_share(share_message)
+        if share.share_checker(share_message):
             self.log_out()
             self.auth_user(False)
-            share.make_share()
-            self.assertTrue(share.share_checker())
+            share.make_share(share_message)
+            self.assertTrue(share.share_checker(share_message))
         else:
             return False
 
