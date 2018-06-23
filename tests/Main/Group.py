@@ -16,7 +16,7 @@ class GroupComponent(Component):
     ARROW_UNFOLLOW_BTN_CSS = ".__with-arrow"
     UNFOLLOW_CSS = ".__show .dropdown_n"
     SEARCH_QUERY = 'https://ok.ru/search?st.query=%s' % DEFAULT_GROUP_SEARCH
-    URL_CSS = "//div[@id='gs_result_list']/div[1]//a[@title]"
+    URL_CSS = "//div[@id='gs_result_list']//a[@title]"
     SEARCH_FIELD_ID = "field_query"
 
     def fill_search(self):
