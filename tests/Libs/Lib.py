@@ -1,5 +1,5 @@
 # coding=utf-8
-from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -65,14 +65,12 @@ class Lib(Component):
 
     @staticmethod
     def visibility_wait_element(driver, x_path):
-        ignored_exceptions = (StaleElementReferenceException,)
-        return WebDriverWait(driver, waitTime, ignored_exceptions=ignored_exceptions).until(
+        return WebDriverWait(driver, waitTime).until(
             expected_conditions.visibility_of_element_located((By.XPATH, x_path)))
 
     @staticmethod
     def visibility_wait_element_css(driver, css):
-        ignored_exceptions = (StaleElementReferenceException,)
-        return WebDriverWait(driver, waitTime, ignored_exceptions=ignored_exceptions).until(
+        return WebDriverWait(driver, waitTime).until(
             expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, css)))
 
     @staticmethod
