@@ -1,6 +1,6 @@
 from tests.Lilbs.Lib import Lib
+from tests.constants.Constants import *
 from tests.models.Component import Component
-from random import randint
 
 
 class Feed(Component):
@@ -11,7 +11,7 @@ class Feed(Component):
 
     LIKE_BUTTONS = '//div[@class="feed-list"]//li[@class="widget-list_i "][last()]'
     LIKE_INFO = LIKE_BUTTONS + \
-        '//span[@class="widget_cnt controls-list_lk h-mod"]'
+                '//span[@class="widget_cnt controls-list_lk h-mod"]'
 
     LIKE_COUNT = '//span[contains(@class, "widget_count")]'
     LIKE_PANEL = '//div[@id="hook_Block_ShortcutMenuReact"]//div[contains(@class, "sc-menu")]//ul[@class="u-menu"]'
@@ -29,22 +29,21 @@ class Feed(Component):
 
     def add_like(self):
         element = Lib.simple_wait_elements(self.driver, self.LIKE_BUTTONS)[0]
-        if self.get_number_emotion() == 5:
+        if self.get_number_emotion() == REACTIONS_CLASS:
             element.click()
         return Lib.simple_wait_elements(self.driver, self.LIKE_INFO)[0].get_attribute("data-id1")
 
     def remove_like(self):
         element = Lib.simple_wait_elements(self.driver, self.LIKE_BUTTONS)[0]
-        if self.get_number_emotion() != 5:
-            element.click()
+        element.click()
 
     def add_emotion_to_like(self, old_reaction=-1):
         element = Lib.visibility_wait_element(self.driver, self.WALL_CONTENT)
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
-        reaction_number = randint(0, 4)
+        reaction_number = REACTIONS_LIKE
         while reaction_number == old_reaction:
-            reaction_number = randint(0, 4)
+            reaction_number = REACTIONS_LOL
         element = Lib.simple_wait_elements(self.driver, self.LIKE_BUTTONS)[0]
         Lib.hover(self.driver, element)
         Lib.visibility_wait_element(self.driver, self.REACTION_PANEL)
@@ -55,18 +54,18 @@ class Feed(Component):
         reaction_class = Lib.visibility_wait_element(
             self.driver, self.REACTION_ICON).get_attribute("class")
         if reaction_class == 'widget_ico __react __react-like':
-            return 0
+            return REACTIONS_LIKE
         if reaction_class == 'widget_ico __react __react-lol':
-            return 1
+            return REACTIONS_LOL
         if reaction_class == 'widget_ico __react __react-sorrow':
-            return 2
+            return REACTIONS_SORROW
         if reaction_class == 'widget_ico __react __react-heart':
-            return 3
+            return REACTIONS_HEART
         if reaction_class == 'widget_ico __react __react-wow':
-            return 4
+            return REACTIONS_WOW
         if reaction_class == 'widget_ico widget_ico ic_klass' or reaction_class == 'widget_ico ic_klass':
-            return 5
-        return 6
+            return REACTIONS_CLASS
+        return REACTIONS_NOT_FOUND
 
     def create_xpath_for_id_like(self, id):
         return self.LIKE_BUTTONS + '//span[@data-id1="' + str(id) + '"]'

@@ -100,7 +100,6 @@ class Tests(unittest.TestCase):
         top_menu.select_friends()
         friends = main_page.friends
         friends.invite__friend_to_group()
-
         self.log_out()
 
     def create_like(self):
@@ -141,7 +140,6 @@ class Tests(unittest.TestCase):
         top_menu = main_page.top_menu
         top_menu.select_notification()
         top_menu.report_notification()
-        REPORT_SUCCESS = "Жалоба отправлена"
         self.assertEqual(
             REPORT_SUCCESS, top_menu.place_first_notification(), "report notification fail")
 
@@ -182,11 +180,10 @@ class Tests(unittest.TestCase):
 
         main_page = MainPage(self.driver)
         feed = main_page.feed
-
+        self.create_like()
         feed.remove_like()
-        EMOJI_NUMBER = 5
         self.assertEquals(
-            EMOJI_NUMBER, feed.get_number_emotion(), "remove reaction fail")
+            REACTIONS_CLASS, feed.get_number_emotion(), "remove reaction fail")
 
     def test_show_who_last_reaction(self):
 
