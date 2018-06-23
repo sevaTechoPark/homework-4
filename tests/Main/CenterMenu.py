@@ -9,8 +9,6 @@ class CenterMenu(Component):
     ANOTHER_ACCOUNT_NAME = '//h1[@class="mctc_name_tx bl"]'
 
     def select_wall(self):
-        Lib.simple_wait_element(self.driver, self.WALL_TOOLBAR).click()
-        Lib.visibility_wait_element(self.driver, self.WALL_CONTENT)
         element = Lib.visibility_wait_element(self.driver, self.FEED_LIST)
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
