@@ -8,28 +8,29 @@ from selenium.webdriver import DesiredCapabilities, Remote
 
 from tests.Auth import UsersName
 from tests.Auth.AuthPage import AuthPage
+from tests.Main.AddMusic import AddMusic
 from tests.Main.Album import AlbumComponent
+from tests.Main.AudioAdd import AudioAdd
+from tests.Main.Auth import AuthForm
+from tests.Main.BlackList import BlackList
+from tests.Main.CommentClass import CommentClass
+from tests.Main.CreateChanel import CreateChanel
+from tests.Main.Events import Events
 from tests.Main.Friend import FriendComponent
 from tests.Main.Gender import GenderComponent
 from tests.Main.Group import GroupComponent
+from tests.Main.Interview import Interview
 from tests.Main.Language import LanguagePage, LanguageForm
 from tests.Main.Like import LikeComponent, LikePage
 from tests.Main.MainPage import MainPage
 from tests.Main.Message import MessagePage, MessageComponent
-from tests.Main.Note import NoteComponent
-from tests.Main.Theme import ThemePage, ThemeComponent
-from tests.constants.Constants import *
-from tests.Main.AddMusic import AddMusic
-from tests.Main.AudioAdd import AudioAdd
-from tests.Main.VideoAdd import VideoAdd
-from tests.Main.CreateChanel import CreateChanel
 from tests.Main.Mood import Mood
-from tests.Main.Interview import Interview
-from tests.Main.Events import Events
-from tests.Main.BlackList import BlackList
+from tests.Main.Note import NoteComponent
 from tests.Main.Relations import Relations
 from tests.Main.Share import Share
-from tests.Main.CommentClass import CommentClass
+from tests.Main.Theme import ThemePage, ThemeComponent
+from tests.Main.VideoAdd import VideoAdd
+from tests.constants.Constants import *
 
 
 class Tests(unittest.TestCase):
@@ -250,6 +251,15 @@ class Tests(unittest.TestCase):
             center_menu = main_page.center_menu
             nickname = center_menu.get_another_nickname()
             self.assertEqual(nickname, UsersName.second_account_name)
+
+    def test_auth(self):
+        auth_form = AuthForm(self.driver)
+        auth_page = AuthPage(self.driver)
+        auth_page.open()
+        auth_form.set_login()
+        auth_form.set_password()
+        auth_form.submit()
+        self.assertTrue(auth_form.isAuth(), "Wrong login or password")
 
     def test_album(self):
         self.auth_user()
