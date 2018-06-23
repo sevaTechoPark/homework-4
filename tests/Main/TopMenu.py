@@ -15,15 +15,11 @@ class TopMenu(Component):
 
     NOTIFICATION_ELEMENT = '//div[@id="ntf_layer_content_inner"]/div[position() = 1]'
     NOTIFICATION_ELEMENT_WITH_ID = NOTIFICATION_ELEMENT + '/div'
-    NOTIFICATION_REPORT = NOTIFICATION_ELEMENT + \
-        '//div[@class="notif_ac fade-on-hover"]//i[@data-l="t,spam"]'
-    NOTIFICATION_REPORT_SPAM = NOTIFICATION_ELEMENT + \
-        '//div[@class="notif_ac fade-on-hover"]//div[@data-l="t,shortcutMenu"]//a'
-    NOTIFICATION_REMOVED = NOTIFICATION_ELEMENT + \
-        '//div[@data-module="NotificationRemoved"]'
+    NOTIFICATION_REPORT = '//div[@class="notif_ac fade-on-hover"]//i[@data-l="t,spam"]'
+    NOTIFICATION_REPORT_SPAM = '//div[@class="notif_ac fade-on-hover"]//div[@data-l="t,shortcutMenu"]//a'
+    NOTIFICATION_REMOVED = '//div[@data-module="NotificationRemoved"]'
 
-    NOTIFICATION_BUTTON_CLOSE = NOTIFICATION_ELEMENT + \
-        '//button[@data-l="t,btn_ignore"]'
+    NOTIFICATION_BUTTON_CLOSE = '//button[@data-l="t,btn_ignore"]'
 
     NOTIFICATION_TABS = ['//*[@id="ntf_layer_menu_link_All"]/span',
                          '//*[@id="ntf_layer_menu_link_Friendships"]/span[1]',
